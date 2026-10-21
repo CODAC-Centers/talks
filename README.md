@@ -2,7 +2,7 @@
 
 The slide decks of the AFOSR Center of Excellence CODAC, served by GitHub Pages
 at **https://codac-centers.github.io/talks/**. Start from the
-[kickoff meeting](https://codac-centers.github.io/talks/kom-2026/).
+[kickoff meeting](https://codac-centers.github.io/talks/2026/09/kickoff/).
 
 This repository holds the **built** talks. Every commit here is one snapshot of
 the site, published by CI. **Do not edit anything in this repository.** It is
