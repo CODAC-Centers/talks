@@ -1,0 +1,28 @@
+/* --- Sans & Math: Fira Sans & Fira Math --------------------------------- */
+/* Fira Sans is vendored locally; index.html links vendor/fira/fira-sans.css
+   so the deck presents with no network connection. */
+
+@font-face {
+  font-family: "Fira Math";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Fira Math Regular"), local("Fira Math"), url("../assets/fonts/FiraMath-Regular.otf") format("opentype");
+}
+
+/* --- Mono: JuliaMono, self-hosted ------------------------------------------
+   Also embedded as compressed EOT in the source; these are the upstream WOFF2
+   webfonts, supplied by the author. SIL Open Font License 1.1 — see
+   assets/fonts/JuliaMono-LICENSE.txt. Regular/Medium/Bold plus italics; the
+   remaining upstream weights (Light, SemiBold, ExtraBold, Black, and the Latin
+   subsets) are not used by this system. */
+@font-face{font-family:"JuliaMono";font-style:normal;font-weight:400;font-display:swap;
+  src:local("JuliaMono-Regular"),url("../assets/fonts/JuliaMono-Regular.woff2") format("woff2")}
+@font-face{font-family:"JuliaMono";font-style:normal;font-weight:500;font-display:swap;
+  src:local("JuliaMono-Medium"),url("../assets/fonts/JuliaMono-Medium.woff2") format("woff2")}
+@font-face{font-family:"JuliaMono";font-style:normal;font-weight:700;font-display:swap;
+  src:local("JuliaMono-Bold"),url("../assets/fonts/JuliaMono-Bold.woff2") format("woff2")}
+@font-face{font-family:"JuliaMono";font-style:italic;font-weight:400;font-display:swap;
+  src:local("JuliaMono-RegularItalic"),url("../assets/fonts/JuliaMono-RegularItalic.woff2") format("woff2")}
+@font-face{font-family:"JuliaMono";font-style:italic;font-weight:700;font-display:swap;
+  src:local("JuliaMono-BoldItalic"),url("../assets/fonts/JuliaMono-BoldItalic.woff2") format("woff2")}

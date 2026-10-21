@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Toward Compositional Agent-Based Modeling — AFOSR COE CODAC</title>
+
+<meta name="author" content="AFOSR COE CODAC">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<link rel="stylesheet" href="../reveal-js/dist/reveal.css">
+<link rel="stylesheet" href="../vendored/katex-0.16.11/katex.min.css">
+<link rel="stylesheet" href="../vendored/fira-sans-2026-09/fira-sans.css">
+<link rel="stylesheet" href="../_ds/fairbanks-research-talk-design-system-7193341c-92ad-490d-a789-ef6442329aec/tokens/fonts.css">
+<link rel="stylesheet" href="../_ds/fairbanks-research-talk-design-system-7193341c-92ad-490d-a789-ef6442329aec/tokens/colors.css">
+<link rel="stylesheet" href="../_ds/fairbanks-research-talk-design-system-7193341c-92ad-490d-a789-ef6442329aec/tokens/typography.css">
+<link rel="stylesheet" href="../_ds/fairbanks-research-talk-design-system-7193341c-92ad-490d-a789-ef6442329aec/tokens/spacing.css">
+<link rel="stylesheet" href="../_ds/fairbanks-research-talk-design-system-7193341c-92ad-490d-a789-ef6442329aec/tokens/effects.css">
+<link rel="stylesheet" href="../_ds/fairbanks-research-talk-design-system-7193341c-92ad-490d-a789-ef6442329aec/styles.css">
+<link rel="stylesheet" href="../gatas-talks/talk.css">
+<link rel="stylesheet" href="../css/palettes.css">
+<link rel="stylesheet" href="../css/site.css">
+
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+<section data-label="1 · Title" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    
+<div class="title-block">
+  <div class="title-kicker">AFOSR COE CODAC</div>
+  <div class="title-main">Toward Compositional Agent-Based Modeling</div>
+  <div class="title-speaker">Kris Brown</div>
+  <div class="title-affiliation">Topos Institute</div>
+  <div class="title-venue">CODAC Kickoff Meeting · Arlington, VA · September 2026</div>
+</div>
+<div class="title-logos">
+  <img src="../assets/brand/codac-digicams-shield.png" alt="CODAC DIGICAMS Shield" style="height:170px">
+  <img src="../assets/logos/topos-logo.png" alt="Topos Institute" style="height:90px">
+  <img src="../assets/logos/afosr-logo.png" alt="Air Force Office of Scientific Research" style="height:130px">
+</div>
+<div class="title-panel bordered" style="top:180px;height:296px">
+  <video data-autoplay src="../assets/video/game-of-life-gosper-glider-gun.mp4" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline"></video>
+</div>
+<div class="title-panel bordered" style="top:500px;height:284px">
+  <video data-autoplay src="../assets/video/covid-social-distancing-abm.mp4" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline"></video>
+</div>
+
+  </div>
+  <aside class="notes">Hi, I'm going to talk about agent based modeling.</aside>
+</section>
+
+<section data-label="2 · Overview: Toward Compositional Agent-Based Modeling" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Overview</h1>
+    <div class="eyebrow" style="position:absolute;left:48px;top:112px">Four threads</div>
+<div style="position:absolute;left:48px;top:156px;width:1440px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px">
+  <div class="card blue roomy"><div class="card-head">1</div><div class="card-body" style="font-size:var(--text-lg)">A framework for agent-based models</div></div>
+  <div class="card green roomy"><div class="card-head">2</div><div class="card-body" style="font-size:var(--text-lg)">Agent-based programs / workflows</div></div>
+  <div class="card orange roomy"><div class="card-head">3</div><div class="card-body" style="font-size:var(--text-lg)">Incremental search</div></div>
+  <div class="card tan roomy"><div class="card-head">4</div><div class="card-body" style="font-size:var(--text-lg)">CatColab</div></div>
+</div>
+
+<div style="position:absolute;left:48px;top:440px;width:1440px">
+
+<div style="margin-top:22px;display:flex;align-items:flex-start;gap:12px"><div style="flex:0 0 52px;padding-top:34px;font-size:20px;letter-spacing:2px;font-weight:700;opacity:.72">WITH</div>
+<div style="flex:0 0 220px;text-align:center"><img src="../assets/photos/nate-osgood.jpg" alt="Nate Osgood" style="width:88px;height:88px;border-radius:50%;border:2px solid rgb(255 239 207 / .5);box-shadow:0 3px 12px rgb(0 0 0 / .3);object-fit:cover;display:block;margin:0 auto"><div style="margin-top:9px;font-size:24px;line-height:1.15;opacity:.9">Nate Osgood</div></div>
+<div style="flex:0 0 220px;text-align:center"><img src="../assets/photos/james-fairbanks.jpg" alt="James Fairbanks" style="width:88px;height:88px;border-radius:50%;border:2px solid rgb(255 239 207 / .5);box-shadow:0 3px 12px rgb(0 0 0 / .3);object-fit:cover;display:block;margin:0 auto"><div style="margin-top:9px;font-size:24px;line-height:1.15;opacity:.9">James Fairbanks</div></div>
+<div style="flex:0 0 220px;text-align:center"><img src="../assets/photos/evan-patterson.jpg" alt="Evan Patterson" style="width:88px;height:88px;border-radius:50%;border:2px solid rgb(255 239 207 / .5);box-shadow:0 3px 12px rgb(0 0 0 / .3);object-fit:cover;display:block;margin:0 auto"><div style="margin-top:9px;font-size:24px;line-height:1.15;opacity:.9">Evan Patterson</div></div>
+<div style="flex:0 0 220px;text-align:center"><img src="../assets/photos/michael-arntzenius.jpg" alt="Michael Arntzenius" style="width:88px;height:88px;border-radius:50%;border:2px solid rgb(255 239 207 / .5);box-shadow:0 3px 12px rgb(0 0 0 / .3);object-fit:cover;display:block;margin:0 auto"><div style="margin-top:9px;font-size:24px;line-height:1.15;opacity:.9">Michael Arntzenius</div></div></div>
+</div>
+
+    <div class="ds-slide-num">2</div>
+  </div>
+  <aside class="notes">I'll try to give a brief overview of four things I've been thinking about related to this program. These are some of the people I've been in dialogue or collaboration with.
+</aside>
+</section>
+
+<section data-label="3 · Core Abstraction: Rewrite Rules" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Core Abstraction: Rewrite Rules</h1>
+    <div class="at-full" style="top:104px;font-size:var(--text-lg);line-height:1.2;color:var(--slate)">
+  Rewrite rules come up frequently in theories of discrete updates of combinatorial data.</div>
+
+<div class="card green roomy" style="position:absolute;left:48px;top:176px;width:600px">
+  <div class="ds-theorem-block block" style="font-size:var(--text-md);line-height:1.32"><div class="theorem-head">Definition (Rewrite rule)</div><div class="theorem-body">A <strong>rewrite rule</strong> in a category <span class="katex-inline" data-tex="\mathsf{C}">\(\mathsf{C}\)</span> is a pair of morphisms <span class="katex-inline" data-tex="L \leftarrowtail K \rightarrow R">\(L \leftarrowtail K \rightarrow R\)</span>.
+    <ul style="margin:12px 0 12px 28px;padding:0;list-style-type:disc;line-height:1.4">
+      <li><span class="katex-inline" data-tex="L">\(L\)</span> is the <strong>pattern</strong> of the rule.</li>
+      <li><span class="katex-inline" data-tex="R">\(R\)</span> is the <strong>replacement</strong>.</li>
+      <li><span class="katex-inline" data-tex="K">\(K\)</span> relates the two.</li>
+    </ul>
+    A rewrite rule is <strong>applied</strong> to an object <span class="katex-inline" data-tex="G \in \mathsf{C}">\(G \in \mathsf{C}\)</span> via a <strong>pattern match</strong> <span class="katex-inline" data-tex="L \to G">\(L \to G\)</span>.</div></div>
+</div>
+<div style="position:absolute;left:48px;top:600px;width:600px;font-size:var(--text-sm);line-height:1.3;color:var(--slate)">
+  The result of applying the rule is determined by the structure of <span class="katex-inline" data-tex="\mathsf{C}">\(\mathsf{C}\)</span> (namely, its pushouts).</div>
+
+<figure style="margin:0;position:absolute;left:690px;top:176px;width:798px;height:560px">
+  <img src="../assets/figures/rewrite-rule-kitchen-example.png"
+    alt="A rewrite rule L ← K → R on kitchen objects (bread, knife), matched into a kitchen state G and producing the rewritten state"
+    style="width:100%;height:100%;object-fit:contain">
+</figure>
+
+    <div class="ds-cite">[1] A. Aguinaldo. <i>Topos Institute Blog,</i> 2022<span class="ds-cite-more"> &middot; image</span></div>
+    <div class="ds-slide-num">3</div>
+  </div>
+  <aside class="notes"><p>Matt Klawonn already hinted at rewrite rules earlier in the day, so let me give more intuition for them. They're an important means of expressing discrete updates to combinatorial data.</p>
+<p>(read slide)</p>
+<p>I'll note that one reason these are particularly nice is that they blur the line between algorithm and data. Normally we're used to thinking of functions which can be applied to update data as something that lives in code. But a rewrite rule is finite, combinatorial data. So we can do operations <em>on</em> rewrite rules in a way that is very hard to do on code itself (this is underscoring James' earlier point which was that he doesn't want to ___ with models, he wants to ____ with algorithms.)</p>
+</aside>
+</section>
+
+<section data-label="4 · Agent-Based Models: Examples" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Agent-Based Models: Examples</h1>
+    <div class="eyebrow" style="position:absolute;left:48px;top:150px;width:472px">Game of Life</div>
+
+<div style="position:absolute;left:48px;top:190px;width:472px;height:340px;overflow:hidden;border-radius:4px"><video data-autoplay src="../assets/video/game-of-life-gosper-glider-gun.mp4" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;background:#fff"></video></div>
+
+<div class="eyebrow" style="position:absolute;left:580px;top:150px;width:510px">COVID modeling</div>
+
+<div style="position:absolute;left:580px;top:190px;width:510px;height:340px;overflow:hidden;border-radius:4px"><video data-autoplay src="../assets/video/covid-social-distancing-abm.mp4" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;background:#fff"></video></div>
+
+<div class="eyebrow" style="position:absolute;left:1150px;top:150px;width:338px">Discrete Lotka–Volterra</div>
+
+<div style="position:absolute;left:1150px;top:190px;width:338px;height:340px;overflow:hidden;border-radius:4px"><video data-autoplay src="../assets/video/discrete-lotka-volterra-abm.mp4" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;background:#fff"></video></div>
+
+<div style="position:absolute;left:48px;right:48px;bottom:72px;font-size:var(--text-xl);line-height:1.18;color:var(--slate)">The only formal artifact of a model is usually its code, which makes models hard to <strong>compare</strong>, <strong>combine</strong>, <strong>edit</strong> and <strong>visualize</strong>.</div>
+
+    <div class="ds-slide-num">4</div>
+  </div>
+  <aside class="notes"><p>An important class of scientific models are agent-based models: there are types of agents and they interact in various ways, not much more you can say in general about them. Part of the goal of this talk is to introduce <em>some</em> formalized idea that I claim captures a lot of practice without throwing up one's hands in defeat and saying "An Agent Based Model is any piece of software with things we call agents." Here are three motivating examples.</p>
+<p>Now the problem: how do we represent these models, if not just as source code? Unfortunately, the status quo is that, despite the modeler's high-level conceptual understanding of the model, the only formal artifact is a piece of code. That makes <strong>comparing</strong>, <strong>combining</strong>, <strong>editing</strong>, and <strong>visualizing</strong> difficult.</p>
+</aside>
+</section>
+
+<section data-label="5 · Agent-Based Modeling (1/3): Schemas" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Agent-Based Modeling (1/3)</h1>
+    <div class="card green side" style="position:absolute;left:48px;top:108px;width:1440px">
+  <div style="font-size:var(--text-xl);line-height:1.2">An <strong>agent-based model</strong> simulates individuals which interact with their environments.</div>
+</div>
+<div class="at-full" style="top:196px;font-size:var(--text-lg);line-height:1.25;color:var(--slate)">
+  To develop a model–implementation distinction, we need to be more precise. An ABM requires a <strong style="color:var(--navy)">schema</strong> to structure its individuals and their environment.</div>
+
+<figure style="margin:0;position:absolute;left:48px;top:290px;width:520px;height:420px">
+  <img src="../assets/figures/abm-schema-sir-person-graph.png"
+    alt="Schema C: S, I and R point to Person; I has Viral Load and Antibody attributes valued in the reals; Person lives on a vertex V of a graph with edges E"
+    style="width:100%;height:100%;object-fit:contain">
+</figure>
+
+<div class="card blue roomy" style="position:absolute;left:600px;top:290px;width:888px">
+  <div class="card-head">AlgebraicJulia implements a <em>compositional</em> theory of relational data.</div>
+  <ul style="margin:6px 0 0 28px;padding:0;list-style-type:disc;font-size:var(--text-md);line-height:1.45">
+    <li>Schemas are categories, database instances are functors <span class="katex-inline" data-tex="\mathsf{C} \to \mathsf{Set}">\(\mathsf{C} \to \mathsf{Set}\)</span>.</li>
+    <li>Functors <span class="katex-inline" data-tex="\mathsf{C}\to\mathsf{D}">\(\mathsf{C}\to\mathsf{D}\)</span> induce canonical migrations <span class="katex-inline" data-tex="[\mathsf{C},\mathsf{Set}]\to[\mathsf{D},\mathsf{Set}]">\([\mathsf{C},\mathsf{Set}]\to[\mathsf{D},\mathsf{Set}]\)</span>.</li>
+  </ul>
+</div>
+
+<div class="card orange side" style="position:absolute;left:600px;top:600px;width:888px">
+  <div style="font-size:var(--text-md);line-height:1.3"><strong>Caution:</strong> we do not impose a hard boundary between individual and environment.</div>
+</div>
+
+    <div class="ds-slide-num">5</div>
+  </div>
+  <aside class="notes"><p>So how will we move beyond this broad, hand-wavy definition? Let me share some work-in-progress with John Baez, Nathaniel Osgood, Xiaoyan Li, Evan Patterson, and Sean Wu on a more precise class of models.</p>
+<p>Here's an example schema. An <em>instance</em> is a choice of a set of people, a set of vertices, a set of edges with source and target vertices, and so on. We have a category of instances, meaning we can talk about rewrite rules in this category.</p>
+<p>For example, we might think of <code>Person</code> as tracking individuals, <code>S</code> <code>I</code> <code>V</code> as tracking properties of the individuals, and <code>E</code> and <code>V</code> as tracking the environment. However, if our notion of "action" is broad enough, we need not reify the distinction between individuals and environment. (You could argue that everything is being treated like an agent, the rows in the database, or that nothing is: it's just an environment.)</p>
+<p>(In the original deck these three points were revealed one at a time.)</p>
+</aside>
+</section>
+
+<section data-label="6 · Agent-Based Modeling (2/3): Rules and Timers" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Agent-Based Modeling (2/3)</h1>
+    <div class="at-full" style="top:104px;font-size:var(--text-lg);line-height:1.25;color:var(--slate)">
+  The semantics of models are <em>continuous time</em> with <em>discrete events</em> and <em>continuous dynamics</em>.</div>
+
+<div class="card blue roomy" style="position:absolute;left:48px;top:200px;width:720px">
+  <div class="card-head">To first order, an ABM is:</div>
+  <ul style="margin:8px 0 0 28px;padding:0;list-style-type:disc;font-size:var(--text-lg);line-height:1.4">
+    <li>A <strong>schema</strong>: possible world states are ACSet instances</li>
+    <li>A collection of <strong>rewrite rules</strong> <span class="katex-inline" data-tex="\rho_i">\(\rho_i\)</span>
+      <ul style="margin:6px 0 0 28px;padding:0;list-style-type:circle;font-size:var(--text-md)">
+        <li>An associated collection of <strong>timers</strong> <span class="katex-inline" data-tex="T_i :: \mathsf{P}([0,\infty])">\(T_i :: \mathsf{P}([0,\infty])\)</span></li>
+      </ul></li>
+  </ul>
+</div>
+
+<figure style="margin:0;position:absolute;left:808px;top:180px;width:680px;height:620px">
+  <img src="../assets/figures/abm-schema-rules-and-timers.png"
+    alt="The schema C, a rewrite rule rho_i given by L_i ← I_i → R_i on susceptible and infected people at a location, its timer T_i as a decaying probability density, and a user-friendly Petri-net presentation of infection and recovery rules"
+    style="width:100%;height:100%;object-fit:contain">
+</figure>
+
+    <div class="ds-slide-num">6</div>
+  </div>
+  <aside class="notes">Now we need to introduce the possible actions. These are rewrite rules. If you just had a set of rewrite rules, you would have no control over which ones execute, how often, or in what order. This is where 'timers' are relevant.
+</aside>
+</section>
+
+<section data-label="7 · Scheduling Future Events with Timers" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Scheduling Future Events with Timers</h1>
+    <div class="card green side roomy" style="position:absolute;left:48px;top:120px;width:560px">
+  <div style="font-size:var(--text-lg);line-height:1.3">A timer's probability measure is a <strong>residence time</strong>: how long the event takes to happen, <em>conditional</em> on nothing else happening first to remove it from that state.</div>
+</div>
+
+<figure style="margin:0;position:absolute;left:648px;top:112px;width:840px;height:240px">
+  <img src="../assets/figures/timer-residence-time-distributions.png"
+    alt="Three timer densities over time t: a Markov process (exponential decay), Dirac delta(s) (fixed delays), and a custom distribution"
+    style="width:100%;height:100%;object-fit:contain">
+</figure>
+
+<div class="eyebrow" style="position:absolute;left:48px;top:420px">Example: an SIR event schedule</div>
+<figure style="margin:0;position:absolute;left:48px;top:460px;width:1440px;height:272px">
+  <img src="../assets/figures/timer-sir-event-schedule.png"
+    alt="Four snapshots of an event timeline: two infected and one susceptible person; recovery and infection events are scheduled, a recovery fires first and invalidates a pending infection, then the remaining events fire"
+    style="width:100%;height:100%;object-fit:contain">
+</figure>
+
+    <div class="ds-slide-num">7</div>
+  </div>
+  <aside class="notes"><p>The timer characterizes: how long (once the preconditions for an action hold) until the action happens? Note we can represent non-Markovian processes. This is because coarse-grained dynamics aren't memoryless.</p>
+<p>This is a distribution we'll sample right when the match for a rewrite rule appears. This allows us to avoid needing instantaneous probabilities and integrating over small timesteps.</p>
+<p>Here's an example. We start off with two infected, one susceptible people at the same location. So the possible events are that the two infected people recover or that they each infect the one susceptible person. If this were our initial state we'd draw from the distributions of these kinds of events to get scheduled times for all four events. Now it turns out that a recovery event occurs first, so when we evaluate that, the downstream infection event is invalidated. Then an infection event, then two recovery events.</p>
+</aside>
+</section>
+
+<section data-label="8 · Agent-Based Modeling (3/3): Continuous Dynamics" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Agent-Based Modeling (3/3)</h1>
+    <div class="at-full" style="top:104px;font-size:var(--text-lg);line-height:1.25;color:var(--slate)">
+  These models are <em>continuous time</em> with <em>discrete events</em> and <em>continuous dynamics</em>.</div>
+
+<div class="card blue roomy" style="position:absolute;left:48px;top:190px;width:800px">
+  <div class="card-head">To first order, an ABM is:</div>
+  <ul style="margin:8px 0 0 28px;padding:0;list-style-type:disc;font-size:var(--text-lg);line-height:1.4">
+    <li>A <strong>schema</strong>: possible world states are ACSet instances</li>
+    <li>A collection of <strong>rewrite rules</strong>
+      <ul style="margin:4px 0 6px 28px;padding:0;list-style-type:circle;font-size:var(--text-md)">
+        <li>An associated collection of <strong>timers</strong> <span class="katex-inline" data-tex="T_i :: \mathsf{P}([0,\infty])">\(T_i :: \mathsf{P}([0,\infty])\)</span></li>
+      </ul></li>
+    <li>A collection of <strong>continuous dynamics</strong>, given by ODEs <span class="katex-inline" data-tex="O_j">\(O_j\)</span>
+      <ul style="margin:4px 0 0 28px;padding:0;list-style-type:circle;font-size:var(--text-md)">
+        <li>An associated collection of <strong>patterns</strong> <span class="katex-inline" data-tex="P_j">\(P_j\)</span></li>
+        <li>Partial functions from <span class="katex-inline" data-tex="P_j">\(P_j\)</span> variables to <span class="katex-inline" data-tex="O_j">\(O_j\)</span> variables</li>
+      </ul></li>
+  </ul>
+</div>
+
+<figure style="margin:0;position:absolute;left:888px;top:170px;width:600px;height:640px">
+  <img src="../assets/figures/abm-schema-rules-and-odes.png"
+    alt="The schema C, ODEs O_j for the viral loads and antibodies of two infected people, the pattern P_j of two infected people on one vertex, and a user-friendly graphical presentation of the ODEs"
+    style="width:100%;height:100%;object-fit:contain">
+</figure>
+
+    <div class="ds-slide-num">8</div>
+  </div>
+  <aside class="notes"><p>I'll just comment that these discrete data structures and updates (though in continuous time) can also be gracefully integrated with continuous dynamics. In this example, we say "for every pair of infected people on the same vertex, the changes in their viral loads and antibody counts have the contributions of this ODE."</p>
+<p>Just as certain discrete rules were presented by a Petri net, there are also graphical methods of presenting some classes of ODEs.</p>
+</aside>
+</section>
+
+<section data-label="9 · Rewrite-Based Workflows (1/4): Interfaces on Wires" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Rewrite-Based Workflows (1/4)</h1>
+    <div class="at-full" style="top:104px;font-size:var(--text-lg);line-height:1.25;color:var(--slate)">
+  We're often interested in extended sequences of coordinated actions.</div>
+
+<figure style="margin:0;position:absolute;left:268px;top:170px;width:1000px;height:117px">
+  <img src="../assets/figures/rewrite-rule-sequence-untyped.png"
+    alt="Rule 1 → Rule 2 → Rule 3 → …, a bare sequence of rewrite rules"
+    style="width:100%;height:100%;object-fit:contain">
+</figure>
+
+<div class="card orange side" style="position:absolute;left:48px;top:320px;width:1440px">
+  <div style="font-size:var(--text-md);line-height:1.3"><strong>Problem:</strong> rules require <em>matches</em>, so the sequence above cannot specify how the rewrites relate to each other.</div>
+</div>
+
+<div class="at-full" style="top:430px;font-size:var(--text-lg);line-height:1.25">
+  We address this by annotating the wires connecting boxes with <strong>interfaces</strong>.</div>
+
+<figure style="margin:0;position:absolute;left:268px;top:490px;width:1000px;height:180px">
+  <img src="../assets/figures/rewrite-rule-sequence-typed-interfaces.png"
+    alt="… L1 → Rule 1 → R1 … L2 → Rule 2 → R2 …, the same sequence with a pattern labelling each wire"
+    style="width:100%;height:100%;object-fit:contain">
+</figure>
+
+<div style="position:absolute;left:48px;right:48px;bottom:56px;font-size:var(--text-lg);line-height:1.18;color:var(--slate)">To <em>run</em> the workflow, flow along wires with a distinguished match for whatever pattern lives on the wire.</div>
+
+    <div class="ds-slide-num">9</div>
+  </div>
+  <aside class="notes"><p>Ok, so that was one proposal for what an "agent based model" is. It's quite expressive. Let me now talk about another approach to this problem, one that we could call 'rewrite-based workflows'. A naive approach to this looks like this sequence of rules. But because a rule needs a match to be applied, at most this says to apply the rules somewhere (anywhere), with no constraints on how the rule applications relate to each other.</p>
+<p>We'll address this by annotating the wires. When you're stepping through a workflow, you are obligated to have a match of the shape of the pattern on the wire. Now it's possible to relate the output of rule 1 to the input of rule 2. Now, if R1 is not equal to L2, there must be some stuff in between. There are lots of primitive kinds of operations we can introduce to make this natural. But now I'm already talking about a graphical language with boxes and wires...</p>
+</aside>
+</section>
+
+<section data-label="10 · Rewrite-Based Workflows (2/4): Traced Monoidal Syntax" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Rewrite-Based Workflows (2/4)</h1>
+    <div class="at-full" style="top:104px;font-size:var(--text-lg);line-height:1.25;color:var(--slate)">
+  (Traced) <strong style="color:var(--navy)">symmetric monoidal categories</strong> are a desirable structure for one's syntax to have. Their diagrams:</div>
+
+<div style="position:absolute;left:48px;top:200px;width:1440px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+  <div class="card blue soft"><div class="card-body">Can be graphically depicted</div></div>
+  <div class="card blue soft"><div class="card-body">Can have varying semantics</div></div>
+  <div class="card blue soft"><div class="card-body">Can be composed in parallel or in series</div></div>
+  <div class="card blue soft"><div class="card-body">Can be operadically substituted</div></div>
+</div>
+
+<figure style="margin:0;position:absolute;left:268px;top:318px;width:1000px;height:240px">
+  <img src="../assets/figures/operadic-substitution-flow-chart.png"
+    alt="Operadic substitution: a flow chart with boxes 1 and 2 and a feedback loop; box 1 is replaced by a sub-diagram of boxes 3 and 4, giving the updated flow chart"
+    style="width:100%;height:100%;object-fit:contain">
+</figure>
+
+<div class="card green roomy" style="position:absolute;left:48px;top:590px;width:1440px">
+  <div style="font-size:var(--text-md);line-height:1.35">We represent workflows in a category closely related to <span class="katex-inline" data-tex="\mathsf{Meal}">\(\mathsf{Meal}\)</span>:</div>
+  <ul style="margin:6px 0 0 28px;padding:0;list-style-type:disc;font-size:var(--text-md);line-height:1.4">
+    <li>Objects: sets. Morphisms: <strong>Mealy machines</strong> (stateful functions, updated when fed an input).</li>
+    <li><span class="katex-inline" data-tex="\mathsf{Meal}">\(\mathsf{Meal}\)</span> is a traced SMC.</li>
+  </ul>
+</div>
+
+    <div class="ds-cite">[<span class="cite-ours">2</span>] K. Brown and D. I. Spivak. arXiv:2304.14950, 2023</div>
+    <div class="ds-slide-num">10</div>
+  </div>
+  <aside class="notes"><p>Applied category theorists know well the structure you need to interpret boxes and wires. I won't reiterate some of the virtues of this approach to syntax in the interest of time.</p>
+<p>At the risk of making this too technical, I'll say something approximately true which is that we can interpret the boxes as Mealy machines (functions which have an internal state which gets updated by its input).</p>
+</aside>
+</section>
+
+<section data-label="11 · Rewrite-Based Workflows (3/4): Lotka–Volterra as a Workflow" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Rewrite-Based Workflows (3/4)</h1>
+    <figure style="margin:0;position:absolute;left:48px;top:108px;width:1440px;height:482px">
+  <img src="../assets/figures/lotka-volterra-rewrite-workflow.png"
+    alt="Wiring diagrams for wolf–sheep predation: query boxes for each sheep, wolf and vertex, feeding rewrite boxes (sheep eat, wolf eat, swap, grass increment), a daily routine of move, reproduce, starve and forget, and a move sub-workflow of turn left or right then forward"
+    style="width:100%;height:100%;object-fit:contain">
+</figure>
+
+<div style="position:absolute;left:500px;top:588px;width:256px;height:230px;overflow:hidden;border-radius:4px"><video data-autoplay src="../assets/video/discrete-lotka-volterra-abm.mp4" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;background:#fff"></video></div>
+<div style="position:absolute;left:790px;top:690px;width:560px;font-size:var(--text-sm);line-height:1.3;color:var(--slate)">Running the workflow simulates wolves, sheep and grass.</div>
+
+    <div class="ds-slide-num">11</div>
+  </div>
+  <aside class="notes"><p>I haven't shown you all the primitives, but this results in a very powerful language. You can have workflows which actually do a whole simulation (as we can have some special boxes which play the role of <code>for</code>-loops).</p>
+<p>Note that, as a simulation, this is a sequence of events (there isn't really any timing).</p>
+</aside>
+</section>
+
+<section data-label="12 · Rewrite-Based Workflows (4/4): Nondeterministic and Probabilistic Semantics" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Rewrite-Based Workflows (4/4)</h1>
+    <div class="card blue roomy" style="position:absolute;left:48px;top:112px;width:700px;height:250px">
+  <div class="card-head">Process-informed decision making</div>
+  <ul style="margin:6px 0 0 28px;padding:0;list-style-type:disc;font-size:var(--text-lg);line-height:1.4">
+    <li><em>Nondeterministic</em> Mealy machines</li>
+    <li>Each function has a multiset of outputs</li>
+  </ul>
+</div>
+<div class="card orange roomy" style="position:absolute;left:788px;top:112px;width:700px;height:250px">
+  <div class="card-head">Structured game representations</div>
+  <ul style="margin:6px 0 0 28px;padding:0;list-style-type:disc;font-size:var(--text-lg);line-height:1.4">
+    <li><em>Probabilistic</em> Mealy machines</li>
+    <li>Each function has a finitely-supported probability distribution of outputs</li>
+  </ul>
+</div>
+
+<div class="eyebrow" style="position:absolute;left:48px;top:400px">Applications</div>
+<div class="card blue side roomy" style="position:absolute;left:48px;top:440px;width:700px">
+  <div style="font-size:var(--text-lg);line-height:1.3"><strong>Modeling resilience in complex operations.</strong> Running a nondeterministic workflow lets us look at the resources which play essential roles in the successful executions of the workflow.</div>
+</div>
+<div class="card orange side roomy" style="position:absolute;left:788px;top:440px;width:700px">
+  <div style="font-size:var(--text-lg);line-height:1.3"><strong>Agents which learn.</strong> Use the statefulness of boxes: any boxes which have some nondeterminism (e.g. picking a match) can be trained to produce a probability distribution when equipped with an objective function.</div>
+</div>
+
+    <div class="ds-slide-num">12</div>
+  </div>
+  <aside class="notes"><p>This connects to two interest areas of Matt Klawonn. I now have to relax something I said earlier: we can interpret these wiring diagrams in certain Kleisli category embellishments of Meal. Process-informed decision making is connected to non-deterministic Mealy machines. Structured games can make use of probabilistic Mealy machines.</p>
+<p>Inspired by Matt's healthcare example, we might be able to identify a certain healthcare worker as critical because they factor into so many of the possible executions of a schedule.</p>
+</aside>
+</section>
+
+<section data-label="13 · The Incremental Search Problem (1/2): Incrementalizing a Conjunctive Query" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">The Incremental Search Problem (1/2)</h1>
+    <div class="card orange rule-rust roomy at-full" style="top:108px">
+  <div class="ds-theorem-block block" style="font-size:var(--text-md);line-height:1.3"><div class="theorem-head">Example (Incrementalizing a conjunctive query that looks for pairs of consecutive edges).</div><div class="theorem-body">Suppose we have a binary <span class="katex-inline" data-tex="\mathsf{edge}">\(\mathsf{edge}\)</span> relation, and let <span class="katex-inline" data-tex="\mathsf{edge&#39;}">\(\mathsf{edge'}\)</span> be the relation after an update. Let <span class="katex-inline" data-tex="\phi&#39; = \mathsf{edge&#39;}(x,y) \wedge \mathsf{edge&#39;}(y,z)">\(\phi' = \mathsf{edge'}(x,y) \wedge \mathsf{edge'}(y,z)\)</span> be the query over the updated relation.</div></div>
+  <div class="ds-math-block" data-tex="\begin{aligned}
+  \phi&#39; &amp;= \mathsf{edge&#39;}(x,y) \wedge \mathsf{edge&#39;}(y,z) \\
+  &amp;= (\mathsf{edge}(x,y) \vee \mathsf{\Delta edge}(x,y)) \wedge (\mathsf{edge}(y,z) \vee \mathsf{\Delta edge}(y,z)) \\
+  &amp;= \phantom{{}\vee{}} {\color{IndianRed} (\phantom{\Delta}\mathsf{edge}(x,y) \wedge \phantom{\Delta}\mathsf{edge}(y,z))} \qquad \textcolor{gray}{\text{two old edges}} \\
+  &amp;\phantom{{}={}} \vee {\color{RoyalBlue} (\phantom{\Delta}\mathsf{edge}(x,y) \wedge \mathsf{\Delta edge}(y,z))} \qquad \textcolor{gray}{\text{an old edge, then a new edge}} \\
+  &amp;\phantom{{}={}} \vee {\color{RoyalBlue} (\mathsf{\Delta edge}(x,y) \wedge \phantom{\Delta}\mathsf{edge}(y,z))} \qquad \textcolor{gray}{\text{a new edge, then an old edge}} \\
+  &amp;\phantom{{}={}} \vee {\color{RoyalBlue} (\mathsf{\Delta edge}(x,y) \wedge \mathsf{\Delta edge}(y,z))} \qquad \textcolor{gray}{\text{two new edges}} \\
+  &amp;= {\color{IndianRed}\phi} \vee {\color{RoyalBlue}\Delta\phi}
+\end{aligned}" style="font-size:28px;margin:14px 0 0">\[ \begin{aligned}
+  \phi&#39; &amp;= \mathsf{edge&#39;}(x,y) \wedge \mathsf{edge&#39;}(y,z) \\
+  &amp;= (\mathsf{edge}(x,y) \vee \mathsf{\Delta edge}(x,y)) \wedge (\mathsf{edge}(y,z) \vee \mathsf{\Delta edge}(y,z)) \\
+  &amp;= \phantom{{}\vee{}} {\color{IndianRed} (\phantom{\Delta}\mathsf{edge}(x,y) \wedge \phantom{\Delta}\mathsf{edge}(y,z))} \qquad \textcolor{gray}{\text{two old edges}} \\
+  &amp;\phantom{{}={}} \vee {\color{RoyalBlue} (\phantom{\Delta}\mathsf{edge}(x,y) \wedge \mathsf{\Delta edge}(y,z))} \qquad \textcolor{gray}{\text{an old edge, then a new edge}} \\
+  &amp;\phantom{{}={}} \vee {\color{RoyalBlue} (\mathsf{\Delta edge}(x,y) \wedge \phantom{\Delta}\mathsf{edge}(y,z))} \qquad \textcolor{gray}{\text{a new edge, then an old edge}} \\
+  &amp;\phantom{{}={}} \vee {\color{RoyalBlue} (\mathsf{\Delta edge}(x,y) \wedge \mathsf{\Delta edge}(y,z))} \qquad \textcolor{gray}{\text{two new edges}} \\
+  &amp;= {\color{IndianRed}\phi} \vee {\color{RoyalBlue}\Delta\phi}
+\end{aligned} \]</div>
+</div>
+
+    <div class="ds-slide-num">13</div>
+  </div>
+  <aside class="notes">Often the engine of the algorithms we work on is querying relational data. In simulations, the data is changing frequently but in small bits due to local actions. Here I show a standard perspective on incrementalizing a query. You can think of it as factoring a query into two parts, one which looks at only the old data and one which can look at both old and new data. Once you have done this factorization, then when you get a runtime data update, you can simply ignore the part of the query corresponding to old data and get precisely the new results which come from the updated data.
+</aside>
+</section>
+
+<section data-label="14 · The Incremental Search Problem (2/2): Incremental Search in a Quasitopos" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">The Incremental Search Problem (2/2)</h1>
+    <div class="card orange side" style="position:absolute;left:48px;top:112px;width:760px">
+  <div style="font-size:var(--text-md);line-height:1.3"><strong>Challenge:</strong> generalize this algorithm to be applicable in a wide variety of settings.</div>
+</div>
+
+<div class="card green roomy" style="position:absolute;left:48px;top:220px;width:760px">
+  <div class="card-head">Solution</div>
+  <div style="font-size:var(--text-sm);line-height:1.3;color:var(--slate);margin-bottom:10px">WIP paper with James Fairbanks, Michael Arntzenius and <a href="https://www.mwillsey.com/" style="color:inherit">Max Willsey</a> (UC Berkeley)</div>
+  <ul style="margin:0 0 0 28px;padding:0;list-style-type:disc;font-size:var(--text-md);line-height:1.4">
+    <li>Statically analyze rewrite rules to improve runtime efficiency</li>
+    <li>Address incrementalization with respect to batches of updates</li>
+    <li>Incrementalize conjunctive queries in any quasitopos with finite subobject lattices</li>
+  </ul>
+</div>
+
+<div style="position:absolute;left:48px;top:636px;width:760px;font-size:var(--text-md);line-height:1.3">
+  <strong>Example</strong> in the category of simplicial complexes.
+  <div style="margin-top:10px;font-size:var(--text-sm);color:var(--slate)">The algorithm is much more efficient when implemented natively in this category than when the data is embedded as a regular database and the algorithm run there.</div></div>
+
+<figure style="margin:0;position:absolute;left:860px;top:112px;width:628px;height:690px">
+  <img src="../assets/figures/incremental-search-simplicial-complex.png"
+    alt="A query pattern Q of two triangles sharing a vertex, matched into simplicial complexes G and an update G' formed by pushing out along an added triangle, with the match factored through the update"
+    style="width:100%;height:100%;object-fit:contain">
+</figure>
+
+    <div class="ds-slide-num">14</div>
+  </div>
+  <aside class="notes"><p>Our abstract notion of a query is a morphism in some category C. We want to be able to compute our matches once and then apply rewrite rules without having to recompute all the possible matches each time.</p>
+<p>A paper I've been working on over the past year with collaborators addresses this in a very general setting. This is not just 'descriptive ACT' but has genuine measurable speedups relative to the state of the art.</p>
+<p>In this example, we are working with simplicial complexes. We can factor the query problem (matches from Q into the result) into a bunch of smaller queries, one of which only depends on the input G, the rest also depending on the Delta.</p>
+<p>(In the original deck the challenge, solution and example were revealed one at a time.)</p>
+</aside>
+</section>
+
+<section data-label="15 · CatColab (1/3): An SEIRV Stock-Flow Model" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">CatColab (1/3)</h1>
+    <figure class="card soft" style="margin:0;position:absolute;left:148px;top:112px;width:1240px;height:704px;padding:12px;background:#fff">
+  <img src="../assets/figures/catcolab-seirv-stock-flow.png"
+    alt="CatColab screenshot: an SEIRV stock-flow model listing stocks Susceptible, Exposed, Infectious, Recovered, Vaccinated and flows exposure, vaccination, infection, recovery and waning, beside its diagram and a mass-action simulation plot"
+    style="width:100%;height:100%;object-fit:contain">
+</figure>
+
+    <div class="ds-slide-num">15</div>
+  </div>
+</section>
+
+<section data-label="16 · CatColab (2/3): A Two-Level Predator–Prey Model" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">CatColab (2/3)</h1>
+    <figure class="card soft" style="margin:0;position:absolute;left:48px;top:112px;width:1440px;height:700px;padding:12px;background:#fff">
+  <img src="../assets/figures/catcolab-two-level-predator-prey.png"
+    alt="CatColab screenshot: a two-level predator–prey causal loop diagram with variables Grass, Rabbit, Fox, two instances RG and FR of a predator–prey motif, its visualization, and the composition pattern wiring the two motifs together"
+    style="width:100%;height:100%;object-fit:contain">
+</figure>
+
+    <div class="ds-slide-num">16</div>
+  </div>
+</section>
+
+<section data-label="17 · CatColab (3/3): A Multi-Domain Pseudo-Model" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">CatColab (3/3)</h1>
+    <div class="at-full" style="top:104px;font-size:var(--text-lg);line-height:1.25;color:var(--slate)">
+  One could imagine a theory which supports the following model:</div>
+
+<div class="eyebrow" style="position:absolute;left:48px;top:164px">Pseudo-model</div>
+<pre style="position:absolute;left:48px;top:196px;width:640px;margin:0;padding:14px 20px;box-sizing:border-box;background:var(--paper);border-left:5px solid var(--navy);border-radius:8px;box-shadow:none;font-size:var(--text-code);line-height:1.22"><code class="language-plaintext" style="font-family:var(--font-mono);padding:0;background:none;max-height:none;overflow:visible">a1, a2, a3      : Agent3D    # UAVs
+w1, w2          : Agent3D    # UUVs
+s1, s2, s3, s4  : Agent2D    # USVs
+
+fa12 : a1 → a2  : VelocityConsensus
+fa13 : a1 → a3  : VelocityConsensus
+fa23 : a2 → a3  : VelocityConsensus
+
+g12  : s1 → s2  : Formation
+g23  : s2 → s3  : Formation
+g34  : s3 → s4  : Formation
+g41  : s4 → s1  : Formation
+m13  : s1 → s3  : Link22
+
+ra1  : a1 → s1  : Range32
+ra2  : a2 → s2  : Range32
+ra3  : a3 → s3  : Range32
+
+fw12 : w1 → w2  : VelocityConsensus
+rw12 : w1 → w2  : Range33
+rw1  : w1 → s4  : Range32
+rw2  : w2 → s4  : Range32</code></pre>
+
+<figure style="margin:0;position:absolute;left:740px;top:170px;width:748px;height:620px">
+  <img src="../assets/figures/multi-domain-uav-usv-uuv-layers.png"
+    alt="Multi-domain operation: UAVs in the air, USVs on the surface and UUVs underwater, drawn as three stacked layers with communication links within and between layers"
+    style="width:100%;height:100%;object-fit:contain">
+</figure>
+
+    <div class="ds-slide-num">17</div>
+  </div>
+  <aside class="notes">To return to James' motivating example. When we think about making tools that are usable by engineers without advanced math background, ...
+</aside>
+</section>
+
+<section data-label="18 · Thank You: Toward Compositional Agent-Based Modeling" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Thank You!</h1>
+    <div class="card blue roomy" style="position:absolute;left:48px;top:112px;width:700px;height:280px">
+  <div class="card-head">Covered today</div>
+  <ul style="margin:6px 0 0 28px;padding:0;list-style-type:disc;font-size:var(--text-md);line-height:1.45">
+    <li>A framework for agent-based models</li>
+    <li>Agent-based programs / workflows</li>
+    <li>Incremental search</li>
+    <li>CatColab (<a href="https://catcolab.org/" style="color:var(--navy)">try it out at catcolab.org</a>)</li>
+  </ul>
+</div>
+<div class="card green roomy" style="position:absolute;left:788px;top:112px;width:700px;height:280px">
+  <div class="card-head">Compositionality</div>
+  <ul style="margin:6px 0 0 28px;padding:0;list-style-type:disc;font-size:var(--text-md);line-height:1.45">
+    <li>Database compositionality (<span class="katex-inline" data-tex="[\mathsf{C},\mathsf{Set}]">\([\mathsf{C},\mathsf{Set}]\)</span>, data migrations)</li>
+    <li>Compositional wiring diagram syntax for workflows</li>
+    <li>CatColab allows integrating heterogeneous models</li>
+  </ul>
+</div>
+
+<div style="position:absolute;left:48px;top:450px;width:1440px">
+
+<div style="margin-top:22px;display:flex;align-items:flex-start;gap:12px"><div style="flex:0 0 52px;padding-top:34px;font-size:20px;letter-spacing:2px;font-weight:700;opacity:.72">WITH</div>
+<div style="flex:0 0 220px;text-align:center"><img src="../assets/photos/nate-osgood.jpg" alt="Nate Osgood" style="width:88px;height:88px;border-radius:50%;border:2px solid rgb(255 239 207 / .5);box-shadow:0 3px 12px rgb(0 0 0 / .3);object-fit:cover;display:block;margin:0 auto"><div style="margin-top:9px;font-size:24px;line-height:1.15;opacity:.9">Nate Osgood</div></div>
+<div style="flex:0 0 220px;text-align:center"><img src="../assets/photos/james-fairbanks.jpg" alt="James Fairbanks" style="width:88px;height:88px;border-radius:50%;border:2px solid rgb(255 239 207 / .5);box-shadow:0 3px 12px rgb(0 0 0 / .3);object-fit:cover;display:block;margin:0 auto"><div style="margin-top:9px;font-size:24px;line-height:1.15;opacity:.9">James Fairbanks</div></div>
+<div style="flex:0 0 220px;text-align:center"><img src="../assets/photos/evan-patterson.jpg" alt="Evan Patterson" style="width:88px;height:88px;border-radius:50%;border:2px solid rgb(255 239 207 / .5);box-shadow:0 3px 12px rgb(0 0 0 / .3);object-fit:cover;display:block;margin:0 auto"><div style="margin-top:9px;font-size:24px;line-height:1.15;opacity:.9">Evan Patterson</div></div>
+<div style="flex:0 0 220px;text-align:center"><img src="../assets/photos/michael-arntzenius.jpg" alt="Michael Arntzenius" style="width:88px;height:88px;border-radius:50%;border:2px solid rgb(255 239 207 / .5);box-shadow:0 3px 12px rgb(0 0 0 / .3);object-fit:cover;display:block;margin:0 auto"><div style="margin-top:9px;font-size:24px;line-height:1.15;opacity:.9">Michael Arntzenius</div></div></div>
+</div>
+
+    <div class="ds-slide-num">18</div>
+  </div>
+  <aside class="notes">Thanks! This was just one perspective on ABMs and there's a lot more to be said about integrating with some of the other ways people think about agents and multiagent systems.
+</aside>
+</section>
+
+
+</div>
+      
+
+    </div><script src="../reveal-js/dist/reveal.js"></script>
+<script src="../reveal-js/plugin/notes/notes.js"></script>
+<script src="../reveal-js/plugin/highlight/highlight.js"></script>
+<script src="../vendored/katex-0.16.11/katex.min.js"></script>
+<script src="../gatas-talks/talk.js"></script>
+
+    
+    
+  </body>
+</html>

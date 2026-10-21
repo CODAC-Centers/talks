@@ -1,0 +1,504 @@
+:root {
+  /* The design system's tokens (_ds/…/tokens/) load first. These are the
+     names slides use in style=: colours by what they are, and the type scale. */
+
+  /* Colour */
+  --navy: var(--clr-dk1);            /* titles, body text, rules, dark slides */
+  --slate: var(--clr-accent6-dark);  /* quieter body text */
+  --cream: var(--clr-lt2);           /* type on navy */
+  --meta: var(--clr-slide-number);   /* slide numbers, citations */
+  --grey: var(--clr-accent5);
+  --sky: var(--clr-accent6);
+  --leaf: var(--clr-accent4);
+  --orange: var(--clr-accent1);
+  --tan: var(--clr-accent2);
+  --uf-orange: var(--clr-uf-orange);
+  --green: #2E7D32;                  /* dynamics and theorems */
+  --rust: #D35400;
+  --line: #E2E6EC;                   /* hairlines and table rules */
+  --paper: #F4F5F6;                  /* a pale ground behind figures */
+  /* Text set on a tinted card, one shade darker than its tint. */
+  --ink-green: #3F7A28;
+  --ink-orange: #A85F19;
+  --ink-rust: #873600;
+  --ink-tan: #8A6A3A;
+  --ink-grey: #5A5D63;
+
+  /* Type scale, px on the 1536 × 864 canvas. Display sizes (part titles,
+     headline numbers) are set per slide. */
+  --text-xs: 20px;    /* credits, table cells */
+  --text-sm: 23px;    /* captions, card bodies */
+  --text-md: 26px;    /* dense body */
+  --text-lg: 30px;    /* body beside a figure */
+  --text-xl: 34px;    /* body */
+  --text-2xl: 37px;   /* takeaways; the design system's --size-body */
+  --text-3xl: 43px;   /* lead questions; --size-lead */
+  --text-code: 22px;  /* code listings in JuliaMono */
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #1B2430;
+  font-family: var(--font-core);
+  overflow: hidden;
+  color: var(--navy);
+}
+
+.reveal {
+  font-family: var(--font-core);
+  color: var(--navy);
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides section {
+  padding: 0;
+  width: 1536px !important;
+  height: 864px !important;
+  top: 0 !important;
+  left: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box;
+  position: absolute;
+  overflow: hidden;
+  font-family: var(--font-core);
+}
+
+.slide-canvas {
+  position: relative;
+  width: 1536px;
+  height: 864px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* The two slide grounds: white content slides, navy part dividers. */
+.reveal .slides section.slide-light {
+  background: #fff;
+  color: var(--navy);
+}
+
+.reveal .slides section.slide-dark {
+  background: var(--navy);
+  color: #FFEFCF;
+}
+
+/* reveal.js paints the window behind a slide from data-background-color, which
+   it cannot resolve when it is var(--navy); a dark slide sets no colour there
+   and its background element, which carries the slide's classes, is painted
+   here instead. reveal reads the computed colour back for its contrast class. */
+.reveal .backgrounds .slide-background.slide-dark { background-color: var(--navy); }
+
+/* Component Styles */
+.ds-title-banner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 131px;
+  object-fit: cover;
+  object-position: left center;
+  display: block;
+}
+
+.ds-highlight-region {
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 12px;
+  background: rgb(var(--tint) / .12);
+  border: 1px solid rgb(var(--tint) / .25);
+  border-top: 5px solid var(--rule);
+  box-shadow: 0 3px 10px color-mix(in srgb, var(--navy) 4%, transparent);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 24px;
+  overflow: hidden;
+}
+
+.ds-region-content {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.ds-region-label {
+  flex-shrink: 0;
+  white-space: nowrap;
+  max-width: 100%;
+  font-family: var(--font-core);
+  font-size: var(--size-label);
+  font-weight: 700;
+  color: var(--clr-dk1);
+  text-align: center;
+  line-height: var(--leading-tight);
+}
+
+.ds-outlined-region {
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 12px;
+  background: rgb(var(--tint) / .08);
+  border: 1px solid rgb(var(--tint) / .25);
+  border-top: 5px solid var(--rule);
+  box-shadow: 0 3px 10px color-mix(in srgb, var(--navy) 4%, transparent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  overflow: hidden;
+}
+
+.ds-outlined-content {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ds-bullet-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: var(--font-core);
+  color: var(--clr-dk1);
+  text-wrap: pretty;
+}
+
+.ds-bullet-list li {
+  display: flex;
+  gap: 24px;
+  flex-shrink: 0;
+  align-items: flex-start;
+  line-height: var(--leading-body);
+}
+
+.ds-bullet-list li.size-body {
+  font-size: var(--size-body);
+}
+
+.ds-bullet-list li.size-body-sub {
+  font-size: var(--size-body-sub);
+}
+
+.ds-bullet-list .bullet-mark {
+  flex: none;
+  font-size: 0.62em;
+  position: relative;
+  top: 0.25em;
+}
+
+.ds-bullet-list .bullet-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.ds-theorem-block {
+  font-family: var(--font-core);
+  font-size: 29px;
+  line-height: 1.25;
+  color: var(--clr-dk1);
+  font-style: italic;
+  text-wrap: pretty;
+}
+
+.ds-theorem-block .theorem-head {
+  font-style: normal;
+  font-weight: 700;
+}
+
+.ds-theorem-block .theorem-body {
+  font-style: italic;
+}
+
+.ds-math-block {
+  font-size: 36px;
+  color: var(--clr-dk1);
+  text-align: center;
+}
+
+.ds-math-tight > .katex-display {
+  margin: 0.12em 0;
+}
+
+.katex-inline {
+  font-size: inherit;
+  color: inherit;
+  display: inline;
+  text-align: left;
+}
+
+/* The corner citation names the paper the slide's claim rests on, quietly:
+   one line, no wrap, sized and coloured to sit below the content rather
+   than compete with it. */
+.ds-cite {
+  position: absolute;
+  left: 48px;
+  bottom: 17px;
+  font-size: 18px;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--clr-slide-number);
+}
+
+/* A citation to one of our own papers carries the UF accent, in the corner
+   marker and in the reference list alike. */
+.cite-ours {
+  color: #FA4616;
+  font-weight: 600;
+}
+
+.ds-cite-more {
+  opacity: .8;
+}
+
+/* A citation that points at a live docs page stays the same weight as the rest
+   of the footer; only the underline says it is clickable. */
+.ds-cite a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: rgb(136 139 151 / .55);
+}
+
+.ds-cite a:hover {
+  color: #FA4616;
+  text-decoration-color: #FA4616;
+}
+
+.ds-slide-num {
+  position: absolute;
+  right: 48px;
+  bottom: 16px;
+  font-size: 21px;
+  color: var(--clr-slide-number);
+}
+
+.reveal .controls {
+  color: #FA4616;
+}
+
+.reveal .progress {
+  color: #FA4616;
+  height: 4px;
+}
+
+/* ---- Headings and authoring marks ------------------------------------- */
+
+/* Slide headings, as a class rather than repeated inline styles. */
+.reveal .slides section .slide-h1 {
+  position: absolute;
+  left: 48px;
+  top: -8px;
+  height: 96px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  font-family: var(--font-core);
+  font-size: 56px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--navy);
+  text-shadow: 2px 2px 3px color-mix(in srgb, var(--navy) 40%, transparent);
+}
+
+/* A heading too long for the canvas at 56px: long_heading = true. */
+.reveal .slides section .slide-h1.long {
+  font-size: 48px;
+}
+
+/* Anything the speaker still has to decide or confirm: a date, a name, a
+   proposed milestone. It is meant to be seen, so it cannot be presented
+   by accident. Delete the class once the item is settled. */
+.tbd {
+  border-bottom: 3px dashed #FA4616;
+  color: #B3330F;
+}
+
+.draft-tag {
+  position: absolute;
+  right: 110px;
+  bottom: 14px;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #FA4616;
+  border: 2px dashed #FA4616;
+  border-radius: 6px;
+  padding: 3px 10px;
+  background: #fff;
+}
+
+/* A citation after a claim in running text. */
+.ref {
+  color: #888B97;
+  font-size: .82em;
+  white-space: nowrap;
+}
+
+/* ---- Cards ---------------------------------------------------------------
+
+   One card for every tinted panel: a ground in one of five tints, a 1px edge
+   in the same tint, a rule along the top, and the design system's shadow.
+
+     <div class="card green">            green ground, green rule
+     <div class="card blue rule-green">  blue ground, green rule
+     <div class="card orange soft">      the lighter ground
+     <div class="card orange side">      the rule down the left: a callout
+     <div class="card tight">            less padding; roomy for more
+
+   A tint sets two variables, which default to blue and which the regions
+   below and a site's own classes (the COE thrusts, .t1 … .t5) may set too:
+   --tint, the ground as an RGB triple, and --rule, the colour of the rule.
+   A theorem's block head takes --rule. */
+
+:where(.card, .ds-highlight-region, .ds-outlined-region) { --tint: 108 154 195; --rule: var(--navy); }
+.blue, .tint-blue, .stroke-blue { --tint: 108 154 195; --rule: var(--navy); }
+.green, .tint-green, .stroke-green { --tint: 128 190 99; --rule: var(--leaf); }
+.orange, .tint-orange, .stroke-orange { --tint: 226 143 65; --rule: var(--orange); }
+.tan, .tint-tan, .stroke-tan { --tint: 190 155 105; --rule: var(--tan); }
+.grey { --tint: 177 179 182; --rule: var(--grey); }
+
+.rule-navy { --rule: var(--navy); }
+.rule-sky { --rule: var(--sky); }
+.rule-green { --rule: var(--green); }
+.rule-leaf { --rule: var(--leaf); }
+.rule-orange { --rule: var(--orange); }
+.rule-rust { --rule: var(--rust); }
+.rule-tan { --rule: var(--tan); }
+.rule-grey { --rule: var(--grey); }
+
+.card {
+  box-sizing: border-box;
+  border-radius: 12px;
+  padding: 16px 22px;
+  background: rgb(var(--tint) / .12);
+  border: 1px solid rgb(var(--tint) / .25);
+  border-top: 5px solid var(--rule);
+  box-shadow: 0 3px 10px color-mix(in srgb, var(--navy) 4%, transparent);
+  color: var(--navy);
+}
+
+.card.soft { background: rgb(var(--tint) / .08); }
+.card.tight { padding: 12px 18px; }
+.card.roomy { padding: 22px 26px; }
+
+.card.side {
+  border: 0;
+  border-left: 5px solid var(--rule);
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.ds-theorem-block.block .theorem-head {
+  margin-bottom: 8px;
+  color: var(--rule, var(--navy));
+}
+
+.card .card-head {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+
+.card .card-body {
+  font-size: 25px;
+  line-height: 1.3;
+  text-wrap: pretty;
+}
+
+.eyebrow {
+  font-size: 19px;
+  letter-spacing: 3px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #2C4B6A;
+}
+
+.takeaway {
+  position: absolute;
+  left: 48px;
+  right: 48px;
+  bottom: 56px;
+  font-size: 34px;
+  line-height: 1.2;
+  color: #2C4B6A;
+  text-wrap: pretty;
+}
+
+/* References. */
+.refs {
+  position: absolute;
+  left: 48px;
+  top: 104px;
+  width: 1440px;
+  columns: 2;
+  column-gap: 48px;
+  font-size: 18.5px;
+  line-height: 1.3;
+  color: var(--navy);
+}
+
+.refs p {
+  margin: 0 0 9px;
+  padding-left: 40px;
+  text-indent: -40px;
+  break-inside: avoid;
+}
+
+/* ---- The title slide (layout = "title"; see partials/gatas-talks/title.html) */
+
+.title-block { position: absolute; left: 96px; top: 150px; width: 960px; color: var(--navy); }
+.title-kicker { font-size: 29px; letter-spacing: 3px; font-weight: 700; color: #2C4B6A; margin-bottom: 14px; }
+.title-main { font-size: 56px; line-height: 1.07; font-weight: 700; text-wrap: balance; }
+.title-sub { margin-top: 10px; font-size: 44px; line-height: 1.12; }
+.title-speaker { margin-top: 36px; font-size: 44px; line-height: 1.18; }
+.title-affiliation { font-size: 33px; line-height: 1.22; color: #2C4B6A; }
+.title-venue { margin-top: 20px; font-size: 32px; line-height: 1.22; color: #2C4B6A; }
+.title-logos { position: absolute; left: 96px; bottom: 70px; display: flex; align-items: center; gap: 26px; }
+.title-logos img { display: block; width: auto; object-fit: contain; }
+.title-panel { position: absolute; left: 1094px; width: 394px; overflow: hidden; border-radius: 4px; }
+.title-panel.bordered { border: 1px solid #E3E4E6; }
+.title-panel video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+.title-panel video.wide { width: 126%; object-position: 0% 50%; }
+.title-panel svg { width: 100%; height: 100%; display: block; background: #fff; }
+
+/* ---- Regions --------------------------------------------------------------
+
+   Where a block sits across the canvas, by name: the full width inside the
+   48px margins, or its left or right half with a 40px gutter. A block still
+   sets its own top and height.
+
+     <div class="at-left" style="top:112px">…</div>
+     {{< fig at="right" y=104 h=575 … >}}  {{< card at="full" style="top:540px" >}} */
+
+.at-full, .at-left, .at-right { position: absolute; }
+.at-full { left: 48px; right: 48px; }
+/* An image or video keeps its own width between left and right; give it the region's. */
+img.at-full, video.at-full { width: 1440px; }
+.at-left { left: 48px; width: 700px; }
+.at-right { left: 788px; width: 700px; }

@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Compositional Optimization for DIGICAMS — AFOSR COE CODAC</title>
+
+<meta name="author" content="AFOSR COE CODAC">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<link rel="stylesheet" href="../reveal-js/dist/reveal.css">
+<link rel="stylesheet" href="../vendored/katex-0.16.11/katex.min.css">
+<link rel="stylesheet" href="../vendored/fira-sans-2026-09/fira-sans.css">
+<link rel="stylesheet" href="../_ds/fairbanks-research-talk-design-system-7193341c-92ad-490d-a789-ef6442329aec/tokens/fonts.css">
+<link rel="stylesheet" href="../_ds/fairbanks-research-talk-design-system-7193341c-92ad-490d-a789-ef6442329aec/tokens/colors.css">
+<link rel="stylesheet" href="../_ds/fairbanks-research-talk-design-system-7193341c-92ad-490d-a789-ef6442329aec/tokens/typography.css">
+<link rel="stylesheet" href="../_ds/fairbanks-research-talk-design-system-7193341c-92ad-490d-a789-ef6442329aec/tokens/spacing.css">
+<link rel="stylesheet" href="../_ds/fairbanks-research-talk-design-system-7193341c-92ad-490d-a789-ef6442329aec/tokens/effects.css">
+<link rel="stylesheet" href="../_ds/fairbanks-research-talk-design-system-7193341c-92ad-490d-a789-ef6442329aec/styles.css">
+<link rel="stylesheet" href="../gatas-talks/talk.css">
+<link rel="stylesheet" href="../css/palettes.css">
+<link rel="stylesheet" href="../css/site.css">
+
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+<section data-label="1 · Title" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    
+<div class="title-block">
+  <div class="title-kicker">AFOSR COE CODAC</div>
+  <div class="title-main">Compositional Optimization for DIGICAMS</div>
+  <div class="title-speaker">Matthew Hale (PI) · Hans Riess (Key Person)</div>
+  <div class="title-affiliation">Georgia Institute of Technology</div>
+  <div class="title-venue">CODAC Kickoff Meeting · Arlington, VA · September 2026</div>
+</div>
+<div class="title-logos">
+  <img src="../assets/brand/codac-digicams-shield.png" alt="CODAC DIGICAMS Shield" style="height:170px">
+  <img src="../assets/logos/gatech-logo.png" alt="Georgia Institute of Technology" style="height:90px">
+  <img src="../assets/logos/afosr-logo.png" alt="Air Force Office of Scientific Research" style="height:130px">
+</div>
+
+  </div>
+</section>
+
+<section data-label="2 · DIGICAMS composes decision-making across five research thrusts" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">DIGICAMS composes decisions across five thrusts</h1>
+    <div class="card tan side" style="position:absolute;left:48px;top:112px;width:1440px;font-size:var(--text-lg);line-height:1.25"><b>Center goal:</b> category theory to <em>compose</em> decision-making methods across optimization, dynamics, &amp; control.</div>
+
+<div class="at-full" style="top:250px;display:grid;grid-template-columns:repeat(5,1fr);gap:20px">
+  <div class="card tan" style="height:190px;position:relative"><div class="eyebrow">Thrust 1</div><div class="card-head" style="margin-top:8px;font-size:var(--text-md)">Computational Sheaf Theory</div><div style="position:absolute;right:12px;top:-16px;background:#8F713D;color:#fff;font-size:17px;font-weight:700;padding:2px 9px;border-radius:5px">GT co-lead</div></div>
+  <div class="card blue soft" style="height:190px"><div class="eyebrow">Thrust 2</div><div class="card-head" style="margin-top:8px;font-size:var(--text-md)">Learning &amp; Control for Open Systems</div></div>
+  <div class="card tan" style="height:190px;position:relative"><div class="eyebrow">Thrust 3</div><div class="card-head" style="margin-top:8px;font-size:var(--text-md)">Compositional Optimization Algorithms</div><div style="position:absolute;right:12px;top:-16px;background:#8F713D;color:#fff;font-size:17px;font-weight:700;padding:2px 9px;border-radius:5px">GT lead</div></div>
+  <div class="card blue soft" style="height:190px"><div class="eyebrow">Thrust 4</div><div class="card-head" style="margin-top:8px;font-size:var(--text-md)">Context-Aware Decisions under Uncertainty</div></div>
+  <div class="card blue soft" style="height:190px"><div class="eyebrow">Thrust 5</div><div class="card-head" style="margin-top:8px;font-size:var(--text-md)">Scalable Implementation &amp; Deployment</div></div>
+</div>
+
+<div style="position:absolute;left:48px;top:484px;width:760px;font-size:var(--text-lg);line-height:1.3;color:var(--navy)">
+  <div style="font-weight:700">Georgia Tech leads Thrust 3</div>
+  <ul style="margin:10px 0 0 1.1em;padding:0">
+    <li>asynchronous iterative algorithms on/with sheaves</li>
+    <li>mixed-integer programs via structured decompositions</li>
+    <li>families of nonconvex functions that compose</li>
+  </ul>
+</div>
+<div style="position:absolute;left:860px;top:484px;width:628px;font-size:var(--text-lg);line-height:1.3;color:var(--navy)">
+  <div style="font-weight:700">&hellip; and contributes to other thrusts</div>
+  <ul style="margin:10px 0 0 1.1em;padding:0">
+    <li>co-leads Thrust 1 (<span style="color:#8F713D;font-weight:600">Riess</span>)</li>
+    <li>co-leads Thrusts 2 and 4 (<span style="color:#8F713D;font-weight:600">Hale</span>)</li>
+  </ul>
+  <div style="font-weight:700;margin-top:18px">&hellip; and collaborates with SCHEMA</div>
+  <ul style="margin:10px 0 0 1.1em;padding:0">
+    <li><em>this talk</em>: co-design <span class="katex-inline" data-tex="\leftrightarrow">\(\leftrightarrow\)</span> compositional optimization</li>
+  </ul>
+</div>
+
+    <div class="ds-cite">DIGICAMS technical proposal, &sect;2 (thrusts and leads); Georgia Tech statement of work, rev. May 2026 (tasks 3.1, 3.3, 3.4)</div>
+    <div class="ds-slide-num">2</div>
+  </div>
+  <aside class="notes">The center's five research thrusts and where Georgia Tech sits in them. Georgia Tech leads Thrust 3 and contributes to all the thrusts in the grant: optimization, asynchronous iterative algorithms.
+</aside>
+</section>
+
+<section data-label="3 · Co-Design &amp; Compositional Optimization" class="slide-dark">
+  <div class="slide-canvas">
+    <div style="position:absolute;left:120px;top:150px;width:1100px">
+  <div style="font-size:var(--text-md);letter-spacing:3px;opacity:.85;font-weight:700">PART ONE</div>
+  <div style="margin-top:24px;font-size:84px;line-height:1.04">Co-Design &amp; Compositional Optimization</div>
+  <div style="margin-top:32px;width:860px;height:2px;background:rgb(255 239 207 / .35)"></div>
+  <div style="margin-top:32px;font-size:var(--text-3xl);line-height:1.2;opacity:.9">Enriched profunctors unify two ways of composing decisions</div>
+  
+  <div style="margin-top:22px;display:flex;align-items:flex-start;gap:12px"><div style="flex:0 0 52px;padding-top:34px;font-size:20px;letter-spacing:2px;font-weight:700;opacity:.72">WITH</div>
+  <div style="flex:0 0 166px;text-align:center"><img src="../assets/photos/hans-riess.jpg" alt="Hans Riess" style="width:88px;height:88px;border-radius:50%;border:2px solid rgb(255 239 207 / .5);box-shadow:0 3px 12px rgb(0 0 0 / .3);object-fit:cover;display:block;margin:0 auto"><div style="margin-top:9px;font-size:19px;line-height:1.15;opacity:.9">Hans Riess</div></div>
+  <div style="flex:0 0 166px;text-align:center"><img src="../assets/photos/matthew-hale.jpg" alt="Matthew Hale" style="width:88px;height:88px;border-radius:50%;border:2px solid rgb(255 239 207 / .5);box-shadow:0 3px 12px rgb(0 0 0 / .3);object-fit:cover;display:block;margin:0 auto"><div style="margin-top:9px;font-size:19px;line-height:1.15;opacity:.9">Matthew Hale</div></div></div>
+</div>
+<img src="../assets/brand/codac-digicams-shield.png" alt=""
+  style="position:absolute;right:96px;bottom:80px;width:220px;height:250px;object-fit:contain">
+
+    <div class="ds-slide-num">3</div>
+  </div>
+</section>
+
+<section data-label="4 · Takeaway: enriched profunctors unify co-design and optimization" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Takeaway</h1>
+    <img src="../assets/figures/enriched-profunctors-handshake-meme.jpg" alt="Handshake meme: the arms Monotone Co-Design and Compositional Optimization clasp hands under the label Enriched Profunctors" style="position:absolute;left:368px;top:120px;width:800px;height:560px;object-fit:contain">
+<div class="card tan" style="position:absolute;left:48px;right:48px;bottom:70px;text-align:center;font-size:var(--text-xl);line-height:1.2"><b>Enriched profunctors unify monotone co-design &amp; compositional optimization.</b></div>
+
+    <div class="ds-cite">[<span class="cite-ours">1</span>] H. Riess, Y. Huang, M. Klawonn, G. Zardini, and M. Hale. <i>IEEE Conference on Decision and Control,</i> 2026, to appear</div>
+    <div class="ds-slide-num">4</div>
+  </div>
+  <aside class="notes">The punchline first. Joint work with Yujun Huang (MIT), Matthew Klawonn (AFRL), Gioele Zardini (MIT), and Matthew Hale.
+</aside>
+</section>
+
+<section data-label="5 · What is category theory?" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">What is category theory?</h1>
+    <img src="../assets/figures/mad-libs-space-shuttle-template.png" alt="A blank Mad Libs page, The Space Shuttle, with blanks for nouns, verbs and adjectives" style="position:absolute;left:120px;top:112px;width:640px;height:700px;object-fit:contain">
+<div style="position:absolute;left:840px;top:300px;width:620px;font-size:var(--text-2xl);line-height:1.25;color:var(--navy)">
+  Category theory is <b>Mad Libs</b>:<br>a template whose blanks an instance fills in.</div>
+
+    <div class="ds-cite">Analogy due to Tai-Danae Bradley</div>
+    <div class="ds-slide-num">5</div>
+  </div>
+  <aside class="notes">Follows the title slide's punchline: category theory is Mad Libs. A blank Mad Libs page is the template whose blanks get filled in by an instance.
+</aside>
+</section>
+
+<section data-label="6 · Co-design &amp; compositional optimization are decompositional" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1 long">Co-design &amp; compositional optimization are decompositional</h1>
+    <div class="at-full" style="top:112px;display:grid;grid-template-columns:1fr 1fr;gap:40px">
+  <div class="card tan" style="height:676px;display:flex;flex-direction:column">
+    <div class="card-head">Monotone co-design</div>
+    <div style="font-size:var(--text-xs);color:var(--slate);margin-top:-6px">Censi; Zardini; et al.</div>
+    <div style="margin-top:14px;font-size:var(--text-md);font-style:italic;text-align:center;line-height:1.3">Design a system with the minimal resources required to achieve a desired effect.</div>
+    <ul style="margin:14px 0 0 1.1em;padding:0;font-size:var(--text-md);line-height:1.35">
+      <li><b>design time</b></li><li>discrete design choices</li><li>decompose a <b>system</b> into components</li></ul>
+    <div style="margin-top:12px;font-size:var(--text-sm);color:var(--slate)">Example: designing an unmanned aerial system (UAS)</div>
+    <img src="../assets/figures/uas-co-design-wiring-diagram.svg" alt="Co-design wiring diagram of an unmanned aerial system: task management, perception, actuation and battery components wired by resources and functionalities" style="flex:1;min-height:0;width:100%;object-fit:contain;margin-top:8px">
+  </div>
+  <div class="card blue" style="height:676px;display:flex;flex-direction:column">
+    <div class="card-head">Compositional optimization</div>
+    <div style="font-size:var(--text-xs);color:var(--slate);margin-top:-6px">Rockafellar; Hanks, Fairbanks, Hale, Klawonn, Riess; et al.</div>
+    <div style="margin-top:14px;font-size:var(--text-md);font-style:italic;text-align:center;line-height:1.3">Solve a large optimization problem by solving small problems on its pieces.</div>
+    <ul style="margin:14px 0 0 1.1em;padding:0;font-size:var(--text-md);line-height:1.35">
+      <li><b>run time</b></li><li>continuous decision variables</li><li>decompose a <b>program</b> into levels &amp; stages</li></ul>
+    <div style="margin-top:12px;font-size:var(--text-sm);color:var(--slate)">Example: model predictive control (MPC)</div>
+    <img src="../assets/figures/mpc-multistage-string-diagram.svg" alt="String diagram of model predictive control: stage boxes G with control inputs U, chained by states X from an initial state to a terminal cost" style="flex:1;min-height:0;width:100%;object-fit:contain;margin-top:8px">
+  </div>
+</div>
+
+    <div class="ds-cite">[2] A. Censi. arXiv:1512.08055, 2016<span class="ds-cite-more"> &middot; [3, 4, <span class="cite-ours">5</span>]</span></div>
+    <div class="ds-slide-num">6</div>
+  </div>
+</section>
+
+<section data-label="7 · Both fields draw their problems as wiring diagrams" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1 long">Both fields draw their problems as wiring diagrams</h1>
+    <img src="../assets/figures/uas-co-design-wiring-diagram.svg" alt="Co-design wiring diagram of an unmanned aerial system" style="position:absolute;left:48px;top:112px;width:880px;height:250px;object-fit:contain">
+<div style="position:absolute;left:968px;top:118px;width:520px;font-size:var(--text-sm);line-height:1.3;color:var(--navy)">
+  <div style="font-size:var(--text-md);margin-bottom:8px"><b>A system:</b> monotone co-design</div>
+  <table style="border-collapse:collapse"><tbody>
+    <tr><td style="font-weight:700;padding:3px 14px 3px 0;vertical-align:top">box</td><td>a component, i.e. a design problem <span class="katex-inline" data-tex="d">\(d\)</span></td></tr>
+    <tr><td style="font-weight:700;padding:3px 14px 3px 0;vertical-align:top">wire</td><td>a <span style="color:#D90368">resource</span> or <span style="color:#066034">functionality</span>: ordered</td></tr>
+    <tr><td style="font-weight:700;padding:3px 14px 3px 0;vertical-align:top">value</td><td><span class="katex-inline" data-tex="d(r,f)\in\mathsf{Bool}">\(d(r,f)\in\mathsf{Bool}\)</span>: can <span class="katex-inline" data-tex="r">\(r\)</span> provide <span class="katex-inline" data-tex="f">\(f\)</span>?</td></tr>
+    <tr><td style="font-weight:700;padding:3px 14px 3px 0;vertical-align:top;white-space:nowrap">internal wire</td><td><em>some</em> feasible <span class="katex-inline" data-tex="m">\(m\)</span>: <span class="katex-inline" data-tex="{\color{#048A81}\bigvee_m}">\({\color{#048A81}\bigvee_m}\)</span></td></tr>
+  </tbody></table>
+</div>
+<img src="../assets/figures/periodic-mpc-wiring-diagram.svg" alt="Multistage optimal control as a wiring diagram: stage subproblems G_0 to G_{N-1} chained by states x_k, with a long-range wire closing x_N = x_0 for one gait cycle" style="position:absolute;left:48px;top:392px;width:880px;height:170px;object-fit:contain">
+<div style="position:absolute;left:968px;top:388px;width:520px;font-size:var(--text-sm);line-height:1.3;color:var(--navy)">
+  <div style="font-size:var(--text-md);margin-bottom:8px"><b>A program:</b> compositional optimization</div>
+  <table style="border-collapse:collapse"><tbody>
+    <tr><td style="font-weight:700;padding:3px 14px 3px 0;vertical-align:top">box</td><td>a subproblem: one stage <span class="katex-inline" data-tex="G_k">\(G_k\)</span> per timestep</td></tr>
+    <tr><td style="font-weight:700;padding:3px 14px 3px 0;vertical-align:top">wire</td><td>a decision variable or state: <span class="katex-inline" data-tex="\mathbb{R}^n">\(\mathbb{R}^n\)</span></td></tr>
+    <tr><td style="font-weight:700;padding:3px 14px 3px 0;vertical-align:top">value</td><td><span class="katex-inline" data-tex="G_k(x_k,x_{k&#43;1})\in[0,\infty]">\(G_k(x_k,x_{k+1})\in[0,\infty]\)</span>: cost</td></tr>
+    <tr><td style="font-weight:700;padding:3px 14px 3px 0;vertical-align:top;white-space:nowrap">internal wire</td><td>optimal <span class="katex-inline" data-tex="x_k">\(x_k\)</span>: <span class="katex-inline" data-tex="{\color{#048A81}\inf_{x_k}}">\({\color{#048A81}\inf_{x_k}}\)</span></td></tr>
+  </tbody></table>
+</div>
+<div class="card tan" style="position:absolute;left:48px;right:48px;bottom:70px;text-align:center;font-size:var(--text-xl);line-height:1.2">The <b>wiring diagram</b> is the specification language.</div>
+
+    <div class="ds-cite">[<span class="cite-ours">1</span>] H. Riess, Y. Huang, M. Klawonn, G. Zardini, and M. Hale. <i>IEEE Conference on Decision and Control,</i> 2026, to appear<span class="ds-cite-more"> &middot; [<span class="cite-ours">5</span>] &middot; UAS, top; MPC, bottom</span></div>
+    <div class="ds-slide-num">7</div>
+  </div>
+  <aside class="notes">Each picture is paired with a legend: what a box, a wire, and a box's value mean in that language. The last legend line (internal wires) is the join, colored as on the next slide, where it becomes the whole story.
+</aside>
+</section>
+
+<section data-label="8 · Series composition has the same shape in both fields" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1 long">Series composition has the same shape in both fields</h1>
+    <div class="at-full" style="top:112px;display:grid;grid-template-columns:1fr 1fr;gap:40px">
+  <div class="card tan" style="height:330px">
+    <div class="card-head">Monotone co-design</div>
+    <div style="font-size:var(--text-sm);color:var(--slate)">feasibility relations from <span style="color:#D90368">resources</span> to <span style="color:#066034">functionalities</span></div>
+    <img src="../assets/figures/series-composition-design-problems.svg" alt="Series composition of design problems d_1 and d_2 through an intermediate M, from R to F" style="display:block;margin:14px auto 0;height:80px">
+    <div class="ds-math-block" data-tex="(d_1;d_2)(r,f) \;=\; {\color{#048A81}\textstyle\bigvee_{m\in\mathsf{M}}}\; d_1(r,m)\;{\color{#660064}\wedge}\; d_2(m,f)" style="font-size:30px">\[ (d_1;d_2)(r,f) \;=\; {\color{#048A81}\textstyle\bigvee_{m\in\mathsf{M}}}\; d_1(r,m)\;{\color{#660064}\wedge}\; d_2(m,f) \]</div>
+    <div style="text-align:center;font-size:var(--text-sm)">&ldquo;<span style="color:#048A81">some</span> intermediate <span class="katex-inline" data-tex="m">\(m\)</span> is feasible from <span class="katex-inline" data-tex="r">\(r\)</span> <span style="color:#660064">and</span> provides <span class="katex-inline" data-tex="f">\(f\)</span>&rdquo;</div>
+  </div>
+  <div class="card blue" style="height:330px">
+    <div class="card-head">Compositional optimization</div>
+    <div style="font-size:var(--text-sm);color:var(--slate)">bifunctions from <span style="color:#D90368">perturbations</span> to <span style="color:#066034">decisions</span></div>
+    <img src="../assets/figures/series-composition-bifunctions.svg" alt="Series composition of bifunctions F and G through an intermediate Y, from X to Z" style="display:block;margin:14px auto 0;height:80px">
+    <div class="ds-math-block" data-tex="(F;G)(x,z) \;=\; {\color{#048A81}\textstyle\inf_{y\in Y}}\; F(x,y)\;{\color{#660064}&#43;}\; G(y,z)" style="font-size:30px">\[ (F;G)(x,z) \;=\; {\color{#048A81}\textstyle\inf_{y\in Y}}\; F(x,y)\;{\color{#660064}&#43;}\; G(y,z) \]</div>
+    <div style="text-align:center;font-size:var(--text-sm)">&ldquo;the <span style="color:#048A81">best</span> intermediate <span class="katex-inline" data-tex="y">\(y\)</span>: stage cost <span style="color:#660064">plus</span> stage cost&rdquo;</div>
+  </div>
+</div>
+<div class="at-full" style="top:478px;display:grid;grid-template-columns:1fr 1fr;gap:40px;text-align:center;color:var(--navy)">
+  <div><div class="ds-math-block" data-tex="{\color{#048A81}\bigvee} \;\longmapsto\; {\color{#048A81}\inf}" style="font-size:34px;margin:0">\[ {\color{#048A81}\bigvee} \;\longmapsto\; {\color{#048A81}\inf} \]</div><div style="font-size:var(--text-sm);color:var(--slate)">&ldquo;or&rdquo;: choose the best alternative</div></div>
+  <div><div class="ds-math-block" data-tex="{\color{#660064}\wedge} \;\longmapsto\; {\color{#660064}&#43;}" style="font-size:34px;margin:0">\[ {\color{#660064}\wedge} \;\longmapsto\; {\color{#660064}&#43;} \]</div><div style="font-size:var(--text-sm);color:var(--slate)">&ldquo;and&rdquo;: require both at once</div></div>
+</div>
+<div class="card tan" style="position:absolute;left:48px;right:48px;bottom:70px;text-align:center;font-size:var(--text-xl);line-height:1.2"><b>Mad Libs</b>: <span class="katex-inline" data-tex="\mathsf{Bool}=({\color{#048A81}\vee},{\color{#660064}\wedge})">\(\mathsf{Bool}=({\color{#048A81}\vee},{\color{#660064}\wedge})\)</span> or <span class="katex-inline" data-tex="\mathsf{Cost}=({\color{#048A81}\inf},{\color{#660064}&#43;})">\(\mathsf{Cost}=({\color{#048A81}\inf},{\color{#660064}+})\)</span>.</div>
+
+    <div class="ds-slide-num">8</div>
+  </div>
+  <aside class="notes">The same series law in both fields, with the arithmetic colored by role: the join ("best intermediate") in teal, the product ("both stages") in purple. Later slides keep the pairing.
+</aside>
+</section>
+
+<section data-label="9 · A quantale is a set of truth values we can choose among and combine" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1 long">Quantales: truth values to choose among and combine</h1>
+    <div class="card tan side" style="position:absolute;left:48px;top:112px;width:1440px;font-size:var(--text-lg);line-height:1.25"><b>Big idea.</b> To compose problems we need only two operations on their values.</div>
+<div style="position:absolute;left:48px;top:206px;font-size:var(--text-lg);font-weight:700;color:var(--navy)">Reading a quantale</div>
+<div class="at-full" style="top:250px;display:grid;grid-template-columns:1fr 1fr;gap:40px;font-size:var(--text-md);line-height:1.5;color:var(--navy)">
+  <ul style="margin:0 0 0 1.1em;padding:0">
+    <li><span class="katex-inline" data-tex="p\sqsubseteq q">\(p\sqsubseteq q\)</span>: <span class="katex-inline" data-tex="q">\(q\)</span> is <b>at least as good as</b> <span class="katex-inline" data-tex="p">\(p\)</span></li>
+    <li><span class="katex-inline" data-tex="{\color{#048A81}\bigsqcup_i}\, q_i">\({\color{#048A81}\bigsqcup_i}\, q_i\)</span>: the <b>best alternative</b> <span style="color:#048A81">&ldquo;or&rdquo;</span></li>
+    <li><span class="katex-inline" data-tex="p\,{\color{#660064}\odot}\, q">\(p\,{\color{#660064}\odot}\, q\)</span>: achieving <b>both</b> <span style="color:#660064">&ldquo;and&rdquo;</span></li>
+  </ul>
+  <ul style="margin:0 0 0 1.1em;padding:0">
+    <li><span class="katex-inline" data-tex="e">\(e\)</span>: <b>free</b>, requires nothing</li>
+    <li><span class="katex-inline" data-tex="\bot={\color{#048A81}\bigsqcup}\emptyset">\(\bot={\color{#048A81}\bigsqcup}\emptyset\)</span>: <b>unachievable</b></li>
+    <li><span class="katex-inline" data-tex="[p,q]">\([p,q]\)</span>: how far <span class="katex-inline" data-tex="p">\(p\)</span> <b>implies</b> <span class="katex-inline" data-tex="q">\(q\)</span></li>
+  </ul>
+</div>
+<div class="card blue" style="position:absolute;left:48px;top:440px;width:1440px">
+  <div class="ds-theorem-block block" style="font-size:var(--text-md);line-height:1.4"><div class="theorem-head">Definition (quantale)</div><div class="theorem-body">A <b>quantale</b> <span class="katex-inline" data-tex="\mathsf{Q}=(Q,\sqsubseteq,{\color{#660064}\odot},e)">\(\mathsf{Q}=(Q,\sqsubseteq,{\color{#660064}\odot},e)\)</span> is a complete lattice (every subset has a join <span class="katex-inline" data-tex="{\color{#048A81}\bigsqcup}">\({\color{#048A81}\bigsqcup}\)</span>) with a commutative monoid <span class="katex-inline" data-tex="(Q,{\color{#660064}\odot},e)">\((Q,{\color{#660064}\odot},e)\)</span> whose product distributes over all joins:
+  <div class="ds-math-block" data-tex="p\,{\color{#660064}\odot}\,{\color{#048A81}\textstyle\bigsqcup_{i}}\,q_i \;=\; {\color{#048A81}\textstyle\bigsqcup_{i}}\,(p\,{\color{#660064}\odot}\, q_i)." style="font-size:30px;font-style:normal">\[ p\,{\color{#660064}\odot}\,{\color{#048A81}\textstyle\bigsqcup_{i}}\,q_i \;=\; {\color{#048A81}\textstyle\bigsqcup_{i}}\,(p\,{\color{#660064}\odot}\, q_i). \]</div>
+  Its <b>internal hom</b> <span class="katex-inline" data-tex="[p,q]={\color{#048A81}\bigsqcup}\{\,r : p\,{\color{#660064}\odot}\, r\sqsubseteq q\,\}">\([p,q]={\color{#048A81}\bigsqcup}\{\,r : p\,{\color{#660064}\odot}\, r\sqsubseteq q\,\}\)</span> is the largest <span class="katex-inline" data-tex="r">\(r\)</span> with <span class="katex-inline" data-tex="p\,{\color{#660064}\odot}\, r\sqsubseteq q">\(p\,{\color{#660064}\odot}\, r\sqsubseteq q\)</span>: <span class="katex-inline" data-tex="r\sqsubseteq [p,q]\iff p\,{\color{#660064}\odot}\, r\sqsubseteq q">\(r\sqsubseteq [p,q]\iff p\,{\color{#660064}\odot}\, r\sqsubseteq q\)</span>.</div></div>
+</div>
+
+    <div class="ds-cite">[6] C. J. Mulvey. <i>Rendiconti del Circolo Matematico di Palermo, Supplemento,</i> 12:99–104, 1986<span class="ds-cite-more"> &middot; [7, 8] &middot; Why not [&minus;&infin;, &infin;]? An objective bounded below can be shifted into [0, &infin;].</span></div>
+    <div class="ds-slide-num">9</div>
+  </div>
+  <aside class="notes">Big idea on top, intuition in the middle, the formal definition and the internal hom at the bottom. Only generic readings here; the next slide spells out every piece for Bool and Cost side by side. Cost, not the extended reals: an objective that is bounded below can be shifted to take values in [0, &infin;], so Cost is enough.
+</aside>
+</section>
+
+<section data-label="10 · Example: Bool versus Cost quantales" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Example: Bool versus Cost quantales</h1>
+    <table style="position:absolute;left:48px;top:120px;width:860px;border-collapse:collapse;font-size:var(--text-sm);line-height:1.25;color:var(--navy)">
+  <thead><tr style="border-top:2.5px solid var(--navy);border-bottom:1.5px solid var(--navy)">
+    <th style="padding:10px 12px;text-align:left"></th>
+    <th style="padding:10px 12px;text-align:left"><span class="katex-inline" data-tex="\mathsf{Bool}">\(\mathsf{Bool}\)</span>: feasibility</th>
+    <th style="padding:10px 12px;text-align:left"><span class="katex-inline" data-tex="\mathsf{Cost}">\(\mathsf{Cost}\)</span>: cost</th></tr></thead>
+  <tbody>
+    <tr style="border-bottom:1px solid var(--line)"><td style="padding:9px 12px">values <span class="katex-inline" data-tex="Q">\(Q\)</span></td><td style="padding:9px 12px"><span class="katex-inline" data-tex="\{\bot,\top\}">\(\{\bot,\top\}\)</span></td><td style="padding:9px 12px"><span class="katex-inline" data-tex="[0,\infty]">\([0,\infty]\)</span></td></tr>
+    <tr style="border-bottom:1px solid var(--line)"><td style="padding:9px 12px">order <span class="katex-inline" data-tex="p\sqsubseteq q">\(p\sqsubseteq q\)</span></td><td style="padding:9px 12px"><span class="katex-inline" data-tex="p\Rightarrow q">\(p\Rightarrow q\)</span></td><td style="padding:9px 12px"><span class="katex-inline" data-tex="p\geq q">\(p\geq q\)</span> <span style="color:var(--slate);font-size:var(--text-xs)">(cheaper is better)</span></td></tr>
+    <tr style="border-bottom:1px solid var(--line)"><td style="padding:9px 12px">join <span class="katex-inline" data-tex="{\color{#048A81}\bigsqcup}">\({\color{#048A81}\bigsqcup}\)</span> <span style="color:var(--slate);font-size:var(--text-xs)">or</span></td><td style="padding:9px 12px"><span class="katex-inline" data-tex="{\color{#048A81}\vee}">\({\color{#048A81}\vee}\)</span></td><td style="padding:9px 12px"><span class="katex-inline" data-tex="{\color{#048A81}\inf}">\({\color{#048A81}\inf}\)</span></td></tr>
+    <tr style="border-bottom:1px solid var(--line)"><td style="padding:9px 12px">product <span class="katex-inline" data-tex="{\color{#660064}\odot}">\({\color{#660064}\odot}\)</span> <span style="color:var(--slate);font-size:var(--text-xs)">and</span></td><td style="padding:9px 12px"><span class="katex-inline" data-tex="{\color{#660064}\wedge}">\({\color{#660064}\wedge}\)</span></td><td style="padding:9px 12px"><span class="katex-inline" data-tex="{\color{#660064}&#43;}">\({\color{#660064}+}\)</span> <span style="color:var(--slate);font-size:var(--text-xs)">(costs add)</span></td></tr>
+    <tr style="border-bottom:1px solid var(--line)"><td style="padding:9px 12px">unit <span class="katex-inline" data-tex="e">\(e\)</span> <span style="color:var(--slate);font-size:var(--text-xs)">free</span></td><td style="padding:9px 12px"><span class="katex-inline" data-tex="\top">\(\top\)</span></td><td style="padding:9px 12px"><span class="katex-inline" data-tex="0">\(0\)</span></td></tr>
+    <tr style="border-bottom:1px solid var(--line)"><td style="padding:9px 12px">bottom <span class="katex-inline" data-tex="\bot">\(\bot\)</span> <span style="color:var(--slate);font-size:var(--text-xs)">impossible</span></td><td style="padding:9px 12px"><span class="katex-inline" data-tex="\bot">\(\bot\)</span></td><td style="padding:9px 12px"><span class="katex-inline" data-tex="\infty">\(\infty\)</span></td></tr>
+    <tr style="border-bottom:1px solid var(--line)"><td style="padding:9px 12px">distributivity</td><td style="padding:9px 12px"><span class="katex-inline" data-tex="p{\color{#660064}\wedge}{\color{#048A81}\bigvee_i} q_i={\color{#048A81}\bigvee_i}(p{\color{#660064}\wedge} q_i)">\(p{\color{#660064}\wedge}{\color{#048A81}\bigvee_i} q_i={\color{#048A81}\bigvee_i}(p{\color{#660064}\wedge} q_i)\)</span></td><td style="padding:9px 12px"><span class="katex-inline" data-tex="p{\color{#660064}&#43;}{\color{#048A81}\inf_i} q_i={\color{#048A81}\inf_i}(p{\color{#660064}&#43;}q_i)">\(p{\color{#660064}+}{\color{#048A81}\inf_i} q_i={\color{#048A81}\inf_i}(p{\color{#660064}+}q_i)\)</span></td></tr>
+    <tr style="border-bottom:2.5px solid var(--navy)"><td style="padding:9px 12px">internal hom <span class="katex-inline" data-tex="[p,q]">\([p,q]\)</span></td><td style="padding:9px 12px"><span class="katex-inline" data-tex="p\Rightarrow q">\(p\Rightarrow q\)</span><br><span style="color:var(--slate);font-size:var(--text-xs)">implication</span></td><td style="padding:9px 12px"><span class="katex-inline" data-tex="(q-p)_&#43;">\((q-p)_+\)</span><br><span style="color:var(--slate);font-size:var(--text-xs)">how much more <span class="katex-inline" data-tex="q">\(q\)</span> costs than <span class="katex-inline" data-tex="p">\(p\)</span></span></td></tr>
+  </tbody>
+</table>
+<div style="position:absolute;left:960px;top:120px;width:528px;font-size:var(--text-md);font-weight:700;color:var(--navy)">A layered control architecture</div>
+<img src="../assets/figures/layered-control-architecture-quantales.svg" alt="Layered control architecture: decision layer tagged Bool (logic, monotone co-design), planning layer tagged Cost (optimal control, compositional optimization), feedback layer tagged with a question mark; timescale runs slow to fast downward" style="position:absolute;left:960px;top:170px;width:528px;height:520px;object-fit:contain">
+
+    <div class="ds-cite">[9] N. Matni, A. D. Ames, and J. C. Doyle. <i>IEEE Control Systems Magazine,</i> 2024<span class="ds-cite-more"> &middot; layered control architectures</span></div>
+    <div class="ds-slide-num">10</div>
+  </div>
+  <aside class="notes">The whole quantale structure, Bool on the left and Cost on the right, including the internal hom. Beside it, a layered control architecture: the decision layer poses problems in Bool, the planning layer in Cost, and the feedback layer is an open question.
+</aside>
+</section>
+
+<section data-label="11 · Quantales are everywhere engineers evaluate designs" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1 long">Quantales are everywhere engineers evaluate designs</h1>
+    <table style="position:absolute;left:48px;top:112px;width:1440px;border-collapse:collapse;font-size:var(--text-xs);line-height:1.15;color:var(--navy)">
+  <thead><tr style="border-top:2.5px solid var(--navy);border-bottom:1.5px solid var(--navy)"><th style="padding:7px 10px;text-align:left"></th><th style="padding:7px 10px;text-align:left">values <span class="katex-inline" data-tex="Q">\(Q\)</span></th><th style="padding:7px 10px;text-align:left">order <span class="katex-inline" data-tex="\sqsubseteq">\(\sqsubseteq\)</span></th><th style="padding:7px 10px;text-align:left">join <span class="katex-inline" data-tex="{\color{#048A81}\bigsqcup}">\({\color{#048A81}\bigsqcup}\)</span></th><th style="padding:7px 10px;text-align:left">product <span class="katex-inline" data-tex="{\color{#660064}\odot}">\({\color{#660064}\odot}\)</span></th><th style="padding:7px 10px;text-align:left">unit <span class="katex-inline" data-tex="e">\(e\)</span></th><th style="padding:7px 10px;text-align:left">measures</th></tr></thead>
+  <tbody>
+    <tr style="background:rgb(190 155 105 / .16)"><td style="padding:5px 10px"><span class="katex-inline" data-tex="\mathsf{Bool}">\(\mathsf{Bool}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\{\bot,\top\}">\(\{\bot,\top\}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\bot\sqsubseteq\top">\(\bot\sqsubseteq\top\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="{\color{#048A81}\vee}">\({\color{#048A81}\vee}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="{\color{#660064}\wedge}">\({\color{#660064}\wedge}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\top">\(\top\)</span></td><td style="padding:5px 10px">feasibility</td></tr>
+    <tr style="background:rgb(190 155 105 / .16)"><td style="padding:5px 10px"><span class="katex-inline" data-tex="\mathsf{Cost}">\(\mathsf{Cost}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="[0,\infty]">\([0,\infty]\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\geq">\(\geq\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="{\color{#048A81}\inf}">\({\color{#048A81}\inf}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="{\color{#660064}&#43;}">\({\color{#660064}+}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="0">\(0\)</span></td><td style="padding:5px 10px">money, energy, time</td></tr>
+    <tr style="border-top:1px solid var(--line)"><td style="padding:5px 10px"><span class="katex-inline" data-tex="\overline{\mathbb{N}}">\(\overline{\mathbb{N}}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\mathbb{N}\cup\{\infty\}">\(\mathbb{N}\cup\{\infty\}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\geq">\(\geq\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="{\color{#048A81}\inf}">\({\color{#048A81}\inf}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="{\color{#660064}&#43;}">\({\color{#660064}+}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="0">\(0\)</span></td><td style="padding:5px 10px">missed deliveries</td></tr>
+    <tr style=""><td style="padding:5px 10px"><span class="katex-inline" data-tex="\mathsf{Cap}">\(\mathsf{Cap}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="[0,\infty]">\([0,\infty]\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\leq">\(\leq\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="{\color{#048A81}\sup}">\({\color{#048A81}\sup}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="{\color{#660064}\min}">\({\color{#660064}\min}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\infty">\(\infty\)</span></td><td style="padding:5px 10px">bandwidth, throughput</td></tr>
+    <tr style="border-top:1px solid var(--line)"><td style="padding:5px 10px"><span class="katex-inline" data-tex="\mathsf{Fuzz}_{\text{G}}">\(\mathsf{Fuzz}_{\text{G}}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="[0,1]">\([0,1]\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\leq">\(\leq\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="{\color{#048A81}\sup}">\({\color{#048A81}\sup}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="{\color{#660064}p\,q}">\({\color{#660064}p\,q}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="1">\(1\)</span></td><td style="padding:5px 10px">reliability</td></tr>
+    <tr style=""><td style="padding:5px 10px"><span class="katex-inline" data-tex="\mathsf{Fuzz}_{\text{Ł}}">\(\mathsf{Fuzz}_{\text{Ł}}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="[0,1]">\([0,1]\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\leq">\(\leq\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="{\color{#048A81}\sup}">\({\color{#048A81}\sup}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="{\color{#660064}\max\{0,p&#43;q-1\}}">\({\color{#660064}\max\{0,p+q-1\}}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="1">\(1\)</span></td><td style="padding:5px 10px">confidence</td></tr>
+    <tr style=""><td style="padding:5px 10px"><span class="katex-inline" data-tex="\mathsf{Fuzz}_{\text{Gödel}}">\(\mathsf{Fuzz}_{\text{Gödel}}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="[0,1]">\([0,1]\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\leq">\(\leq\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="{\color{#048A81}\sup}">\({\color{#048A81}\sup}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="{\color{#660064}\min}">\({\color{#660064}\min}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="1">\(1\)</span></td><td style="padding:5px 10px">confidence</td></tr>
+    <tr style="border-top:1px solid var(--line)"><td style="padding:5px 10px"><span class="katex-inline" data-tex="\mathcal{P}(I)">\(\mathcal{P}(I)\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\text{subsets of }I">\(\text{subsets of }I\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\subseteq">\(\subseteq\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="{\color{#048A81}\cup}">\({\color{#048A81}\cup}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="{\color{#660064}\cap}">\({\color{#660064}\cap}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="I">\(I\)</span></td><td style="padding:5px 10px">working implementations</td></tr>
+    <tr style=""><td style="padding:5px 10px"><span class="katex-inline" data-tex="\mathsf{Open}(X)">\(\mathsf{Open}(X)\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\text{open sets of }X">\(\text{open sets of }X\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\subseteq">\(\subseteq\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="{\color{#048A81}\cup}">\({\color{#048A81}\cup}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="{\color{#660064}\cap}">\({\color{#660064}\cap}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="X">\(X\)</span></td><td style="padding:5px 10px">where a property holds</td></tr>
+    <tr style=""><td style="padding:5px 10px"><span class="katex-inline" data-tex="\mathsf{Con}(\Sigma)">\(\mathsf{Con}(\Sigma)\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\text{contracts }(A,G)">\(\text{contracts }(A,G)\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\text{refinement}">\(\text{refinement}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="{\color{#048A81}(\cap,\cup)}">\({\color{#048A81}(\cap,\cup)}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="{\color{#660064}\parallel}">\({\color{#660064}\parallel}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="(\Sigma,\Sigma)">\((\Sigma,\Sigma)\)</span></td><td style="padding:5px 10px">assume/guarantee specs</td></tr>
+    <tr style=""><td style="padding:5px 10px"><span class="katex-inline" data-tex="\mathsf{Q}^{I},\ \mathsf{Q}_1\times\mathsf{Q}_2">\(\mathsf{Q}^{I},\ \mathsf{Q}_1\times\mathsf{Q}_2\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\text{tuples}">\(\text{tuples}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\text{pointwise}">\(\text{pointwise}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\text{pointwise}">\(\text{pointwise}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\text{pointwise}">\(\text{pointwise}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="(e,\dots,e)">\((e,\dots,e)\)</span></td><td style="padding:5px 10px">many criteria at once</td></tr>
+    <tr style="border-top:1px solid var(--line)"><td style="padding:5px 10px"><span class="katex-inline" data-tex="\mathsf{Mat}_n(\mathsf{Q})">\(\mathsf{Mat}_n(\mathsf{Q})\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="n\times n\text{ over }\mathsf{Q}">\(n\times n\text{ over }\mathsf{Q}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\text{entrywise}">\(\text{entrywise}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\text{entrywise}">\(\text{entrywise}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="{\color{#660064}AB}">\({\color{#660064}AB}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\operatorname{id}">\(\operatorname{id}\)</span></td><td style="padding:5px 10px">multi-hop routes</td></tr>
+    <tr style="border-bottom:2.5px solid var(--navy)"><td style="padding:5px 10px"><span class="katex-inline" data-tex="\mathcal{P}(A^{*})">\(\mathcal{P}(A^{*})\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\text{word sets}">\(\text{word sets}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\subseteq">\(\subseteq\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="{\color{#048A81}\cup}">\({\color{#048A81}\cup}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="{\color{#660064}UV}">\({\color{#660064}UV}\)</span></td><td style="padding:5px 10px"><span class="katex-inline" data-tex="\{\varepsilon\}">\(\{\varepsilon\}\)</span></td><td style="padding:5px 10px">behaviors (traces)</td></tr>
+  </tbody>
+</table>
+
+    <div class="ds-cite">[10] F. W. Lawvere. <i>Rendiconti del Seminario Matematico e Fisico di Milano,</i> 43:135–166, 1973<span class="ds-cite-more"> &middot; [7, 8, <span class="cite-ours">1</span>]</span></div>
+    <div class="ds-slide-num">11</div>
+  </div>
+  <aside class="notes">Not covered in detail in the talk: the point is only that quantales are everywhere. Every row is a quantale (a complete lattice whose product distributes over all joins). Bool and Cost first (highlighted; in the original deck the other rows appeared on a second click); the rest are grouped by what they measure. All are commutative except the last group: matrices over a quantale and Abramsky's languages of traces. The extended reals are deliberately absent: a cost that is bounded below can be shifted into Cost.
+</aside>
+</section>
+
+<section data-label="12 · Orders and distances are quantale-enriched categories" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1 long">Orders and distances are quantale-enriched categories</h1>
+    <div class="card blue" style="position:absolute;left:48px;top:112px;width:1440px">
+  <div class="ds-theorem-block block" style="font-size:var(--text-md);line-height:1.35"><div class="theorem-head">Definition (Q-category)</div><div class="theorem-body">A set of objects with a <b>hom-value</b> <span class="katex-inline" data-tex="\llbracket x,y\rrbracket_{\mathsf{C}}\in Q">\(\llbracket x,y\rrbracket_{\mathsf{C}}\in Q\)</span> for each pair, such that
+  <div class="ds-math-block" data-tex="e\sqsubseteq \llbracket x,x\rrbracket_{\mathsf{C}},\qquad\qquad \llbracket x,y\rrbracket_{\mathsf{C}}\,{\color{#660064}\odot}\,\llbracket y,z\rrbracket_{\mathsf{C}}\sqsubseteq\llbracket x,z\rrbracket_{\mathsf{C}}." style="font-size:30px;font-style:normal">\[ e\sqsubseteq \llbracket x,x\rrbracket_{\mathsf{C}},\qquad\qquad \llbracket x,y\rrbracket_{\mathsf{C}}\,{\color{#660064}\odot}\,\llbracket y,z\rrbracket_{\mathsf{C}}\sqsubseteq\llbracket x,z\rrbracket_{\mathsf{C}}. \]</div>
+  <span style="font-style:normal;font-size:var(--text-sm)"><span class="katex-inline" data-tex="\llbracket x,y\rrbracket_{\mathsf{C}}">\(\llbracket x,y\rrbracket_{\mathsf{C}}\)</span>: how well <span class="katex-inline" data-tex="x">\(x\)</span> can be traded for <span class="katex-inline" data-tex="y">\(y\)</span>. Staying put is free; trading through <span class="katex-inline" data-tex="y">\(y\)</span> is never better than trading directly.</span></div></div>
+</div>
+<div class="at-full" style="top:388px;display:grid;grid-template-columns:1fr 1fr;gap:40px;color:var(--navy)">
+  <div>
+    <div style="font-size:var(--text-lg);font-weight:700">Co-design: <span class="katex-inline" data-tex="\mathsf{Bool}">\(\mathsf{Bool}\)</span>-category = preorder</div>
+    <div class="ds-math-block" data-tex="\llbracket x,y\rrbracket_{\mathsf{C}}=\top\iff x\preceq y" style="font-size:32px">\[ \llbracket x,y\rrbracket_{\mathsf{C}}=\top\iff x\preceq y \]</div>
+    <div style="font-size:var(--text-sm);line-height:1.3">&ldquo;<span class="katex-inline" data-tex="y">\(y\)</span> is at least as good as <span class="katex-inline" data-tex="x">\(x\)</span>&rdquo;: ordered <span style="color:#D90368">resources</span> and <span style="color:#066034">functionalities</span></div>
+  </div>
+  <div>
+    <div style="font-size:var(--text-lg);font-weight:700">Optimization: <span class="katex-inline" data-tex="\mathsf{Cost}">\(\mathsf{Cost}\)</span>-category = Lawvere metric space</div>
+    <div class="ds-math-block" data-tex="0\geq d(x,x),\qquad d(x,y)\,{\color{#660064}&#43;}\,d(y,z)\geq d(x,z)" style="font-size:32px">\[ 0\geq d(x,x),\qquad d(x,y)\,{\color{#660064}&#43;}\,d(y,z)\geq d(x,z) \]</div>
+    <div style="font-size:var(--text-sm);line-height:1.3"><span class="katex-inline" data-tex="d(x,y)=\llbracket x,y\rrbracket_{\mathsf{C}}">\(d(x,y)=\llbracket x,y\rrbracket_{\mathsf{C}}\)</span>: the price of moving from <span class="katex-inline" data-tex="x">\(x\)</span> to <span class="katex-inline" data-tex="y">\(y\)</span></div>
+  </div>
+</div>
+<div class="card tan" style="position:absolute;left:48px;right:48px;bottom:70px;font-size:var(--text-lg);line-height:1.3"><b>Discrete Q-category</b>: <span class="katex-inline" data-tex="\llbracket x,y\rrbracket_{\mathsf{C}}=e">\(\llbracket x,y\rrbracket_{\mathsf{C}}=e\)</span> if <span class="katex-inline" data-tex="x=y">\(x=y\)</span>, else <span class="katex-inline" data-tex="\bot">\(\bot\)</span> (over <span class="katex-inline" data-tex="\mathsf{Cost}">\(\mathsf{Cost}\)</span>: <span class="katex-inline" data-tex="0">\(0\)</span> or <span class="katex-inline" data-tex="\infty">\(\infty\)</span>). A bare set such as <span class="katex-inline" data-tex="\mathbb{R}^n">\(\mathbb{R}^n\)</span>: the decision space of a program.</div>
+
+    <div class="ds-cite">[10] F. W. Lawvere. <i>Rendiconti del Seminario Matematico e Fisico di Milano,</i> 43:135–166, 1973<span class="ds-cite-more"> &middot; [11, 12]</span></div>
+    <div class="ds-slide-num">12</div>
+  </div>
+  <aside class="notes">Co-design lives over Bool (orders); compositional optimization over Cost (Lawvere metric spaces), usually discrete ones such as R^n.
+</aside>
+</section>
+
+<section data-label="13 · Design problems and bifunctions are both Q-profunctors" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1 long">Design problems and bifunctions are both Q-profunctors</h1>
+    <div class="card blue" style="position:absolute;left:48px;top:112px;width:1440px">
+  <div class="ds-theorem-block block" style="font-size:var(--text-md);line-height:1.35"><div class="theorem-head">Definition (Q-profunctor)</div><div class="theorem-body">For Q-categories <span class="katex-inline" data-tex="\mathsf{A}">\(\mathsf{A}\)</span> and <span class="katex-inline" data-tex="\mathsf{B}">\(\mathsf{B}\)</span>, a Q-profunctor <span class="katex-inline" data-tex="\mathsf{A}\xrightarrow{\;\Phi\;}\mathllap{\raisebox{0.08em}{$\scriptscriptstyle|$}\mkern17mu}\mathsf{B}">\(\mathsf{A}\xrightarrow{\;\Phi\;}\mathllap{\raisebox{0.08em}{$\scriptscriptstyle|$}\mkern17mu}\mathsf{B}\)</span> (also called a distributor or bimodule) is a function <span class="katex-inline" data-tex="\Phi:\operatorname{obj}(\mathsf{A})\times\operatorname{obj}(\mathsf{B})\to Q">\(\Phi:\operatorname{obj}(\mathsf{A})\times\operatorname{obj}(\mathsf{B})\to Q\)</span> such that, for all <span class="katex-inline" data-tex="a,a^\ast\in\mathsf{A}">\(a,a^\ast\in\mathsf{A}\)</span> and <span class="katex-inline" data-tex="b,b^\ast\in\mathsf{B}">\(b,b^\ast\in\mathsf{B}\)</span>,
+  <div class="ds-math-block" data-tex="\llbracket b^\ast,b\rrbracket_{\mathsf{B}}\;{\color{#660064}\odot}\; \Phi(a,b)\;{\color{#660064}\odot}\;\llbracket a,a^\ast\rrbracket_{\mathsf{A}} \;\sqsubseteq\; \Phi(a^\ast,b^\ast). \tag{bimodule law}" style="font-size:30px;font-style:normal">\[ \llbracket b^\ast,b\rrbracket_{\mathsf{B}}\;{\color{#660064}\odot}\; \Phi(a,b)\;{\color{#660064}\odot}\;\llbracket a,a^\ast\rrbracket_{\mathsf{A}} \;\sqsubseteq\; \Phi(a^\ast,b^\ast). \tag{bimodule law} \]</div>
+  <span style="font-style:normal;font-size:var(--text-sm)"><span class="katex-inline" data-tex="\Phi(a,b)">\(\Phi(a,b)\)</span> grades how well <span class="katex-inline" data-tex="a">\(a\)</span> delivers <span class="katex-inline" data-tex="b">\(b\)</span>. Asking for less (<span class="katex-inline" data-tex="b">\(b\)</span> to <span class="katex-inline" data-tex="b^\ast">\(b^\ast\)</span>) and offering more (<span class="katex-inline" data-tex="a">\(a\)</span> to <span class="katex-inline" data-tex="a^\ast">\(a^\ast\)</span>) can only help.</span></div></div>
+</div>
+<div style="position:absolute;left:48px;top:440px;width:1000px;color:var(--navy);font-size:var(--text-sm);line-height:1.3">
+  <div style="font-size:var(--text-md);font-weight:700">Co-design, <span class="katex-inline" data-tex="\mathsf{Q}=\mathsf{Bool}">\(\mathsf{Q}=\mathsf{Bool}\)</span>: a design problem <span class="katex-inline" data-tex="\mathsf{R}\xrightarrow{\;d\;}\mathllap{\raisebox{0.08em}{$\scriptscriptstyle|$}\mkern15mu}\mathsf{F}">\(\mathsf{R}\xrightarrow{\;d\;}\mathllap{\raisebox{0.08em}{$\scriptscriptstyle|$}\mkern15mu}\mathsf{F}\)</span></div>
+  <div><span class="katex-inline" data-tex="d(r,f)=\top">\(d(r,f)=\top\)</span> iff <span style="color:#D90368">resources</span> <span class="katex-inline" data-tex="r">\(r\)</span> suffice to provide <span style="color:#066034">functionality</span> <span class="katex-inline" data-tex="f">\(f\)</span>, e.g. a sensor from power budgets to data quality.</div>
+  <div style="margin-top:14px;font-size:var(--text-md);font-weight:700">Compositional optimization, <span class="katex-inline" data-tex="\mathsf{Q}=\mathsf{Cost}">\(\mathsf{Q}=\mathsf{Cost}\)</span>: a bifunction <span class="katex-inline" data-tex="\mathbb{R}^m\xrightarrow{\;F\;}\mathllap{\raisebox{0.08em}{$\scriptscriptstyle|$}\mkern15mu}\mathbb{R}^n">\(\mathbb{R}^m\xrightarrow{\;F\;}\mathllap{\raisebox{0.08em}{$\scriptscriptstyle|$}\mkern15mu}\mathbb{R}^n\)</span> <span style="font-weight:400;font-size:var(--text-sm)">(discrete)</span></div>
+  <div><span class="katex-inline" data-tex="F(u,x)\in[0,\infty]">\(F(u,x)\in[0,\infty]\)</span> is the cost of decision <span class="katex-inline" data-tex="x">\(x\)</span> under perturbation <span class="katex-inline" data-tex="u">\(u\)</span>, e.g.</div>
+  <div class="ds-math-block" data-tex="F(u,x)=g_0(x)&#43;\delta_{\{g(x)\leq u\}}(x):\quad \text{minimize } g_0 \text{ subject to } g\leq u." style="font-size:26px;margin:6px 0 0">\[ F(u,x)=g_0(x)&#43;\delta_{\{g(x)\leq u\}}(x):\quad \text{minimize } g_0 \text{ subject to } g\leq u. \]</div>
+</div>
+<img src="../assets/figures/profunctor-value-grid.svg" alt="A profunctor as a table of values in Q: rows indexed by resource r (more resource downward), columns by functionality f (more functionality rightward), entry d(r,f)" style="position:absolute;left:1100px;top:450px;width:380px;height:230px;object-fit:contain">
+<div style="position:absolute;left:1100px;top:684px;width:380px;text-align:center;font-size:var(--text-sm);color:var(--slate)">a table of values in <span class="katex-inline" data-tex="Q">\(Q\)</span></div>
+
+    <div class="ds-cite">[10] F. W. Lawvere. <i>Rendiconti del Seminario Matematico e Fisico di Milano,</i> 43:135–166, 1973<span class="ds-cite-more"> &middot; [12, 13, 4] &middot; Rockafellar &sect;29, &sect;38</span></div>
+    <div class="ds-slide-num">13</div>
+  </div>
+  <aside class="notes">A generic definition, then what a Q-profunctor is in each community. Q-profunctors are also called distributors or bimodules. The next slide unpacks the bimodule law in each case.
+</aside>
+</section>
+
+<section data-label="14 · The bimodule law: three examples" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">The bimodule law: three examples</h1>
+    <div class="at-full" style="top:200px;display:grid;grid-template-columns:repeat(3,1fr);gap:36px;text-align:center">
+  <div class="card tan roomy" style="height:400px">
+    <div class="card-head">Monotonicity</div>
+    <div style="font-size:var(--text-sm);color:var(--slate)"><span class="katex-inline" data-tex="\mathsf{Bool}">\(\mathsf{Bool}\)</span>, preorders</div>
+    <div class="ds-math-block" data-tex="d(r,f)\Rightarrow d(r^\ast,f^\ast)" style="font-size:30px;margin-top:36px">\[ d(r,f)\Rightarrow d(r^\ast,f^\ast) \]</div>
+    <div style="font-size:var(--text-sm)">for <span class="katex-inline" data-tex="r\preceq r^\ast">\(r\preceq r^\ast\)</span>, <span class="katex-inline" data-tex="f^\ast\preceq f">\(f^\ast\preceq f\)</span></div>
+    <div style="margin-top:36px;font-size:var(--text-md);font-style:italic">more resource, less function: still feasible</div>
+  </div>
+  <div class="card blue roomy" style="height:400px">
+    <div class="card-head">Triangle inequality</div>
+    <div style="font-size:var(--text-sm);color:var(--slate)"><span class="katex-inline" data-tex="\mathsf{Cost}">\(\mathsf{Cost}\)</span>, Lawvere metric spaces</div>
+    <div class="ds-math-block" data-tex="\begin{aligned}&amp;d(r^\ast,f^\ast)\leq{}\\ &amp;\llbracket f^\ast,f\rrbracket_{\mathsf{F}}{\color{#660064}&#43;}d(r,f){\color{#660064}&#43;}\llbracket r,r^\ast\rrbracket_{\mathsf{R}}\end{aligned}" style="font-size:28px;margin-top:24px">\[ \begin{aligned}&amp;d(r^\ast,f^\ast)\leq{}\\ &amp;\llbracket f^\ast,f\rrbracket_{\mathsf{F}}{\color{#660064}&#43;}d(r,f){\color{#660064}&#43;}\llbracket r,r^\ast\rrbracket_{\mathsf{R}}\end{aligned} \]</div>
+    <div style="margin-top:24px;font-size:var(--text-md);font-style:italic">cost of switching options</div>
+  </div>
+  <div class="card green roomy" style="height:400px">
+    <div class="card-head">No condition</div>
+    <div style="font-size:var(--text-sm);color:var(--slate)"><span class="katex-inline" data-tex="\mathsf{Cost}">\(\mathsf{Cost}\)</span>, discrete <span class="katex-inline" data-tex="\mathbb{R}^m">\(\mathbb{R}^m\)</span>, <span class="katex-inline" data-tex="\mathbb{R}^n">\(\mathbb{R}^n\)</span></div>
+    <div style="margin-top:36px;font-size:var(--text-md)">every</div>
+    <div class="ds-math-block" data-tex="F:\mathbb{R}^m\times\mathbb{R}^n\to[0,\infty]" style="font-size:30px">\[ F:\mathbb{R}^m\times\mathbb{R}^n\to[0,\infty] \]</div>
+    <div style="margin-top:36px;font-size:var(--text-md);font-style:italic">every bifunction is a profunctor</div>
+  </div>
+</div>
+
+    <div class="ds-cite">[2] A. Censi. arXiv:1512.08055, 2016<span class="ds-cite-more"> &middot; [3, <span class="cite-ours">1</span>, 4] &middot; CDC 2026 &sect;II-D, II-E; Rockafellar &sect;29, &sect;38</span></div>
+    <div class="ds-slide-num">14</div>
+  </div>
+</section>
+
+<section data-label="15 · Series, parallel, and feedback composition work over any quantale" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1 long">Series, parallel, and feedback work over any quantale</h1>
+    <table style="position:absolute;left:48px;top:116px;width:1440px;border-collapse:collapse;font-size:var(--text-sm);line-height:1.28;color:var(--navy)">
+  <colgroup><col style="width:150px"><col style="width:620px"><col style="width:310px"><col></colgroup>
+  <thead><tr style="border-top:2.5px solid var(--navy);border-bottom:1.5px solid var(--navy)">
+    <th style="padding:10px 12px"></th>
+    <th style="padding:10px 12px;text-align:left">any quantale <span class="katex-inline" data-tex="\mathsf{Q}">\(\mathsf{Q}\)</span></th>
+    <th style="padding:10px 12px;text-align:left">co-design <span style="color:var(--slate);font-weight:400">(<span class="katex-inline" data-tex="\mathsf{Bool}">\(\mathsf{Bool}\)</span>)</span></th>
+    <th style="padding:10px 12px;text-align:left">compositional optimization<br><span style="color:var(--slate);font-weight:400">(<span class="katex-inline" data-tex="\mathsf{Cost}">\(\mathsf{Cost}\)</span>)</span></th></tr></thead>
+  <tbody>
+    <tr style="border-bottom:1px solid var(--line)">
+      <td style="padding:14px 12px;text-align:center"><img src="../assets/figures/string-diagram-icon-series.svg" alt="two boxes in series" style="height:40px;display:block;margin:0 auto 4px"><b>series</b></td>
+      <td style="padding:14px 12px"><span class="katex-inline" data-tex="(d_1;d_2)(r,f)={\color{#048A81}\textstyle\bigsqcup_{m}}\, d_1(r,m)\,{\color{#660064}\odot}\, d_2(m,f)">\((d_1;d_2)(r,f)={\color{#048A81}\textstyle\bigsqcup_{m}}\, d_1(r,m)\,{\color{#660064}\odot}\, d_2(m,f)\)</span></td>
+      <td style="padding:14px 12px">chain two components</td>
+      <td style="padding:14px 12px">multistage programs</td></tr>
+    <tr style="border-bottom:1px solid var(--line)">
+      <td style="padding:14px 12px;text-align:center"><img src="../assets/figures/string-diagram-icon-identity.svg" alt="a bare wire" style="height:40px;display:block;margin:0 auto 4px"><b>identity</b></td>
+      <td style="padding:14px 12px"><span class="katex-inline" data-tex="\operatorname{id}_{\mathsf{C}}(c,c&#39;)=\llbracket c&#39;,c\rrbracket_{\mathsf{C}}">\(\operatorname{id}_{\mathsf{C}}(c,c')=\llbracket c',c\rrbracket_{\mathsf{C}}\)</span>, a unit for series</td>
+      <td style="padding:14px 12px">a bare wire: <span class="katex-inline" data-tex="[\,c&#39;\preceq c\,]">\([\,c'\preceq c\,]\)</span></td>
+      <td style="padding:14px 12px">an equality constraint <span class="katex-inline" data-tex="c=c&#39;">\(c=c'\)</span>: <span class="katex-inline" data-tex="\delta_{\Delta}">\(\delta_{\Delta}\)</span></td></tr>
+    <tr style="border-bottom:1px solid var(--line)">
+      <td style="padding:14px 12px;text-align:center"><img src="../assets/figures/string-diagram-icon-parallel.svg" alt="two boxes in parallel" style="height:48px;display:block;margin:0 auto 4px"><b>parallel</b></td>
+      <td style="padding:14px 12px"><span class="katex-inline" data-tex="(d\otimes d&#39;)\big((r,r&#39;),(f,f&#39;)\big)=d(r,f)\,{\color{#660064}\odot}\, d&#39;(r&#39;,f&#39;)">\((d\otimes d')\big((r,r'),(f,f')\big)=d(r,f)\,{\color{#660064}\odot}\, d'(r',f')\)</span></td>
+      <td style="padding:14px 12px">independent subsystems</td>
+      <td style="padding:14px 12px">separable program</td></tr>
+    <tr style="border-bottom:2.5px solid var(--navy)">
+      <td style="padding:14px 12px;text-align:center"><img src="../assets/figures/string-diagram-icon-feedback.svg" alt="a box with an output wire looped back to its input" style="height:48px;display:block;margin:0 auto 4px"><b>feedback</b></td>
+      <td style="padding:14px 12px"><span class="katex-inline" data-tex="\operatorname{Tr}_{\mathsf{M}}(d)(r,f)={\color{#048A81}\textstyle\bigsqcup_{m,m&#39;}}\, d\big((r,m),(f,m&#39;)\big)\,{\color{#660064}\odot}\,\llbracket m,m&#39;\rrbracket_{\mathsf{M}}">\(\operatorname{Tr}_{\mathsf{M}}(d)(r,f)={\color{#048A81}\textstyle\bigsqcup_{m,m'}}\, d\big((r,m),(f,m')\big)\,{\color{#660064}\odot}\,\llbracket m,m'\rrbracket_{\mathsf{M}}\)</span></td>
+      <td style="padding:14px 12px">a functionality fed back as a resource: a battery must carry its own weight</td>
+      <td style="padding:14px 12px">a constraint that closes a loop: a periodic gait, <span class="katex-inline" data-tex="x_N=x_0">\(x_N=x_0\)</span></td></tr>
+  </tbody>
+</table>
+
+    <div class="ds-cite">[<span class="cite-ours">1</span>] H. Riess, Y. Huang, M. Klawonn, G. Zardini, and M. Hale. <i>IEEE Conference on Decision and Control,</i> 2026, to appear<span class="ds-cite-more"> &middot; [14, 2, <span class="cite-ours">5</span>]</span></div>
+    <div class="ds-slide-num">15</div>
+  </div>
+</section>
+
+<section data-label="16 · Side by side, only the quantale changes" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Side by side, only the quantale changes</h1>
+    <table style="position:absolute;left:120px;top:116px;width:1296px;border-collapse:collapse;font-size:var(--text-md);line-height:1.2;color:var(--navy)">
+  <thead><tr style="border-top:2.5px solid var(--navy);border-bottom:1.5px solid var(--navy)"><th style="padding:10px 14px"></th><th style="padding:10px 14px;text-align:left">monotone co-design</th><th style="padding:10px 14px;text-align:left">compositional optimization</th><th style="padding:10px 14px;text-align:left">Q-profunctors</th></tr></thead>
+  <tbody>
+    <tr style="border-bottom:1px solid var(--line)"><td style="padding:9px 14px;color:var(--slate)">coefficients</td><td style="padding:9px 14px"><span class="katex-inline" data-tex="\mathsf{Bool}">\(\mathsf{Bool}\)</span></td><td style="padding:9px 14px"><span class="katex-inline" data-tex="\mathsf{Cost}">\(\mathsf{Cost}\)</span></td><td style="padding:9px 14px"><span class="katex-inline" data-tex="\mathsf{Q}=(Q,\sqsubseteq,{\color{#660064}\odot},e)">\(\mathsf{Q}=(Q,\sqsubseteq,{\color{#660064}\odot},e)\)</span></td></tr>
+    <tr style="border-bottom:1px solid var(--line)"><td style="padding:9px 14px;color:var(--slate)">objects</td><td style="padding:9px 14px">preorders</td><td style="padding:9px 14px">Euclidean spaces (discrete)</td><td style="padding:9px 14px">Q-categories</td></tr>
+    <tr style="border-bottom:1px solid var(--line)"><td style="padding:9px 14px;color:var(--slate)">component</td><td style="padding:9px 14px"><span class="katex-inline" data-tex="d(r,f)\in\mathsf{Bool}">\(d(r,f)\in\mathsf{Bool}\)</span></td><td style="padding:9px 14px"><span class="katex-inline" data-tex="F(x,y)\in[0,\infty]">\(F(x,y)\in[0,\infty]\)</span></td><td style="padding:9px 14px"><span class="katex-inline" data-tex="d(r,f)\in Q">\(d(r,f)\in Q\)</span></td></tr>
+    <tr style="background:rgb(108 154 195 / .10);border-bottom:1px solid var(--line)"><td style="padding:9px 14px;color:var(--slate)">series</td><td style="padding:9px 14px"><span class="katex-inline" data-tex="{\color{#048A81}\bigvee_m}\, d_1{\color{#660064}\wedge}d_2">\({\color{#048A81}\bigvee_m}\, d_1{\color{#660064}\wedge}d_2\)</span></td><td style="padding:9px 14px"><span class="katex-inline" data-tex="{\color{#048A81}\inf_y}\, F{\color{#660064}&#43;}G">\({\color{#048A81}\inf_y}\, F{\color{#660064}+}G\)</span></td><td style="padding:9px 14px"><span class="katex-inline" data-tex="{\color{#048A81}\bigsqcup_m}\, d_1{\color{#660064}\odot}d_2">\({\color{#048A81}\bigsqcup_m}\, d_1{\color{#660064}\odot}d_2\)</span></td></tr>
+    <tr style="background:rgb(108 154 195 / .10);border-bottom:1px solid var(--line)"><td style="padding:9px 14px;color:var(--slate)">parallel</td><td style="padding:9px 14px"><span class="katex-inline" data-tex="d_1{\color{#660064}\wedge}d_2">\(d_1{\color{#660064}\wedge}d_2\)</span></td><td style="padding:9px 14px"><span class="katex-inline" data-tex="F_1{\color{#660064}&#43;}F_2">\(F_1{\color{#660064}+}F_2\)</span></td><td style="padding:9px 14px"><span class="katex-inline" data-tex="d_1{\color{#660064}\odot}d_2">\(d_1{\color{#660064}\odot}d_2\)</span></td></tr>
+    <tr style="background:rgb(108 154 195 / .10);border-bottom:1px solid var(--line)"><td style="padding:9px 14px;color:var(--slate)">identity</td><td style="padding:9px 14px"><span class="katex-inline" data-tex="[\,f\preceq r\,]">\([\,f\preceq r\,]\)</span></td><td style="padding:9px 14px"><span class="katex-inline" data-tex="\delta_{\Delta}">\(\delta_{\Delta}\)</span></td><td style="padding:9px 14px"><span class="katex-inline" data-tex="\llbracket f,r\rrbracket_{\mathsf{C}}">\(\llbracket f,r\rrbracket_{\mathsf{C}}\)</span></td></tr>
+    <tr style="background:rgb(108 154 195 / .10);border-bottom:2.5px solid var(--navy)"><td style="padding:9px 14px;color:var(--slate)">feedback</td><td style="padding:9px 14px"><span class="katex-inline" data-tex="{\color{#048A81}\bigvee_m}\, d\big((r,m),(f,m)\big)">\({\color{#048A81}\bigvee_m}\, d\big((r,m),(f,m)\big)\)</span></td><td style="padding:9px 14px"><span class="katex-inline" data-tex="{\color{#048A81}\inf_m}\, F\big((x,m),(y,m)\big)">\({\color{#048A81}\inf_m}\, F\big((x,m),(y,m)\big)\)</span></td><td style="padding:9px 14px"><span class="katex-inline" data-tex="{\color{#048A81}\bigsqcup_{m,m&#39;}}\, d\,{\color{#660064}\odot}\,\llbracket m,m&#39;\rrbracket_{\mathsf{M}}">\({\color{#048A81}\bigsqcup_{m,m'}}\, d\,{\color{#660064}\odot}\,\llbracket m,m'\rrbracket_{\mathsf{M}}\)</span></td></tr>
+  </tbody>
+</table>
+<div class="card tan" style="position:absolute;left:48px;right:48px;bottom:70px;text-align:center;font-size:var(--text-xl);line-height:1.2"><b>Main takeaway.</b> Both co-design &amp; compositional optimization are Q-profunctors between Q-categories.</div>
+
+    <div class="ds-cite">[<span class="cite-ours">1</span>] H. Riess, Y. Huang, M. Klawonn, G. Zardini, and M. Hale. <i>IEEE Conference on Decision and Control,</i> 2026, to appear<span class="ds-cite-more"> &middot; [4, <span class="cite-ours">5</span>]</span></div>
+    <div class="ds-slide-num">16</div>
+  </div>
+  <aside class="notes">The main takeaway of this talk. In the original deck the composition rows (series to feedback) appeared on a second click; here they are shaded instead.
+</aside>
+</section>
+
+<section data-label="17 · Vignettes: Higher Category Theory" class="slide-dark">
+  <div class="slide-canvas">
+    <div style="position:absolute;left:120px;top:226px;width:1100px">
+  <div style="font-size:var(--text-md);letter-spacing:3px;opacity:.85;font-weight:700">PART TWO</div>
+  <div style="margin-top:24px;font-size:84px;line-height:1.04">Vignettes: Higher Category Theory</div>
+  <div style="margin-top:32px;width:860px;height:2px;background:rgb(255 239 207 / .35)"></div>
+  <div style="margin-top:32px;font-size:var(--text-3xl);line-height:1.2;opacity:.9">Change of base, quantaloids, and proarrow equipments</div>
+</div>
+<img src="../assets/brand/codac-digicams-shield.png" alt=""
+  style="position:absolute;right:96px;bottom:80px;width:220px;height:250px;object-fit:contain">
+
+    <div class="ds-slide-num">17</div>
+  </div>
+</section>
+
+<section data-label="18 · Three vignettes: where enrichment leads next" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Three vignettes: where enrichment leads next</h1>
+    <div class="at-full" style="top:220px;display:grid;grid-template-columns:repeat(3,1fr);gap:36px">
+  <div class="card blue roomy" style="height:300px"><div class="eyebrow">Vignette 1</div><div class="card-head" style="margin-top:10px">Heterogeneous bases</div><div class="card-body" style="margin-top:18px;font-style:italic;font-size:var(--text-md)">Components in different quantales: how do they compose?</div></div>
+  <div class="card blue roomy" style="height:300px"><div class="eyebrow">Vignette 2</div><div class="card-head" style="margin-top:10px">Enriching in a quantaloid</div><div class="card-body" style="margin-top:18px;font-style:italic;font-size:var(--text-md)">What if a hom-value is itself a design problem?</div></div>
+  <div class="card blue roomy" style="height:300px"><div class="eyebrow">Vignette 3</div><div class="card-head" style="margin-top:10px">Proarrow equipments</div><div class="card-body" style="margin-top:18px;font-style:italic;font-size:var(--text-md)">Where do ordinary maps and catalogs of parts fit?</div></div>
+</div>
+<div class="card tan" style="position:absolute;left:48px;right:48px;bottom:70px;text-align:center;font-size:var(--text-xl);line-height:1.2">Categories can only do so much. The story continues with <b>higher categories.</b></div>
+
+    <div class="ds-slide-num">18</div>
+  </div>
+  <aside class="notes">Opens the vignettes: three directions the enriched view opens up, each as a name and a one-line question. The motivations from co-design and compositional optimization live in each vignette's own "Why?" box.
+</aside>
+</section>
+
+<section data-label="19 · Vignette 1: change of base composes components graded in different quantales" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Vignette 1: Change of base</h1>
+    <div class="at-full" style="top:108px;font-size:var(--text-lg);line-height:1.22;color:var(--slate)">Change of base composes components graded in different quantales.</div>
+<div class="card grey side" style="position:absolute;left:48px;top:164px;width:1440px;font-size:var(--text-md);line-height:1.25"><b>Why?</b> Battery in <span class="katex-inline" data-tex="\mathsf{Cost}">\(\mathsf{Cost}\)</span>, task logic in <span class="katex-inline" data-tex="\mathsf{Bool}">\(\mathsf{Bool}\)</span>, missed deliveries in <span class="katex-inline" data-tex="\overline{\mathbb{N}}">\(\overline{\mathbb{N}}\)</span>: how do they compose?</div>
+<div style="position:absolute;left:48px;top:260px;width:860px;font-size:var(--text-md);line-height:1.3;color:var(--navy)">
+  Push each <span class="katex-inline" data-tex="\mathsf{Q}_i">\(\mathsf{Q}_i\)</span> forward along a <b>lax map</b> <span class="katex-inline" data-tex="\varphi_i:\mathsf{Q}_i\to\mathsf{Q}">\(\varphi_i:\mathsf{Q}_i\to\mathsf{Q}\)</span>,
+  <div class="ds-math-block" data-tex="\varphi(p)\,{\color{#660064}\odot}\,\varphi(q)\sqsubseteq\varphi(p\,{\color{#660064}\odot}\,q),\qquad e\sqsubseteq\varphi(e)," style="font-size:30px">\[ \varphi(p)\,{\color{#660064}\odot}\,\varphi(q)\sqsubseteq\varphi(p\,{\color{#660064}\odot}\,q),\qquad e\sqsubseteq\varphi(e), \]</div>
+  then compose in <span class="katex-inline" data-tex="\mathsf{Q}">\(\mathsf{Q}\)</span>:
+  <div class="ds-math-block" data-tex="(d;e)(r,f)={\color{#048A81}\bigsqcup_{m}}\,\varphi_d\big(d(r,m)\big)\,{\color{#660064}\odot}\,\varphi_e\big(e(m,f)\big)." style="font-size:30px">\[ (d;e)(r,f)={\color{#048A81}\bigsqcup_{m}}\,\varphi_d\big(d(r,m)\big)\,{\color{#660064}\odot}\,\varphi_e\big(e(m,f)\big). \]</div>
+</div>
+<img src="../assets/figures/change-of-base-series-composition.svg" alt="String diagram: design problems d and e graded in quantales P, Q, R, each pushed forward along lax maps phi into a common quantale before series composition" style="position:absolute;left:948px;top:280px;width:540px;height:280px;object-fit:contain">
+<div class="card tan" style="position:absolute;left:48px;right:48px;bottom:70px;text-align:center;font-size:var(--text-xl);line-height:1.2">Example: <span class="katex-inline" data-tex="\mathsf{Bool}\to\mathsf{Cost}">\(\mathsf{Bool}\to\mathsf{Cost}\)</span>, <span class="katex-inline" data-tex="\top\mapsto 0">\(\top\mapsto 0\)</span>, <span class="katex-inline" data-tex="\bot\mapsto\infty">\(\bot\mapsto\infty\)</span> is the <b>indicator function</b> of convex analysis.</div>
+
+    <div class="ds-cite">[15] F. Borceux. <i>Handbook of Categorical Algebra 2: Categories and Structures,</i> Cambridge University Press, 1994<span class="ds-cite-more"> &middot; [<span class="cite-ours">1</span>] &middot; Borceux &sect;6.4; CDC 2026 Lemma 2, Thm. 2, &sect;IV-B</span></div>
+    <div class="ds-slide-num">19</div>
+  </div>
+  <aside class="notes">Heterogeneous bases of enrichment: components graded in different quantales compose after pushing forward along lax maps into a common quantale. Source comment: Matt suggested this could be a backup slide.
+</aside>
+</section>
+
+<section data-label="20 · Vignette 2: enriching in the quantaloid of design problems gives meta co-design" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Vignette 2: Enriching in a quantaloid</h1>
+    <div class="at-full" style="top:108px;font-size:var(--text-lg);line-height:1.22;color:var(--slate)">Enriching in the quantaloid of design problems gives meta co-design.</div>
+<div class="card grey side" style="position:absolute;left:48px;top:164px;width:1440px;font-size:var(--text-md);line-height:1.25"><b>Why?</b> Yes or no is too coarse: whether an agent can fly a mission depends on how it is configured.</div>
+<table style="position:absolute;left:48px;top:250px;border-collapse:collapse;font-size:var(--text-md);line-height:1.2;color:var(--navy)"><tbody>
+  <tr><td style="padding:6px 22px 6px 0;font-weight:700">co-design:</td><td style="padding:6px 22px 6px 0"><span class="katex-inline" data-tex="d(a,b)=\top">\(d(a,b)=\top\)</span> or <span class="katex-inline" data-tex="\bot">\(\bot\)</span></td><td style="padding:6px 0">can agent <span class="katex-inline" data-tex="a">\(a\)</span> fly mission <span class="katex-inline" data-tex="b">\(b\)</span>?</td></tr>
+  <tr><td style="padding:6px 22px 6px 0;font-weight:700">meta co-design:</td><td style="padding:6px 22px 6px 0;white-space:nowrap"><span class="katex-inline" data-tex="\Phi(a,b)=">\(\Phi(a,b)=\)</span> <img src="../assets/figures/design-problem-with-configuration.svg" alt="a design problem: resources into a configuration box, requirements out" style="height:34px;vertical-align:middle"></td><td style="padding:6px 0">which configuration of <span class="katex-inline" data-tex="a">\(a\)</span> flies <span class="katex-inline" data-tex="b">\(b\)</span>?</td></tr>
+</tbody></table>
+<div style="position:absolute;left:48px;top:376px;width:880px;font-size:var(--text-md);line-height:1.3;color:var(--navy)">
+  <span class="katex-inline" data-tex="\operatorname{Dist}(\mathsf{Q})">\(\operatorname{Dist}(\mathsf{Q})\)</span> is a <b>quantaloid</b> (a quantale with many objects), so we can:
+  <ul style="margin:10px 0 0 1.1em;padding:0">
+    <li style="margin-bottom:8px"><b>compare:</b> <span class="katex-inline" data-tex="\Phi\sqsubseteq\Psi">\(\Phi\sqsubseteq\Psi\)</span> iff <span class="katex-inline" data-tex="\Phi(a,b)\sqsubseteq\Psi(a,b)">\(\Phi(a,b)\sqsubseteq\Psi(a,b)\)</span> for all <span class="katex-inline" data-tex="a,b">\(a,b\)</span></li>
+    <li style="margin-bottom:8px"><b>divide:</b> <span class="katex-inline" data-tex="\Phi;\Theta\sqsubseteq\Psi\iff\Theta\sqsubseteq\Phi\mathbin{\triangleright}\Psi">\(\Phi;\Theta\sqsubseteq\Psi\iff\Theta\sqsubseteq\Phi\mathbin{\triangleright}\Psi\)</span><br><span style="font-size:var(--text-sm);color:var(--slate)">the most permissive missing component <span class="katex-inline" data-tex="\Theta">\(\Theta\)</span> that satisfies system specification <span class="katex-inline" data-tex="\Psi">\(\Psi\)</span></span></li>
+    <li><b>enrich:</b> over <span class="katex-inline" data-tex="\operatorname{Dist}(\mathsf{Bool})">\(\operatorname{Dist}(\mathsf{Bool})\)</span><br><span style="font-size:var(--text-sm);color:var(--slate)">a hom-value <span class="katex-inline" data-tex="\llbracket a,a&#39;\rrbracket_{\mathsf{A}}">\(\llbracket a,a'\rrbracket_{\mathsf{A}}\)</span> is itself a design problem</span></li>
+  </ul>
+</div>
+<img src="../assets/figures/two-object-quantaloid.svg" alt="A two-object quantaloid: objects X and Y with hom-lattices Q(X,Y), Q(Y,X), and loops Q(X,X) containing id_X and Q(Y,Y) containing id_Y; each Q(X,Y) is a complete lattice" style="position:absolute;left:980px;top:360px;width:508px;height:300px;object-fit:contain">
+<div class="card tan" style="position:absolute;left:48px;right:48px;bottom:70px;text-align:center;font-size:var(--text-xl);line-height:1.2"><b>Meta co-design:</b> designs implemented by designs implemented by designs &hellip; implemented by designs.</div>
+
+    <div class="ds-cite">[16] I. Stubbe. <i>Theory and Applications of Categories,</i> 14(1):1–45, 2005<span class="ds-cite-more"> &middot; [12, 17]</span></div>
+    <div class="ds-slide-num">20</div>
+  </div>
+</section>
+
+<section data-label="21 · Vignette 3: proarrow equipments turn maps and catalogs into design problems" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Vignette 3: Proarrow equipments</h1>
+    <div class="at-full" style="top:108px;font-size:var(--text-lg);line-height:1.22;color:var(--slate)">Proarrow equipments turn maps and catalogs into design problems.</div>
+<div class="card grey side" style="position:absolute;left:48px;top:164px;width:1440px;font-size:var(--text-md);line-height:1.25"><b>Why?</b> MPC&rsquo;s dynamics are constraints; a catalog maps parts to what they need and give.</div>
+<img src="../assets/figures/proarrow-equipment-square.svg" alt="A square in the equipment: loose arrows Phi from A to B and Psi from A&#39; to B&#39;, tight arrows F from A to A&#39; and G from B to B&#39;, with a refinement cell" style="position:absolute;left:148px;top:262px;width:420px;height:220px;object-fit:contain">
+<div style="position:absolute;left:48px;top:486px;width:620px;font-size:var(--text-md);line-height:1.3;color:var(--navy)">
+  <div class="ds-math-block" data-tex="\iff\ \Phi(a,b)\sqsubseteq\Psi(Fa,Gb)" style="font-size:28px;margin:0">\[ \iff\ \Phi(a,b)\sqsubseteq\Psi(Fa,Gb) \]</div>
+  <div style="margin-top:10px">Every map <span class="katex-inline" data-tex="F">\(F\)</span> gives a <b>companion</b> and a <b>conjoint</b>:</div>
+  <div class="ds-math-block" data-tex="\hat{F}(a,b)=\llbracket b,Fa\rrbracket_{\mathsf{B}},\quad \check{F}(b,a)=\llbracket Fa,b\rrbracket_{\mathsf{B}}." style="font-size:28px">\[ \hat{F}(a,b)=\llbracket b,Fa\rrbracket_{\mathsf{B}},\quad \check{F}(b,a)=\llbracket Fa,b\rrbracket_{\mathsf{B}}. \]</div>
+</div>
+<div style="position:absolute;left:760px;top:276px;width:728px;font-size:var(--text-md);line-height:1.3;color:var(--navy)">
+  <div style="font-size:var(--text-lg);font-weight:700">A map is a constraint:</div>
+  <div class="ds-math-block" data-tex="\hat{f}(x,y)=\delta_{\{y=f(x)\}}." style="font-size:30px">\[ \hat{f}(x,y)=\delta_{\{y=f(x)\}}. \]</div>
+  <div style="font-size:var(--text-lg);font-weight:700;margin-top:10px">A catalog is a design problem: <span class="katex-inline" data-tex="\Sigma=\check{\operatorname{req}}\,;\hat{\operatorname{prov}}">\(\Sigma=\check{\operatorname{req}}\,;\hat{\operatorname{prov}}\)</span>,</div>
+  <div class="ds-math-block" data-tex="\Sigma(r,f)={\color{#048A81}\bigvee_{i}}\,[\,\operatorname{req}(i)\preceq r\,]\ {\color{#660064}\wedge}\ [\,f\preceq\operatorname{prov}(i)\,]." style="font-size:30px">\[ \Sigma(r,f)={\color{#048A81}\bigvee_{i}}\,[\,\operatorname{req}(i)\preceq r\,]\ {\color{#660064}\wedge}\ [\,f\preceq\operatorname{prov}(i)\,]. \]</div>
+</div>
+<div class="card tan" style="position:absolute;left:48px;right:48px;bottom:70px;text-align:center;font-size:var(--text-xl);line-height:1.2"><b>Proarrow equipment:</b> every map has a companion and a conjoint.</div>
+
+    <div class="ds-cite">[18] R. J. Wood. <i>Cahiers de Topologie et Géométrie Différentielle Catégoriques,</i> 23(3):279–290, 1982<span class="ds-cite-more"> &middot; [19, 12, 2, 3] &middot; Stubbe 2014, Prop. 3.8</span></div>
+    <div class="ds-slide-num">21</div>
+  </div>
+  <aside class="notes">The proarrow equipment D(Q): tight arrows are Q-functors, loose arrows are Q-profunctors, squares are refinements; every tight arrow has a companion and a conjoint. Payoff in both communities: a map becomes an equality constraint (its companion over discrete Cost-categories), and a catalog span R &larr; I &rarr; F becomes a design problem (conjoint of req, then companion of prov).
+</aside>
+</section>
+
+<section data-label="22 · Conclusion: co-design and compositional optimization are one concept" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1 long">Conclusion: co-design and optimization are one concept</h1>
+    <div style="position:absolute;left:48px;top:112px;width:900px;font-size:var(--text-md);line-height:1.3;color:var(--navy)">
+  <div style="font-size:var(--text-lg);font-weight:700">Summary</div>
+  <ul style="margin:8px 0 0 1.1em;padding:0">
+    <li style="margin-bottom:6px">Monotone co-design (<span class="katex-inline" data-tex="\mathsf{Bool}">\(\mathsf{Bool}\)</span>) and compositional optimization (<span class="katex-inline" data-tex="\mathsf{Cost}">\(\mathsf{Cost}\)</span>) are both <b>Q-profunctors between Q-categories</b>.</li>
+    <li>Series, parallel, and feedback work over <b>any</b> commutative quantale: one string-diagram language.</li>
+  </ul>
+  <div style="font-size:var(--text-lg);font-weight:700;margin-top:22px">Future work, from the vignettes</div>
+  <ul style="margin:8px 0 0 1.1em;padding:0">
+    <li style="margin-bottom:6px"><b>Change of base</b>: optimal co-design with implementations.</li>
+    <li style="margin-bottom:6px"><b>Quantaloids</b>: requirements flow-down; meta co-design over <span class="katex-inline" data-tex="\operatorname{Dist}(\mathsf{Bool})">\(\operatorname{Dist}(\mathsf{Bool})\)</span>; sheaves.</li>
+    <li style="margin-bottom:6px"><b>Equipments</b>: maps as constraints, catalogs as design problems.</li>
+    <li><b>Nonconvexity</b>: compositional tame optimization.</li>
+  </ul>
+</div>
+<div class="card blue soft" style="position:absolute;left:990px;top:112px;width:498px;font-size:var(--text-sm);line-height:1.3">
+  <div class="card-head" style="font-size:var(--text-lg)">More to the story&hellip;</div>
+  <img src="../assets/figures/decorated-cospan-series.svg" alt="Decorated cospan: boxes f and g share the variable y, with outer variables x and z" style="display:block;margin:4px auto 10px;width:300px">
+  Keep the variables and the objective; composing glues shared variables and adds objectives,
+  <div class="ds-math-block" data-tex="(f \boxplus g)(x,y,z):=f(x,y){\color{#660064}&#43;}g(y,z)," style="font-size:24px">\[ (f \boxplus g)(x,y,z):=f(x,y){\color{#660064}&#43;}g(y,z), \]</div>
+  and minimizes nothing. Minimizing out <span class="katex-inline" data-tex="y">\(y\)</span> (black-boxing) recovers the <span class="katex-inline" data-tex="\mathsf{Cost}">\(\mathsf{Cost}\)</span>-profunctor <span class="katex-inline" data-tex="{\color{#048A81}\inf_y} f{\color{#660064}&#43;}g">\({\color{#048A81}\inf_y} f{\color{#660064}+}g\)</span>. Cospans keep the <b>implementation</b>; profunctors keep the <b>value</b>.
+</div>
+<div class="card tan" style="position:absolute;left:48px;right:48px;bottom:70px;text-align:center;font-size:var(--text-lg);line-height:1.25"><b>One concept to rule them all.</b> Q-profunctors between Q-categories, organized by quantaloids and proarrow equipments.</div>
+
+    <div class="ds-cite">[<span class="cite-ours">1</span>] H. Riess, Y. Huang, M. Klawonn, G. Zardini, and M. Hale. <i>IEEE Conference on Decision and Control,</i> 2026, to appear<span class="ds-cite-more"> &middot; [20, <span class="cite-ours">21</span>, <span class="cite-ours">22</span>] &middot; decorated cospans</span></div>
+    <div class="ds-slide-num">22</div>
+  </div>
+  <aside class="notes">The vignettes already covered future work, so this slide summarizes, restates the vignettes in one line each, and names decorated cospans as the alternative to enriched profunctors.
+</aside>
+</section>
+
+<section data-label="23 · The CoE is already producing papers, exchanges, workshops, and AFRL ties" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Papers, exchanges, workshops, and AFRL ties</h1>
+    <div style="position:absolute;left:48px;top:112px;width:800px;color:var(--navy)">
+  <div style="font-size:var(--text-lg);font-weight:700;margin-bottom:12px">Papers</div>
+  <div style="display:flex;flex-direction:column;gap:14px;font-size:var(--text-sm);line-height:1.25">
+    <div style="display:flex;gap:14px"><span style="flex:0 0 86px;background:rgb(108 154 195 / .18);font-weight:700;font-size:18px;text-align:center;border-radius:4px;padding:2px 0;height:24px">CDC 26</span><div><b>Quantale-enriched co-design</b> <span class="ref">[1]</span><br><span style="font-size:var(--text-xs);color:var(--slate)"><span style="color:#8F713D">Riess</span>, Huang, Klawonn, Zardini, <span style="color:#8F713D">Hale</span> &middot; GT, MIT, AFRL</span></div></div>
+    <div style="display:flex;gap:14px"><span style="flex:0 0 86px;background:rgb(108 154 195 / .18);font-weight:700;font-size:18px;text-align:center;border-radius:4px;padding:2px 0;height:24px">ACC 26</span><div><b>Asynchronous nonlinear sheaf diffusion for multi-agent coordination</b> <span class="ref">[23]</span><br><span style="font-size:var(--text-xs);color:var(--slate)">Zhao, Hanks, <span style="color:#8F713D">Riess</span>, Cohen, <span style="color:#8F713D">Hale</span>, Fairbanks &middot; GT, UF</span></div></div>
+    <div style="display:flex;gap:14px"><span style="flex:0 0 86px;background:rgb(108 154 195 / .18);font-weight:700;font-size:18px;text-align:center;border-radius:4px;padding:2px 0;height:24px">CDC 25</span><div><b>Distributed multi-agent coordination over cellular sheaves</b> <span class="ref">[24]</span><br><span style="font-size:var(--text-xs);color:var(--slate)">Hanks, <span style="color:#8F713D">Riess</span>, Cohen, Gross, <span style="color:#8F713D">Hale</span>, Fairbanks &middot; GT, UF</span></div></div>
+    <div style="display:flex;gap:14px"><span style="flex:0 0 86px;background:rgb(108 154 195 / .18);font-weight:700;font-size:18px;text-align:center;border-radius:4px;padding:2px 0;height:24px">MSCS</span><div><b>A compositional framework for first-order optimization</b> <span class="ref">[21]</span><br><span style="font-size:var(--text-xs);color:var(--slate)">Hanks, Klawonn, Patterson, <span style="color:#8F713D">Hale</span>, Fairbanks &middot; UF, AFRL, Topos, GT</span></div></div>
+  </div>
+  <div style="font-size:var(--text-lg);font-weight:700;margin:30px 0 8px">Active collaborations</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;font-size:var(--text-sm);line-height:1.4">
+    <ul style="margin:0 0 0 1.1em;padding:0"><li>UF (Fairbanks)</li><li>Florida Tech (Hanks)</li><li>AFRL (Klawonn, Gamarra)</li></ul>
+    <ul style="margin:0 0 0 1.1em;padding:0"><li>MIT (Zardini, Huang)</li><li>Caltech (Moeller, Ames)</li></ul>
+  </div>
+</div>
+<div style="position:absolute;left:900px;top:112px;width:588px;color:var(--navy)">
+  <div style="font-size:var(--text-lg);font-weight:700;margin-bottom:12px">Exchanges</div>
+  <div style="display:flex;flex-direction:column;gap:14px;font-size:var(--text-sm);line-height:1.25">
+    <div style="display:flex;gap:14px"><span style="flex:0 0 96px;background:rgb(108 154 195 / .18);font-weight:700;font-size:18px;text-align:center;border-radius:4px;padding:2px 0;height:24px">Students</span><div>Student exchanges (UF <span class="katex-inline" data-tex="\to">\(\to\)</span> GT):<br><b>William Kunzendorf</b> &amp; <b>Joana Bou Barcelo</b></div></div>
+    <div style="display:flex;gap:14px"><span style="flex:0 0 96px;background:rgb(108 154 195 / .18);font-weight:700;font-size:18px;text-align:center;border-radius:4px;padding:2px 0;height:24px">Faculty</span><div>AFRL VFRP (Marco Gamarra, AFRL/RFA):<br><b>Hans Riess</b></div></div>
+  </div>
+  <div style="font-size:var(--text-lg);font-weight:700;margin:30px 0 8px">Workshops &amp; sessions</div>
+  <ul style="margin:0 0 0 1.1em;padding:0;font-size:var(--text-sm);line-height:1.3">
+    <li style="margin-bottom:8px">ACC 2026 Workshop: <em>Applied Category Theory for Compositional Decision Making</em></li>
+    <li>INFORMS Optimization Society Conference: <em>Compositional Optimization on Networks</em></li>
+  </ul>
+</div>
+
+    <div class="ds-slide-num">23</div>
+  </div>
+  <aside class="notes">The CoE is already producing papers, exchanges, workshops, and AFRL ties. Georgia Tech names are in gold.
+</aside>
+</section>
+
+<section data-label="24 · Thank you!" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Thank you!</h1>
+    <img src="../assets/logos/gatech-logo.png" alt="Georgia Institute of Technology" style="position:absolute;left:518px;top:200px;width:500px;height:86px;object-fit:contain">
+<div style="position:absolute;left:228px;top:380px;width:1080px;display:grid;grid-template-columns:1fr 1fr;gap:60px">
+  <div class="card blue roomy"><div class="card-head">Matthew Hale</div><div class="card-body" style="color:var(--slate)">PI &middot; Georgia Tech ECE</div><div class="card-body" style="margin-top:8px;font-family:var(--font-mono, monospace)">mhale30@gatech.edu</div></div>
+  <div class="card blue roomy"><div class="card-head">Hans Riess</div><div class="card-body" style="color:var(--slate)">Key Person &middot; Georgia Tech ECE</div><div class="card-body" style="margin-top:8px;font-family:var(--font-mono, monospace)">riess@gatech.edu</div></div>
+</div>
+
+    <div class="ds-cite">Supported by the Air Force Office of Scientific Research (AFOSR), award FA9550-26-1-B039</div>
+    <div class="ds-slide-num">24</div>
+  </div>
+</section>
+
+<section data-label="25 · References" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">References</h1>
+    
+    
+<div style="position:absolute;left:48px;top:112px;right:48px;display:grid;grid-template-columns:1fr 1fr;gap:20px 32px;align-items:start">
+  <ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px">
+    <li style="display:flex;gap:12px;font-size:17px;line-height:1.29;color:var(--navy)"><span class="cite-ours" style="flex:none;font-weight:700;color:#FA4616">[1]</span><span style="flex:1;min-width:0;text-wrap:pretty">H. Riess, Y. Huang, M. Klawonn, G. Zardini, and M. Hale. Quantale-enriched co-design: toward a framework for quantitative heterogeneous system design. <em>IEEE Conference on Decision and Control,</em> 2026, to appear. arXiv:2603.29921.</span></li>
+    <li style="display:flex;gap:12px;font-size:17px;line-height:1.29;color:var(--navy)"><span style="flex:none;font-weight:700;color:#2C4B6A">[2]</span><span style="flex:1;min-width:0;text-wrap:pretty">A. Censi. A mathematical theory of co-design. arXiv:1512.08055, 2016.</span></li>
+    <li style="display:flex;gap:12px;font-size:17px;line-height:1.29;color:var(--navy)"><span style="flex:none;font-weight:700;color:#2C4B6A">[3]</span><span style="flex:1;min-width:0;text-wrap:pretty">G. Zardini. <em>Co-design of complex systems: from autonomy to future mobility.</em> PhD thesis, ETH Zürich, 2023.</span></li>
+    <li style="display:flex;gap:12px;font-size:17px;line-height:1.29;color:var(--navy)"><span style="flex:none;font-weight:700;color:#2C4B6A">[4]</span><span style="flex:1;min-width:0;text-wrap:pretty">R. T. Rockafellar. <em>Convex Analysis.</em> Princeton University Press, 1970.</span></li>
+    <li style="display:flex;gap:12px;font-size:17px;line-height:1.29;color:var(--navy)"><span class="cite-ours" style="flex:none;font-weight:700;color:#FA4616">[5]</span><span style="flex:1;min-width:0;text-wrap:pretty">T. Hanks, B. She, M. Hale, E. Patterson, M. Klawonn, and J. Fairbanks. Modeling model predictive control: a category-theoretic framework for multistage control problems. <em>American Control Conference,</em> pp. 4850–4857, 2024.</span></li>
+    <li style="display:flex;gap:12px;font-size:17px;line-height:1.29;color:var(--navy)"><span style="flex:none;font-weight:700;color:#2C4B6A">[6]</span><span style="flex:1;min-width:0;text-wrap:pretty">C. J. Mulvey. &. <em>Rendiconti del Circolo Matematico di Palermo, Supplemento,</em> 12:99–104, 1986.</span></li>
+    <li style="display:flex;gap:12px;font-size:17px;line-height:1.29;color:var(--navy)"><span style="flex:none;font-weight:700;color:#2C4B6A">[7]</span><span style="flex:1;min-width:0;text-wrap:pretty">K. I. Rosenthal. <em>Quantales and their Applications.</em> Pitman Research Notes in Mathematics 234, Longman, 1990.</span></li>
+    <li style="display:flex;gap:12px;font-size:17px;line-height:1.29;color:var(--navy)"><span style="flex:none;font-weight:700;color:#2C4B6A">[8]</span><span style="flex:1;min-width:0;text-wrap:pretty">S. Abramsky and S. Vickers. Quantales, observational logic and process semantics. <em>Mathematical Structures in Computer Science,</em> 3(2):161–227, 1993.</span></li>
+    <li style="display:flex;gap:12px;font-size:17px;line-height:1.29;color:var(--navy)"><span style="flex:none;font-weight:700;color:#2C4B6A">[9]</span><span style="flex:1;min-width:0;text-wrap:pretty">N. Matni, A. D. Ames, and J. C. Doyle. Towards a theory of control architecture: a quantitative framework for layered multi-rate control. <em>IEEE Control Systems Magazine,</em> 2024. arXiv:2401.15185.</span></li>
+    <li style="display:flex;gap:12px;font-size:17px;line-height:1.29;color:var(--navy)"><span style="flex:none;font-weight:700;color:#2C4B6A">[10]</span><span style="flex:1;min-width:0;text-wrap:pretty">F. W. Lawvere. Metric spaces, generalized logic, and closed categories. <em>Rendiconti del Seminario Matematico e Fisico di Milano,</em> 43:135–166, 1973.</span></li>
+    <li style="display:flex;gap:12px;font-size:17px;line-height:1.29;color:var(--navy)"><span style="flex:none;font-weight:700;color:#2C4B6A">[11]</span><span style="flex:1;min-width:0;text-wrap:pretty">G. M. Kelly. <em>Basic Concepts of Enriched Category Theory.</em> London Mathematical Society Lecture Note Series 64, Cambridge University Press, 1982.</span></li>
+    <li style="display:flex;gap:12px;font-size:17px;line-height:1.29;color:var(--navy)"><span style="flex:none;font-weight:700;color:#2C4B6A">[12]</span><span style="flex:1;min-width:0;text-wrap:pretty">I. Stubbe. An introduction to quantaloid-enriched categories. <em>Fuzzy Sets and Systems,</em> 256:95–116, 2014.</span></li>
+  </ol>
+  <ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px">
+    <li style="display:flex;gap:12px;font-size:17px;line-height:1.29;color:var(--navy)"><span style="flex:none;font-weight:700;color:#2C4B6A">[13]</span><span style="flex:1;min-width:0;text-wrap:pretty">B. Fong and D. I. Spivak. <em>An Invitation to Applied Category Theory: Seven Sketches in Compositionality.</em> Cambridge University Press, 2019.</span></li>
+    <li style="display:flex;gap:12px;font-size:17px;line-height:1.29;color:var(--navy)"><span style="flex:none;font-weight:700;color:#2C4B6A">[14]</span><span style="flex:1;min-width:0;text-wrap:pretty">A. Joyal, R. Street, and D. Verity. Traced monoidal categories. <em>Mathematical Proceedings of the Cambridge Philosophical Society,</em> 119(3):447–468, 1996.</span></li>
+    <li style="display:flex;gap:12px;font-size:17px;line-height:1.29;color:var(--navy)"><span style="flex:none;font-weight:700;color:#2C4B6A">[15]</span><span style="flex:1;min-width:0;text-wrap:pretty">F. Borceux. <em>Handbook of Categorical Algebra 2: Categories and Structures.</em> Cambridge University Press, 1994.</span></li>
+    <li style="display:flex;gap:12px;font-size:17px;line-height:1.29;color:var(--navy)"><span style="flex:none;font-weight:700;color:#2C4B6A">[16]</span><span style="flex:1;min-width:0;text-wrap:pretty">I. Stubbe. Categorical structures enriched in a quantaloid: categories, distributors and functors. <em>Theory and Applications of Categories,</em> 14(1):1–45, 2005.</span></li>
+    <li style="display:flex;gap:12px;font-size:17px;line-height:1.29;color:var(--navy)"><span style="flex:none;font-weight:700;color:#2C4B6A">[17]</span><span style="flex:1;min-width:0;text-wrap:pretty">R. F. C. Walters. Sheaves and Cauchy-complete categories. <em>Cahiers de Topologie et Géométrie Différentielle Catégoriques,</em> 22(3):283–286, 1981.</span></li>
+    <li style="display:flex;gap:12px;font-size:17px;line-height:1.29;color:var(--navy)"><span style="flex:none;font-weight:700;color:#2C4B6A">[18]</span><span style="flex:1;min-width:0;text-wrap:pretty">R. J. Wood. Abstract proarrows I. <em>Cahiers de Topologie et Géométrie Différentielle Catégoriques,</em> 23(3):279–290, 1982.</span></li>
+    <li style="display:flex;gap:12px;font-size:17px;line-height:1.29;color:var(--navy)"><span style="flex:none;font-weight:700;color:#2C4B6A">[19]</span><span style="flex:1;min-width:0;text-wrap:pretty">M. Shulman. Framed bicategories and monoidal fibrations. <em>Theory and Applications of Categories,</em> 20(18):650–738, 2008.</span></li>
+    <li style="display:flex;gap:12px;font-size:17px;line-height:1.29;color:var(--navy)"><span style="flex:none;font-weight:700;color:#2C4B6A">[20]</span><span style="flex:1;min-width:0;text-wrap:pretty">B. Fong. Decorated cospans. <em>Theory and Applications of Categories,</em> 30(33):1096–1120, 2015.</span></li>
+    <li style="display:flex;gap:12px;font-size:17px;line-height:1.29;color:var(--navy)"><span class="cite-ours" style="flex:none;font-weight:700;color:#FA4616">[21]</span><span style="flex:1;min-width:0;text-wrap:pretty">T. Hanks, M. Klawonn, E. Patterson, M. Hale, and J. Fairbanks. A compositional framework for first-order optimization. <em>Mathematical Structures in Computer Science,</em> accepted. arXiv:2403.05711.</span></li>
+    <li style="display:flex;gap:12px;font-size:17px;line-height:1.29;color:var(--navy)"><span class="cite-ours" style="flex:none;font-weight:700;color:#FA4616">[22]</span><span style="flex:1;min-width:0;text-wrap:pretty">T. Hanks, J. Fairbanks, and M. Klawonn. Generalized gradient descent is a hypergraph functor. <em>Applied Category Theory 2024,</em> EPTCS 429:217–233, 2025.</span></li>
+    <li style="display:flex;gap:12px;font-size:17px;line-height:1.29;color:var(--navy)"><span class="cite-ours" style="flex:none;font-weight:700;color:#FA4616">[23]</span><span style="flex:1;min-width:0;text-wrap:pretty">Y. Zhao, T. Hanks, H. Riess, S. Cohen, M. Hale, and J. Fairbanks. Asynchronous nonlinear sheaf diffusion for multi-agent coordination. <em>IEEE American Control Conference,</em> 2026. arXiv:2510.00270.</span></li>
+    <li style="display:flex;gap:12px;font-size:17px;line-height:1.29;color:var(--navy)"><span class="cite-ours" style="flex:none;font-weight:700;color:#FA4616">[24]</span><span style="flex:1;min-width:0;text-wrap:pretty">T. Hanks, H. Riess, S. Cohen, T. Gross, M. Hale, and J. Fairbanks. Distributed multi-agent coordination over cellular sheaves. <em>IEEE Conference on Decision and Control,</em> 2025. arXiv:2504.02049.</span></li>
+  </ol>
+</div>
+
+    <div class="ds-slide-num">25</div>
+  </div>
+</section>
+
+
+</div>
+      
+
+    </div><script src="../reveal-js/dist/reveal.js"></script>
+<script src="../reveal-js/plugin/notes/notes.js"></script>
+<script src="../reveal-js/plugin/highlight/highlight.js"></script>
+<script src="../vendored/katex-0.16.11/katex.min.js"></script>
+<script src="../gatas-talks/talk.js"></script>
+
+    
+    
+  </body>
+</html>

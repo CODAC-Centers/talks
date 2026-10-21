@@ -1,0 +1,899 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>From Local to Global: Sheaf-Theoretic Control Barrier Functions on Manifolds — AFOSR COE CODAC</title>
+
+<meta name="author" content="AFOSR COE CODAC">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<link rel="stylesheet" href="../reveal-js/dist/reveal.css">
+<link rel="stylesheet" href="../vendored/katex-0.16.11/katex.min.css">
+<link rel="stylesheet" href="../vendored/fira-sans-2026-09/fira-sans.css">
+<link rel="stylesheet" href="../_ds/fairbanks-research-talk-design-system-7193341c-92ad-490d-a789-ef6442329aec/tokens/fonts.css">
+<link rel="stylesheet" href="../_ds/fairbanks-research-talk-design-system-7193341c-92ad-490d-a789-ef6442329aec/tokens/colors.css">
+<link rel="stylesheet" href="../_ds/fairbanks-research-talk-design-system-7193341c-92ad-490d-a789-ef6442329aec/tokens/typography.css">
+<link rel="stylesheet" href="../_ds/fairbanks-research-talk-design-system-7193341c-92ad-490d-a789-ef6442329aec/tokens/spacing.css">
+<link rel="stylesheet" href="../_ds/fairbanks-research-talk-design-system-7193341c-92ad-490d-a789-ef6442329aec/tokens/effects.css">
+<link rel="stylesheet" href="../_ds/fairbanks-research-talk-design-system-7193341c-92ad-490d-a789-ef6442329aec/styles.css">
+<link rel="stylesheet" href="../gatas-talks/talk.css">
+<link rel="stylesheet" href="../css/palettes.css">
+<link rel="stylesheet" href="../css/site.css">
+
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+<section data-label="1 · Title" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    
+<div class="title-block">
+  <div class="title-kicker">AFOSR COE CODAC</div>
+  <div class="title-main">From Local to Global</div>
+  <div class="title-sub">Sheaf-Theoretic Control Barrier Functions on Manifolds</div>
+  <div class="title-speaker">Keith A. Currier</div>
+  <div class="title-affiliation">University of Florida · with Wilmer Leal, Brandon C. Fallin, James Fairbanks, and Warren E. Dixon</div>
+  <div class="title-venue">CODAC Kickoff Meeting · Arlington, VA · September 2026</div>
+</div>
+<div class="title-logos">
+  <img src="../assets/brand/codac-digicams-shield.png" alt="CODAC DIGICAMS Shield" style="height:170px">
+  <img src="../assets/logos/uf-logo.svg" alt="University of Florida" style="height:90px">
+  <img src="../assets/logos/afosr-logo.png" alt="Air Force Office of Scientific Research" style="height:130px">
+</div>
+<div class="title-panel bordered" style="top:180px;height:296px">
+  <video data-autoplay src="../assets/video/mobius-strip-bundle-animation.mp4" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline"></video>
+</div>
+
+  </div>
+</section>
+
+<section data-label="2 · Sheaf Theory: Local Data That Agree on Overlaps" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Sheaf Theory</h1>
+    <div class="card blue side" style="position:absolute;left:48px;top:108px;width:1440px">
+  <div style="font-size:var(--text-xl);line-height:1.2">A <strong>sheaf</strong> assigns data to <strong>local regions</strong> and encodes <strong>compatibility</strong> on overlaps.</div>
+</div>
+
+
+<div style="position:absolute;left:48px;top:200px;width:340px;height:270px;overflow:hidden;border-radius:4px"><video data-autoplay src="../assets/video/shadow-play-orchestra-silhouettes.mp4" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover"></video></div>
+<div style="position:absolute;left:48px;top:476px;width:340px;font-size:var(--text-xs);color:var(--meta)">Video: DigitalMontageSongs</div>
+<img src="../assets/figures/antique-world-map-library-of-congress.jpg" alt="An antique world map, Antiquissima orbis delineatio, pieced together from regional knowledge" style="position:absolute;left:408px;top:200px;width:338px;height:270px;object-fit:contain">
+<div style="position:absolute;left:408px;top:476px;width:338px;font-size:var(--text-xs);color:var(--meta)">Library of Congress, Geography and Map Division</div>
+
+<!-- Three open sets whose data agree on every overlap (left) and fail to agree on the triple overlap (right). -->
+<div style="position:absolute;left:788px;top:196px;width:340px;height:300px">
+  <svg width="340" height="300" viewBox="0 0 340 300">
+    <g stroke-width="3" style="stroke:var(--navy)">
+      <ellipse cx="110" cy="115" rx="82" ry="62" fill="#F3D9E3" fill-opacity=".55"/>
+      <ellipse cx="225" cy="120" rx="82" ry="62" fill="#D6EFD3" fill-opacity=".55"/>
+      <ellipse cx="168" cy="190" rx="82" ry="62" fill="#C9CCEB" fill-opacity=".6"/>
+    </g>
+  </svg>
+  <span style="position:absolute;left:14px;top:12px;font-size:32px"><span class="katex-inline" data-tex="U_\alpha">\(U_\alpha\)</span></span>
+  <span style="position:absolute;left:280px;top:16px;font-size:32px"><span class="katex-inline" data-tex="U_\beta">\(U_\beta\)</span></span>
+  <span style="position:absolute;left:256px;top:228px;font-size:32px"><span class="katex-inline" data-tex="U_\gamma">\(U_\gamma\)</span></span>
+</div>
+<div style="position:absolute;left:1148px;top:196px;width:340px;height:300px">
+  <svg width="340" height="300" viewBox="0 0 340 300">
+    <g stroke-width="3" style="stroke:var(--navy)">
+      <ellipse cx="110" cy="115" rx="82" ry="62" fill="#F3D9E3" fill-opacity=".55"/>
+      <ellipse cx="225" cy="120" rx="82" ry="62" fill="#D6EFD3" fill-opacity=".55"/>
+      <ellipse cx="168" cy="190" rx="82" ry="62" fill="#C9CCEB" fill-opacity=".6"/>
+    </g>
+    <g stroke="#C62828" stroke-width="9" stroke-linecap="round">
+      <line x1="154" y1="134" x2="182" y2="162"/><line x1="182" y1="134" x2="154" y2="162"/>
+    </g>
+  </svg>
+  <span style="position:absolute;left:14px;top:12px;font-size:32px"><span class="katex-inline" data-tex="U_\alpha">\(U_\alpha\)</span></span>
+  <span style="position:absolute;left:280px;top:16px;font-size:32px"><span class="katex-inline" data-tex="U_\beta">\(U_\beta\)</span></span>
+  <span style="position:absolute;left:256px;top:228px;font-size:32px"><span class="katex-inline" data-tex="U_\gamma">\(U_\gamma\)</span></span>
+</div>
+
+<div class="card blue" style="position:absolute;left:48px;top:540px;width:1440px">
+  <div style="font-size:var(--text-xl);line-height:1.2"><strong>Agreement</strong> of local data on <strong>overlapping regions</strong> provides valid conditions to glue into some global structure.</div>
+</div>
+<div class="card green" style="position:absolute;left:48px;top:668px;width:1440px">
+  <div style="font-size:var(--text-xl);line-height:1.2"><strong>Goal:</strong> controllers are the local objects we want to compose into a safe global feedback law.</div>
+</div>
+
+    <div class="ds-slide-num">2</div>
+  </div>
+</section>
+
+<section data-label="3 · Control Barrier Functions (CBFs)" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Control Barrier Functions (CBFs)</h1>
+    <div style="position:absolute;left:48px;top:118px;width:660px;color:var(--navy)">
+  <div class="eyebrow">System dynamics</div>
+  <div class="ds-math-block ds-math-tight" data-tex="\dot{x} = f(x) &#43; g(x)u" style="font-size:38px;text-align:left">\[ \dot{x} = f(x) &#43; g(x)u \]</div>
+  <div class="eyebrow" style="margin-top:40px">Safe set construction</div>
+  <div class="ds-math-block ds-math-tight" data-tex="\mathcal{S} = \{x \in \mathbb{R}^{n} : B(x) \leq 0\}" style="font-size:38px;text-align:left">\[ \mathcal{S} = \{x \in \mathbb{R}^{n} : B(x) \leq 0\} \]</div>
+  <div style="font-size:var(--text-md);line-height:1.35">with the CBF candidate <span class="katex-inline" data-tex="B(x) = [B_{1}(x), \ldots, B_{v}(x)]">\(B(x) = [B_{1}(x), \ldots, B_{v}(x)]\)</span>, <span class="katex-inline" data-tex="B: \mathbb{R}^{n} \to \mathbb{R}^{v}">\(B: \mathbb{R}^{n} \to \mathbb{R}^{v}\)</span>.</div>
+  <div class="eyebrow" style="margin-top:44px">Forward invariance under the closed-loop dynamics</div>
+  <div class="ds-math-block ds-math-tight" data-tex="\dot{x} = f_{\mathrm{cl}}(x) = f(x)&#43;g(x)\kappa(x)" style="font-size:38px;text-align:left">\[ \dot{x} = f_{\mathrm{cl}}(x) = f(x)&#43;g(x)\kappa(x) \]</div>
+  <div class="ds-math-block ds-math-tight" data-tex="x(t_0)\in\mathcal{S} \implies x(t)\in \mathcal{S}\quad \forall t\geq t_0" style="font-size:38px;text-align:left">\[ x(t_0)\in\mathcal{S} \implies x(t)\in \mathcal{S}\quad \forall t\geq t_0 \]</div>
+</div>
+
+<img src="../assets/figures/multiple-cbf-safe-set-intersection.png" alt="Two barrier functions B1 and B2 whose zero sublevel sets S1 and S2 intersect in the safe set S; a trajectory starting in S stays in S" style="position:absolute;left:724px;top:112px;width:500px;height:500px;object-fit:contain">
+
+<div style="position:absolute;left:1244px;top:170px;width:244px;height:222px;overflow:hidden;border-radius:4px"><video data-autoplay src="../assets/video/quadrotor-cbf-safe-box.mp4" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover"></video></div>
+
+    <div class="ds-cite">[<span class="cite-ours">1</span>] A. Isaly, M. Mamaghani, R. G. Sanfelice, and W. E. Dixon. <i>IEEE Transactions on Automatic Control,</i> 69(11):7326–7339, 2024</div>
+    <div class="ds-slide-num">3</div>
+  </div>
+</section>
+
+<section data-label="4 · Vector-Valued CBFs" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Vector-Valued CBFs</h1>
+    <div class="eyebrow" style="position:absolute;left:48px;top:112px">Set of admissible safe control inputs</div>
+<div class="ds-math-block" data-tex="K_{\mathrm{CBF}}(x) \triangleq \{u \in \mathbb{R}^m : \nabla B(x)^{\top}[f(x) &#43; g(x)u] \leq -\gamma(x)\}" style="position:absolute;left:48px;top:132px;width:1440px;font-size:36px">\[ K_{\mathrm{CBF}}(x) \triangleq \{u \in \mathbb{R}^m : \nabla B(x)^{\top}[f(x) &#43; g(x)u] \leq -\gamma(x)\} \]</div>
+
+<div style="position:absolute;left:48px;top:262px;font-size:var(--text-lg);color:var(--navy);font-weight:700">QP step:</div>
+<div class="ds-math-block" data-tex="\begin{aligned}
+\kappa^*(x) = {} &amp; \operatorname*{arg\,min}_{u\in \mathbb{R}^{m}}\; \|u-u_{\mathrm{nom}}\|^2 \\
+\text{s.t. } &amp; \nabla B(x)^{\top}[f(x) &#43; g(x)u] \leq -\gamma(x)
+\end{aligned}" style="position:absolute;left:200px;top:226px;width:720px;font-size:32px;text-align:left">\[ \begin{aligned}
+\kappa^*(x) = {} &amp; \operatorname*{arg\,min}_{u\in \mathbb{R}^{m}}\; \|u-u_{\mathrm{nom}}\|^2 \\
+\text{s.t. } &amp; \nabla B(x)^{\top}[f(x) &#43; g(x)u] \leq -\gamma(x)
+\end{aligned} \]</div>
+
+<div class="card green" style="position:absolute;left:1000px;top:236px;width:488px;text-align:center">
+  <div class="ds-math-block ds-math-tight" data-tex="\kappa(x) \in K_{\mathrm{CBF}}(x)" style="font-size:34px">\[ \kappa(x) \in K_{\mathrm{CBF}}(x) \]</div>
+  <div style="font-size:var(--text-md)">Single-valued and continuous</div>
+</div>
+
+<div class="card orange soft" style="position:absolute;left:48px;top:420px;width:1440px;height:380px"></div>
+<div class="ds-math-block" data-tex="\begin{aligned}
+B_1(x,y) &amp;= x - d \\
+B_2(x,y) &amp;= \tfrac{1}{\sqrt{2}}\,x &#43; \tfrac{1}{\sqrt{2}}\,y - d \\
+B_3(x,y) &amp;= y - d \\
+B_4(x,y) &amp;= -\tfrac{1}{\sqrt{2}}\,x &#43; \tfrac{1}{\sqrt{2}}\,y - d \\
+B_5(x,y) &amp;= -x - d \\
+B_6(x,y) &amp;= -\tfrac{1}{\sqrt{2}}\,x - \tfrac{1}{\sqrt{2}}\,y - d \\
+B_7(x,y) &amp;= -y - d \\
+B_8(x,y) &amp;= \tfrac{1}{\sqrt{2}}\,x - \tfrac{1}{\sqrt{2}}\,y - d
+\end{aligned}" style="position:absolute;left:64px;top:430px;width:380px;font-size:22px;text-align:left">\[ \begin{aligned}
+B_1(x,y) &amp;= x - d \\
+B_2(x,y) &amp;= \tfrac{1}{\sqrt{2}}\,x &#43; \tfrac{1}{\sqrt{2}}\,y - d \\
+B_3(x,y) &amp;= y - d \\
+B_4(x,y) &amp;= -\tfrac{1}{\sqrt{2}}\,x &#43; \tfrac{1}{\sqrt{2}}\,y - d \\
+B_5(x,y) &amp;= -x - d \\
+B_6(x,y) &amp;= -\tfrac{1}{\sqrt{2}}\,x - \tfrac{1}{\sqrt{2}}\,y - d \\
+B_7(x,y) &amp;= -y - d \\
+B_8(x,y) &amp;= \tfrac{1}{\sqrt{2}}\,x - \tfrac{1}{\sqrt{2}}\,y - d
+\end{aligned} \]</div>
+
+<div style="position:absolute;left:470px;top:440px;width:340px;height:340px;overflow:hidden;border-radius:4px"><video data-autoplay src="../assets/video/sheaf-cbf-safe-set-rotation.mp4" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover"></video></div>
+<img src="../assets/figures/octagon-safe-set-eight-halfspace-cbfs.png" alt="Top view: the eight half-plane barrier functions carve an octagonal safe set out of the plane" style="position:absolute;left:850px;top:440px;width:343px;height:340px;object-fit:contain">
+<div style="position:absolute;left:1220px;top:470px;width:250px;font-size:var(--text-sm);line-height:1.3;color:var(--slate)">Eight affine barrier functions <span class="katex-inline" data-tex="B_1, \ldots, B_8">\(B_1, \ldots, B_8\)</span>; their zero sublevel sets meet in an octagonal safe set.</div>
+
+    <div class="ds-slide-num">4</div>
+  </div>
+</section>
+
+<section data-label="5 · Differential Inclusion Motivation: Hybrid CBFs" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Differential Inclusion Motivation</h1>
+    <div class="eyebrow" style="position:absolute;left:48px;top:112px">Hybrid CBF</div>
+<img src="../assets/figures/hybrid-trajectory-flows-and-jumps.png" alt="A hybrid trajectory from x0 that flows (solid) and jumps (dashed) inside a region" style="position:absolute;left:48px;top:146px;width:560px;height:418px;object-fit:contain">
+<img src="../assets/figures/hybrid-cbf-flow-and-jump-sets.jpg" alt="The flow set C and jump set D in R^n, the safe set S where B(x) is at most zero, and a hybrid trajectory that stays in S" style="position:absolute;left:680px;top:120px;width:640px;height:456px;object-fit:contain">
+<span style="position:absolute;left:993px;top:256px;font-size:36px"><span class="katex-inline" data-tex="\mathcal{S}">\(\mathcal{S}\)</span></span>
+
+<div class="ds-math-block" data-tex="\mathcal{H} : \begin{cases} \dot{x} \in F_P(x, u_C) &amp; (x, u_C) \in C_P \\ x^&#43; \in G_P(x, u_D) &amp; (x, u_D) \in D_P \end{cases}" style="position:absolute;left:48px;top:592px;width:700px;font-size:32px;text-align:left">\[ \mathcal{H} : \begin{cases} \dot{x} \in F_P(x, u_C) &amp; (x, u_C) \in C_P \\ x^&#43; \in G_P(x, u_D) &amp; (x, u_D) \in D_P \end{cases} \]</div>
+<div class="ds-math-block" data-tex="F_P : \mathbb{R}^n \times \mathbb{R}^{m} \rightrightarrows \mathbb{R}^n, \quad (x, u_C) \in C_P \subset \mathbb{R}^n \times \mathbb{R}^{m}" style="position:absolute;left:770px;top:618px;width:718px;font-size:28px;text-align:left">\[ F_P : \mathbb{R}^n \times \mathbb{R}^{m} \rightrightarrows \mathbb{R}^n, \quad (x, u_C) \in C_P \subset \mathbb{R}^n \times \mathbb{R}^{m} \]</div>
+
+    <div class="ds-cite">[<span class="cite-ours">2</span>] C. Gonzalez, H. Sweatland, K. Currier, W. E. Dixon, and R. Sanfelice. <i>IEEE Conference on Decision and Control,</i> pp. 5654–5659, 2025<span class="ds-cite-more"> &middot; [3]</span></div>
+    <div class="ds-slide-num">5</div>
+  </div>
+</section>
+
+<section data-label="6 · Differential Inclusion Motivation: Flow Sets as Bundles" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Differential Inclusion Motivation</h1>
+    <div class="card orange rule-rust tight" style="position:absolute;left:48px;top:108px;width:1000px">
+  <div style="font-size:var(--text-lg);font-weight:700">What is a geometric representation of the flow map and flow set?</div>
+</div>
+
+<img src="../assets/figures/flow-set-projection-and-safe-set.png" alt="The projection of the flow set, Pi(C), containing the safe set S and a trajectory x(t) from x0 that stays in S" style="position:absolute;left:48px;top:190px;width:600px;height:365px;object-fit:contain">
+<img src="../assets/figures/hybrid-cbf-flow-and-jump-sets.jpg" alt="The flow set C and jump set D in R^n, the safe set S where B(x) is at most zero, and a hybrid trajectory that stays in S" style="position:absolute;left:760px;top:176px;width:530px;height:377px;object-fit:contain">
+<span style="position:absolute;left:1020px;top:280px;font-size:32px"><span class="katex-inline" data-tex="\mathcal{S}">\(\mathcal{S}\)</span></span>
+
+<div style="position:absolute;left:48px;top:586px;width:740px;color:var(--navy)">
+  <div class="ds-math-block ds-math-tight" data-tex="\dot{x} \in F_P(x, u_C) \qquad (x, u_C) \in C_P" style="font-size:28px;text-align:left">\[ \dot{x} \in F_P(x, u_C) \qquad (x, u_C) \in C_P \]</div>
+  <div class="ds-math-block ds-math-tight" data-tex="F_P : \textcolor{#C62828}{\underline{\textcolor{#002A54}{\mathbb{R}^n \times \mathbb{R}^{m}}}} \rightrightarrows \mathbb{R}^n, \quad (x, u_C) \in C_P \subset \textcolor{#C62828}{\underline{\textcolor{#002A54}{\mathbb{R}^n \times \mathbb{R}^{m}}}}" style="font-size:28px;text-align:left">\[ F_P : \textcolor{#C62828}{\underline{\textcolor{#002A54}{\mathbb{R}^n \times \mathbb{R}^{m}}}} \rightrightarrows \mathbb{R}^n, \quad (x, u_C) \in C_P \subset \textcolor{#C62828}{\underline{\textcolor{#002A54}{\mathbb{R}^n \times \mathbb{R}^{m}}}} \]</div>
+  <div class="ds-math-block ds-math-tight" data-tex="\Pi(C_P)\triangleq \{x\in\mathbb{R}^n\mid \exists\, u_C\in \mathbb{R}^m\ \text{s.t.}\ (x,u_C)\in C_P\}" style="font-size:28px;text-align:left">\[ \Pi(C_P)\triangleq \{x\in\mathbb{R}^n\mid \exists\, u_C\in \mathbb{R}^m\ \text{s.t.}\ (x,u_C)\in C_P\} \]</div>
+</div>
+
+<!-- The product bundle S^1 x R over the circle: a cylinder projecting onto its base circle. -->
+<div style="position:absolute;left:860px;top:556px;width:560px;height:150px">
+  <svg width="560" height="150" viewBox="0 0 560 150">
+    <defs><marker id="product-bundle-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--navy)"/></marker></defs>
+    <path d="M30,50 L30,120 A60,14 0 0 0 150,120 L150,50" fill="#BCD2EE" stroke-width="3" style="stroke:var(--navy)"/>
+    <ellipse cx="90" cy="50" rx="60" ry="14" fill="#D6E3F4" stroke-width="3" style="stroke:var(--navy)"/>
+    <line x1="190" y1="90" x2="300" y2="90" stroke-width="4" marker-end="url(#product-bundle-arrow)" style="stroke:var(--navy)"/>
+    <ellipse cx="400" cy="92" rx="70" ry="12" fill="#D6E3F4" stroke-width="3" style="stroke:var(--navy)"/>
+  </svg>
+  <span style="position:absolute;left:44px;top:-6px;font-size:28px"><span class="katex-inline" data-tex="S^1 \times \mathbb{R}">\(S^1 \times \mathbb{R}\)</span></span>
+  <span style="position:absolute;left:236px;top:44px;font-size:28px"><span class="katex-inline" data-tex="\pi">\(\pi\)</span></span>
+  <span style="position:absolute;left:384px;top:36px;font-size:28px"><span class="katex-inline" data-tex="S^1">\(S^1\)</span></span>
+  <span style="position:absolute;left:180px;top:108px;font-size:var(--text-lg);border-bottom:3px solid #C62828;line-height:1.1">Product bundle</span>
+</div>
+
+<div class="card blue tight" style="position:absolute;left:860px;top:708px;width:560px;text-align:center">
+  <div style="font-size:var(--text-md);line-height:1.25">Modeling constrained controlled differential inclusions as vector bundles</div>
+</div>
+
+    <div class="ds-cite">[<span class="cite-ours">2</span>] C. Gonzalez, H. Sweatland, K. Currier, W. E. Dixon, and R. Sanfelice. <i>IEEE Conference on Decision and Control,</i> pp. 5654–5659, 2025<span class="ds-cite-more"> &middot; [3]</span></div>
+    <div class="ds-slide-num">6</div>
+  </div>
+</section>
+
+<section data-label="7 · Velocity Formalized: the Tangent Bundle" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Velocity Formalized</h1>
+    <!-- A tangent plane at x with a velocity v_x in it. -->
+<div style="position:absolute;left:48px;top:104px;width:520px;height:340px">
+  <svg width="520" height="340" viewBox="0 0 520 340">
+    <image href="../assets/figures/manifold-surface-patch.png" x="30" y="85" width="440" height="255"/>
+    <polygon points="70,170 240,92 470,160 300,248" fill="#F2B98A" fill-opacity=".55" stroke-width="3" style="stroke:var(--navy)"/>
+    <line x1="268" y1="170" x2="345" y2="128" stroke="#E53935" stroke-width="5"/>
+    <polygon points="352,124 334,126 342,138" fill="#E53935"/>
+    <circle cx="268" cy="170" r="9" fill="#000"/>
+  </svg>
+  <span style="position:absolute;left:170px;top:20px;font-size:30px"><span class="katex-inline" data-tex="T_x\mathcal{M} \cong \mathbb{R}^n">\(T_x\mathcal{M} \cong \mathbb{R}^n\)</span></span>
+  <span style="position:absolute;left:330px;top:58px;font-size:24px"><span class="katex-inline" data-tex="(x,v)= v_x">\((x,v)= v_x\)</span></span>
+  <span style="position:absolute;left:232px;top:174px;font-size:28px"><span class="katex-inline" data-tex="x">\(x\)</span></span>
+  <span style="position:absolute;left:0;top:278px;font-size:32px"><span class="katex-inline" data-tex="\mathcal{M}">\(\mathcal{M}\)</span></span>
+</div>
+
+<div style="position:absolute;left:590px;top:150px;width:310px;text-align:center;color:var(--navy)">
+  <div style="font-size:30px"><span class="katex-inline" data-tex="\pi_{T\mathcal{M}}: T\mathcal{M} \to \mathcal{M}">\(\pi_{T\mathcal{M}}: T\mathcal{M} \to \mathcal{M}\)</span></div>
+  <div style="margin-top:22px;font-size:26px"><span class="katex-inline" data-tex="\pi_{T\mathcal{M}}">\(\pi_{T\mathcal{M}}\)</span></div>
+  <svg width="300" height="20" viewBox="0 0 300 20"><line x1="10" y1="10" x2="282" y2="10" stroke-width="4" style="stroke:var(--navy)"/><polygon points="296,10 278,2 278,18" style="fill:var(--navy)"/></svg>
+  <div style="font-size:26px"><span class="katex-inline" data-tex="(x,v) \mapsto x">\((x,v) \mapsto x\)</span></div>
+</div>
+
+<div style="position:absolute;left:930px;top:150px;width:470px;height:280px">
+  <svg width="470" height="280" viewBox="0 0 470 280">
+    <image href="../assets/figures/manifold-surface-patch.png" x="0" y="0" width="460" height="267"/>
+    <circle cx="250" cy="90" r="9" fill="#000"/>
+  </svg>
+  <span style="position:absolute;left:214px;top:90px;font-size:28px"><span class="katex-inline" data-tex="x">\(x\)</span></span>
+  <span style="position:absolute;left:40px;top:200px;font-size:32px"><span class="katex-inline" data-tex="\mathcal{M}">\(\mathcal{M}\)</span></span>
+</div>
+
+<!-- The bundle collects a tangent plane over every point. -->
+<svg style="position:absolute;left:48px;top:456px" width="460" height="340" viewBox="0 0 460 340">
+  <image href="../assets/figures/manifold-surface-patch.png" x="20" y="90" width="420" height="244" opacity=".55"/>
+  <g fill="#F2B98A" fill-opacity=".42" stroke-width="2.5" style="stroke:var(--navy)">
+    <rect x="10" y="80" width="200" height="190" transform="rotate(-14 110 175)"/>
+    <rect x="100" y="40" width="200" height="190" transform="rotate(10 200 135)"/>
+    <rect x="220" y="70" width="200" height="190" transform="rotate(-8 320 165)"/>
+    <rect x="60" y="130" width="200" height="190" transform="rotate(6 160 225)"/>
+    <rect x="190" y="120" width="200" height="190" transform="rotate(18 290 215)"/>
+    <rect x="150" y="20" width="180" height="170" transform="rotate(-22 240 105)"/>
+    <rect x="120" y="80" width="200" height="190" transform="rotate(-4 220 175)"/>
+  </g>
+</svg>
+
+<div class="card orange soft" style="position:absolute;left:540px;top:456px;width:948px;height:336px"></div>
+<div style="position:absolute;left:556px;top:470px;width:920px;height:320px">
+  <svg width="920" height="320" viewBox="0 0 920 320">
+    <image href="../assets/figures/tangent-bundle-surface.png" x="10" y="50" width="440" height="221"/>
+    <image href="../assets/figures/manifold-surface-patch.png" x="560" y="80" width="330" height="191"/>
+    <line x1="240" y1="140" x2="730" y2="140" stroke="#000" stroke-width="4"/>
+    <polygon points="744,140 726,132 726,148" fill="#000"/>
+    <circle cx="756" cy="140" r="9" fill="#000"/>
+  </svg>
+  <span style="position:absolute;left:60px;top:2px;font-size:32px"><span class="katex-inline" data-tex="T\mathcal{M}">\(T\mathcal{M}\)</span></span>
+  <span style="position:absolute;left:206px;top:98px;font-size:28px"><span class="katex-inline" data-tex="v_x">\(v_x\)</span></span>
+  <span style="position:absolute;left:470px;top:150px;font-size:28px"><span class="katex-inline" data-tex="\pi_{T\mathcal{M}}">\(\pi_{T\mathcal{M}}\)</span></span>
+  <span style="position:absolute;left:748px;top:90px;font-size:28px"><span class="katex-inline" data-tex="x">\(x\)</span></span>
+  <span style="position:absolute;left:600px;top:226px;font-size:28px"><span class="katex-inline" data-tex="\mathcal{M}">\(\mathcal{M}\)</span></span>
+  <div style="position:absolute;left:0;right:0;top:282px;text-align:center;font-size:var(--text-md);font-weight:700">Tangent bundle</div>
+</div>
+
+    <div class="ds-slide-num">7</div>
+  </div>
+</section>
+
+<section data-label="8 · Control Formalized: the Control Bundle" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Control Formalized</h1>
+    <!-- The fiber of controls at x, with a control u_x in it. -->
+<div style="position:absolute;left:48px;top:104px;width:520px;height:340px">
+  <svg width="520" height="340" viewBox="0 0 520 340">
+    <image href="../assets/figures/manifold-surface-patch.png" x="30" y="85" width="440" height="255"/>
+    <polygon points="70,170 240,92 470,160 300,248" fill="#F6C9CF" fill-opacity=".6" stroke-width="3" style="stroke:var(--navy)"/>
+    <line x1="268" y1="170" x2="345" y2="128" stroke="#EC5D8A" stroke-width="5"/>
+    <polygon points="352,124 334,126 342,138" fill="#EC5D8A"/>
+    <circle cx="268" cy="170" r="9" fill="#000"/>
+  </svg>
+  <span style="position:absolute;left:170px;top:20px;font-size:30px"><span class="katex-inline" data-tex="\mathcal{U}_x \cong \mathbb{R}^m">\(\mathcal{U}_x \cong \mathbb{R}^m\)</span></span>
+  <span style="position:absolute;left:330px;top:58px;font-size:24px"><span class="katex-inline" data-tex="(x,u)= u_x">\((x,u)= u_x\)</span></span>
+  <span style="position:absolute;left:232px;top:174px;font-size:28px"><span class="katex-inline" data-tex="x">\(x\)</span></span>
+  <span style="position:absolute;left:0;top:278px;font-size:32px"><span class="katex-inline" data-tex="\mathcal{M}">\(\mathcal{M}\)</span></span>
+</div>
+
+<div style="position:absolute;left:590px;top:150px;width:310px;text-align:center;color:var(--navy)">
+  <div style="font-size:30px"><span class="katex-inline" data-tex="\pi_{\mathcal{U}}: \mathcal{U} \to \mathcal{M}">\(\pi_{\mathcal{U}}: \mathcal{U} \to \mathcal{M}\)</span></div>
+  <div style="margin-top:22px;font-size:26px"><span class="katex-inline" data-tex="\pi_{\mathcal{U}}">\(\pi_{\mathcal{U}}\)</span></div>
+  <svg width="300" height="20" viewBox="0 0 300 20"><line x1="10" y1="10" x2="282" y2="10" stroke-width="4" style="stroke:var(--navy)"/><polygon points="296,10 278,2 278,18" style="fill:var(--navy)"/></svg>
+  <div style="font-size:26px"><span class="katex-inline" data-tex="(x,u) \mapsto x">\((x,u) \mapsto x\)</span></div>
+</div>
+
+<div style="position:absolute;left:930px;top:150px;width:470px;height:280px">
+  <svg width="470" height="280" viewBox="0 0 470 280">
+    <image href="../assets/figures/manifold-surface-patch.png" x="20" y="0" width="414" height="240"/>
+    <circle cx="245" cy="82" r="9" fill="#000"/>
+  </svg>
+  <span style="position:absolute;left:210px;top:82px;font-size:28px"><span class="katex-inline" data-tex="x">\(x\)</span></span>
+  <span style="position:absolute;left:40px;top:180px;font-size:32px"><span class="katex-inline" data-tex="\mathcal{M}">\(\mathcal{M}\)</span></span>
+</div>
+
+<!-- The bundle collects a fiber of controls over every point. -->
+<svg style="position:absolute;left:48px;top:456px" width="460" height="340" viewBox="0 0 460 340">
+  <image href="../assets/figures/manifold-surface-patch.png" x="20" y="90" width="420" height="244" opacity=".55"/>
+  <g fill="#F6C9CF" fill-opacity=".5" stroke-width="2.5" style="stroke:var(--navy)">
+    <rect x="10" y="80" width="200" height="190" transform="rotate(-14 110 175)"/>
+    <rect x="100" y="40" width="200" height="190" transform="rotate(10 200 135)"/>
+    <rect x="220" y="70" width="200" height="190" transform="rotate(-8 320 165)"/>
+    <rect x="60" y="130" width="200" height="190" transform="rotate(6 160 225)"/>
+    <rect x="190" y="120" width="200" height="190" transform="rotate(18 290 215)"/>
+    <rect x="150" y="20" width="180" height="170" transform="rotate(-22 240 105)"/>
+    <rect x="120" y="80" width="200" height="190" transform="rotate(-4 220 175)"/>
+  </g>
+</svg>
+
+<div style="position:absolute;left:540px;top:406px;width:948px;font-size:26px;color:var(--navy);text-align:center"><span class="katex-inline" data-tex="\mathcal{M} = \mathbb{R}^n, \text{ giving the bundle } (\mathbb{R}^n \times \mathbb{R}^m, \mathrm{pr}_1, \mathbb{R}^n) \cong (\mathcal{U}, \pi, \mathcal{M})">\(\mathcal{M} = \mathbb{R}^n, \text{ giving the bundle } (\mathbb{R}^n \times \mathbb{R}^m, \mathrm{pr}_1, \mathbb{R}^n) \cong (\mathcal{U}, \pi, \mathcal{M})\)</span></div>
+<div class="card tan rule-rust soft" style="position:absolute;left:540px;top:456px;width:948px;height:336px"></div>
+<div style="position:absolute;left:556px;top:470px;width:920px;height:320px">
+  <svg width="920" height="320" viewBox="0 0 920 320">
+    <image href="../assets/figures/control-bundle-surface.png" x="10" y="40" width="430" height="236"/>
+    <image href="../assets/figures/manifold-surface-patch.png" x="560" y="80" width="330" height="191"/>
+    <line x1="240" y1="140" x2="730" y2="140" stroke="#000" stroke-width="4"/>
+    <polygon points="744,140 726,132 726,148" fill="#000"/>
+    <circle cx="756" cy="140" r="9" fill="#000"/>
+  </svg>
+  <span style="position:absolute;left:60px;top:2px;font-size:32px"><span class="katex-inline" data-tex="\mathcal{U}">\(\mathcal{U}\)</span></span>
+  <span style="position:absolute;left:206px;top:98px;font-size:28px"><span class="katex-inline" data-tex="u_x">\(u_x\)</span></span>
+  <span style="position:absolute;left:470px;top:150px;font-size:28px"><span class="katex-inline" data-tex="\pi">\(\pi\)</span></span>
+  <span style="position:absolute;left:748px;top:90px;font-size:28px"><span class="katex-inline" data-tex="x">\(x\)</span></span>
+  <span style="position:absolute;left:600px;top:226px;font-size:28px"><span class="katex-inline" data-tex="\mathcal{M}">\(\mathcal{M}\)</span></span>
+  <div style="position:absolute;left:0;right:0;top:282px;text-align:center;font-size:var(--text-md);font-weight:700">Control bundle</div>
+</div>
+
+    <div class="ds-slide-num">8</div>
+  </div>
+</section>
+
+<section data-label="9 · Dynamics Formalized: a Control System on Bundles" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Dynamics Formalized</h1>
+    <!-- The control bundle U and the tangent bundle TM over M (vector figure from
+     Sheaf_CBF_Vector-Bundle.tex); the overlay draws the dynamics Phi: U -> TM and
+     the closed loop, in the figure's own coordinates. -->
+<div style="position:absolute;left:218px;top:104px;width:1100px;height:505px;color:var(--navy)">
+  <img src="../assets/figures/control-and-tangent-bundles-over-manifold.svg" alt="The control bundle U and the tangent bundle TM, each projecting onto the manifold M, which contains a safe set S" style="position:absolute;left:0;top:0;width:100%;height:100%">
+  <svg viewBox="0 0 274.935 126.137" style="position:absolute;left:0;top:0;width:100%;height:100%">
+    <defs>
+      <marker id="dynamics-red-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#E53935"/></marker>
+      <marker id="dynamics-blue-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2196F3"/></marker>
+    </defs>
+    <line x1="108" y1="26" x2="164" y2="26" stroke="#E53935" stroke-width=".9" marker-end="url(#dynamics-red-arrow)"/>
+    <g stroke="#2196F3" stroke-width=".9" stroke-dasharray="4 1.5 1 1.5" fill="none">
+      <line x1="70" y1="84" x2="50" y2="57" marker-end="url(#dynamics-blue-arrow)"/>
+      <line x1="196" y1="86" x2="218" y2="60" marker-end="url(#dynamics-blue-arrow)"/>
+    </g>
+  </svg>
+  <span style="position:absolute;left:470px;top:28px;font-size:30px"><span class="katex-inline" data-tex="\Phi : \mathcal{U} \to T\mathcal{M}">\(\Phi : \mathcal{U} \to T\mathcal{M}\)</span></span>
+  <span style="position:absolute;left:310px;top:148px;font-size:26px;white-space:nowrap"><span class="katex-inline" data-tex="\dot{x} = \Phi(x,u)= f(x) &#43; g(x)u">\(\dot{x} = \Phi(x,u)= f(x) + g(x)u\)</span></span>
+  <span style="position:absolute;left:150px;top:276px;font-size:28px"><span class="katex-inline" data-tex="\kappa(x)">\(\kappa(x)\)</span></span>
+  <span style="position:absolute;left:800px;top:360px;font-size:26px;white-space:nowrap"><span class="katex-inline" data-tex="\Phi_{\mathrm{cl}}(x, \kappa(x))= f(x) &#43; g(x)\kappa(x)">\(\Phi_{\mathrm{cl}}(x, \kappa(x))= f(x) + g(x)\kappa(x)\)</span></span>
+</div>
+
+<div class="card orange rule-rust tight" style="position:absolute;left:232px;top:520px;width:280px;text-align:center">
+  <div style="font-size:28px"><span class="katex-inline" data-tex="\kappa(x) \in K_{\mathrm{CBF}}(x)">\(\kappa(x) \in K_{\mathrm{CBF}}(x)\)</span></div>
+</div>
+
+<div class="at-full" style="top:620px;text-align:center;font-size:var(--text-md);font-weight:700;color:var(--navy)">Nonlinear control system</div>
+<div class="card orange rule-rust" style="position:absolute;left:218px;top:676px;width:1100px;text-align:center">
+  <div style="font-size:var(--text-xl);font-weight:700">Now, what about set-valued maps and differential inclusions?</div>
+</div>
+
+    <div class="ds-cite">[4] M. de Sa, P. Ong, and A. D. Ames. arXiv:2510.20202, 2025<span class="ds-cite-more"> &middot; [5]</span></div>
+    <div class="ds-slide-num">9</div>
+  </div>
+</section>
+
+<section data-label="10 · Differential Inclusions Formalized" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Differential Inclusions Formalized</h1>
+    <!-- The bundles of the previous slide, now with a set-valued Phi, the constraint
+     set C_u in U and its projection Pi(C_u) in M. -->
+<div style="position:absolute;left:48px;top:104px;width:960px;height:440px;color:var(--navy)">
+  <img src="../assets/figures/control-and-tangent-bundles-over-manifold.svg" alt="The control bundle U and the tangent bundle TM, each projecting onto the manifold M, which contains a safe set S" style="position:absolute;left:0;top:0;width:100%;height:100%">
+  <svg viewBox="0 0 274.935 126.137" style="position:absolute;left:0;top:0;width:100%;height:100%">
+    <defs>
+      <marker id="inclusion-red-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#E53935"/></marker>
+      <marker id="inclusion-blue-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2196F3"/></marker>
+    </defs>
+    <g stroke="#E53935" stroke-width=".9">
+      <line x1="108" y1="23" x2="164" y2="23" marker-end="url(#inclusion-red-arrow)"/>
+      <line x1="108" y1="28" x2="164" y2="28" marker-end="url(#inclusion-red-arrow)"/>
+    </g>
+    <ellipse cx="55" cy="38" rx="22" ry="7" fill="none" stroke="#E040A0" stroke-width="1.1"/>
+    <ellipse cx="216" cy="38" rx="22" ry="7" fill="none" stroke="#A0522D" stroke-width="1.1"/>
+    <ellipse cx="133" cy="84" rx="29" ry="11.5" fill="none" stroke="#0D2C8C" stroke-width="1.4"/>
+    <g stroke="#2196F3" stroke-width=".8" stroke-dasharray="4 1.5 1 1.5" fill="none">
+      <line x1="70" y1="84" x2="50" y2="57" marker-end="url(#inclusion-blue-arrow)"/>
+      <line x1="66" y1="86" x2="46" y2="59" marker-end="url(#inclusion-blue-arrow)"/>
+      <line x1="196" y1="86" x2="218" y2="60" marker-end="url(#inclusion-blue-arrow)"/>
+      <line x1="200" y1="88" x2="222" y2="62" marker-end="url(#inclusion-blue-arrow)"/>
+    </g>
+  </svg>
+  <span style="position:absolute;left:384px;top:12px;font-size:26px"><span class="katex-inline" data-tex="\Phi : \mathcal{U} \rightrightarrows T\mathcal{M}">\(\Phi : \mathcal{U} \rightrightarrows T\mathcal{M}\)</span></span>
+  <span style="position:absolute;left:412px;top:112px;font-size:24px"><span class="katex-inline" data-tex="\dot{x} \in \Phi(u_x)">\(\dot{x} \in \Phi(u_x)\)</span></span>
+  <span style="position:absolute;left:272px;top:98px;font-size:24px"><span class="katex-inline" data-tex="C_u">\(C_u\)</span></span>
+  <span style="position:absolute;left:10px;top:300px;font-size:23px"><span class="katex-inline" data-tex="\kappa(x) \in K_{\mathrm{CBF}}(x)">\(\kappa(x) \in K_{\mathrm{CBF}}(x)\)</span></span>
+  <span style="position:absolute;left:770px;top:316px;font-size:23px"><span class="katex-inline" data-tex="\dot{x} \in \Phi_{\mathrm{cl}}(\kappa(x))">\(\dot{x} \in \Phi_{\mathrm{cl}}(\kappa(x))\)</span></span>
+  <span style="position:absolute;left:560px;top:318px;font-size:23px"><span class="katex-inline" data-tex="\Pi(C_u)">\(\Pi(C_u)\)</span></span>
+</div>
+<div style="position:absolute;left:48px;top:548px;width:960px;text-align:center;font-size:var(--text-md);font-weight:700;color:var(--navy)">Constrained control differential inclusion</div>
+
+<img src="../assets/figures/flow-set-projection-and-safe-set.png" alt="The projection of the flow set, Pi(C), containing the safe set S and a trajectory x(t) from x0 that stays in S" style="position:absolute;left:1040px;top:104px;width:448px;height:273px;object-fit:contain">
+<div style="position:absolute;left:1030px;top:396px;width:470px;color:var(--navy)">
+  <div class="ds-math-block ds-math-tight" data-tex="F(x) &#43; G_x u_x \triangleq \{v_x &#43; G_x u_x \mid v_x \in F(x) \}" style="font-size:22px">\[ F(x) &#43; G_x u_x \triangleq \{v_x &#43; G_x u_x \mid v_x \in F(x) \} \]</div>
+  <div class="ds-math-block ds-math-tight" data-tex="\begin{aligned}\Pi(C_u) \triangleq \{ x\in\mathcal{M}\mid {} &amp; \exists\, u_x\in \mathcal{U}_x \\ &amp; \text{with } u_x\in C_u \}\end{aligned}" style="font-size:22px">\[ \begin{aligned}\Pi(C_u) \triangleq \{ x\in\mathcal{M}\mid {} &amp; \exists\, u_x\in \mathcal{U}_x \\ &amp; \text{with } u_x\in C_u \}\end{aligned} \]</div>
+</div>
+
+<div class="card blue tight" style="position:absolute;left:48px;top:640px;width:420px;text-align:center">
+  <div style="font-size:var(--text-sm)">Why use fiber bundles / vector bundles?</div>
+</div>
+<div class="card green" style="position:absolute;left:500px;top:596px;width:988px">
+  <ul style="margin:0 0 0 24px;padding:0;font-size:var(--text-md);line-height:1.3">
+    <li><strong>Feedback laws are sections of the control bundle.</strong></li>
+    <li>Sections are local objects/data.</li>
+    <li>Local feedback laws form a sheaf under restriction and gluing.</li>
+    <li><strong>If compatible, local feedback laws can be glued into a unique global feedback law.</strong></li>
+  </ul>
+</div>
+
+    <div class="ds-slide-num">10</div>
+  </div>
+</section>
+
+<section data-label="11 · Feedback Laws are Sections" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Feedback Laws are Sections</h1>
+    <!-- Left: a feedback law kappa lifts a curve in Pi(C_u) into C_u. Right: the same
+     picture with the bundle straightened out (Global_Trivialization.tex). -->
+<div style="position:absolute;left:48px;top:104px;width:560px;height:440px;color:var(--navy)">
+  <svg width="560" height="440" viewBox="0 0 560 440">
+    <defs>
+      <marker id="sections-black" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#000"/></marker>
+      <marker id="sections-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2196F3"/></marker>
+    </defs>
+    <image href="../assets/figures/control-bundle-surface.png" x="30" y="16" width="420" height="231"/>
+    <image href="../assets/figures/manifold-surface-patch.png" x="30" y="214" width="400" height="232"/>
+    <ellipse cx="240" cy="96" rx="96" ry="30" fill="none" stroke="#E040A0" stroke-width="4"/>
+    <path d="M170,104 C190,84 205,96 222,92 C245,86 252,102 272,90 C290,80 300,92 312,86" fill="none" stroke="#0D2C8C" stroke-width="3.5"/>
+    <ellipse cx="236" cy="312" rx="96" ry="30" fill="none" stroke="#1F5E7A" stroke-width="4"/>
+    <path d="M170,318 C190,300 205,310 222,316 C242,322 252,300 272,300 C292,300 300,302 314,300" fill="none" stroke="#000" stroke-width="3"/>
+    <line x1="268" y1="112" x2="282" y2="282" stroke="#000" stroke-width="3.5" marker-end="url(#sections-black)"/>
+    <line x1="232" y1="300" x2="222" y2="118" stroke="#2196F3" stroke-width="3.5" stroke-dasharray="14 6 3 6" marker-end="url(#sections-blue)"/>
+  </svg>
+  <span style="position:absolute;left:4px;top:4px;font-size:30px"><span class="katex-inline" data-tex="\mathcal{U}">\(\mathcal{U}\)</span></span>
+  <span style="position:absolute;left:344px;top:60px;font-size:28px"><span class="katex-inline" data-tex="C_u">\(C_u\)</span></span>
+  <span style="position:absolute;left:140px;top:184px;font-size:24px"><span class="katex-inline" data-tex="\kappa(x)">\(\kappa(x)\)</span></span>
+  <span style="position:absolute;left:290px;top:180px;font-size:26px"><span class="katex-inline" data-tex="\pi">\(\pi\)</span></span>
+  <span style="position:absolute;left:344px;top:240px;font-size:26px"><span class="katex-inline" data-tex="\Pi(C_u)">\(\Pi(C_u)\)</span></span>
+  <span style="position:absolute;left:10px;top:370px;font-size:30px"><span class="katex-inline" data-tex="\mathcal{M}">\(\mathcal{M}\)</span></span>
+</div>
+
+<img src="../assets/figures/global-section-safe-input-band.svg" alt="The control bundle drawn straight over M: a section kappa through the band Psi(x) of admissible inputs, with the safe inputs K_CBF(x) marked on the fiber U_x over x" style="position:absolute;left:640px;top:104px;width:690px;height:436px;object-fit:contain">
+<div style="position:absolute;left:1360px;top:110px;width:128px;height:420px;color:var(--navy)">
+  <span style="position:absolute;left:20px;top:0;font-size:40px"><span class="katex-inline" data-tex="\mathcal{U}">\(\mathcal{U}\)</span></span>
+  <svg style="position:absolute;left:32px;top:64px" width="24" height="300" viewBox="0 0 24 300"><line x1="12" y1="0" x2="12" y2="284" stroke="#000" stroke-width="3"/><polygon points="12,298 4,280 20,280" fill="#000"/></svg>
+  <span style="position:absolute;left:66px;top:190px;font-size:30px"><span class="katex-inline" data-tex="\pi">\(\pi\)</span></span>
+</div>
+
+<div style="position:absolute;left:48px;top:566px;width:1440px;display:grid;grid-template-columns:560px 880px;row-gap:8px;align-items:center;color:var(--navy)">
+  <div style="text-align:right;font-size:var(--text-md);padding-right:20px">Set of admissible inputs for <span class="katex-inline" data-tex="x \in \Pi(C_u)">\(x \in \Pi(C_u)\)</span>:</div>
+  <div style="font-size:28px"><span class="katex-inline" data-tex="\Psi(x) \triangleq \{ u_x\in C_u \mid u_x\in \mathcal{U}_x\}=C_u\cap \mathcal{U}_x">\(\Psi(x) \triangleq \{ u_x\in C_u \mid u_x\in \mathcal{U}_x\}=C_u\cap \mathcal{U}_x\)</span></div>
+  <div style="text-align:right;font-size:var(--text-md);padding-right:20px">Set of safe admissible inputs:</div>
+  <div style="font-size:28px"><span class="katex-inline" data-tex="K_{\mathrm{CBF}}(x) \triangleq \{\, u_x \in \Psi(x) : \Upsilon(u_x) \le -\gamma(x) \,\}">\(K_{\mathrm{CBF}}(x) \triangleq \{\, u_x \in \Psi(x) : \Upsilon(u_x) \le -\gamma(x) \,\}\)</span></div>
+  <div></div>
+  <div style="font-size:28px"><span class="katex-inline" data-tex="\displaystyle \Upsilon_{i}(u_x) \triangleq \sup_{\dot{x}\in\Phi(u_{x})}\left\langle d B_{i}(x),\dot{x}\right\rangle">\(\displaystyle \Upsilon_{i}(u_x) \triangleq \sup_{\dot{x}\in\Phi(u_{x})}\left\langle d B_{i}(x),\dot{x}\right\rangle\)</span></div>
+</div>
+
+<div class="card blue tight" style="position:absolute;left:298px;top:752px;width:940px;text-align:center">
+  <div style="font-size:var(--text-lg);font-weight:700">Getting the global section &rarr; compatibility of local feedback laws</div>
+</div>
+
+    <div class="ds-slide-num">11</div>
+  </div>
+</section>
+
+<section data-label="12 · Sheaf Compatibility Conditions" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Sheaf Compatibility Conditions</h1>
+    <div class="card blue tight" style="position:absolute;left:48px;top:106px;width:1440px">
+  <div style="font-size:var(--text-sm);line-height:1.3">A local feedback law over an open set <span class="katex-inline" data-tex="U \subseteq \mathcal{M}">\(U \subseteq \mathcal{M}\)</span> is a <strong>section</strong> of the control bundle. Given a rank-<span class="katex-inline" data-tex="m">\(m\)</span> vector bundle <span class="katex-inline" data-tex="(\mathcal{U},\pi,\mathcal{M})">\((\mathcal{U},\pi,\mathcal{M})\)</span>, the map <span class="katex-inline" data-tex="\kappa\colon \mathcal{M}\to\mathcal{U}">\(\kappa\colon \mathcal{M}\to\mathcal{U}\)</span> is a <strong>section</strong> that admits a <strong>space of local sections</strong> <span class="katex-inline" data-tex="\kappa \in \Gamma(U,\mathcal{U}) = \{\kappa\colon U \to \mathcal{U}|_U \mid \pi\circ\kappa = \mathrm{id}_U\}">\(\kappa \in \Gamma(U,\mathcal{U}) = \{\kappa\colon U \to \mathcal{U}|_U \mid \pi\circ\kappa = \mathrm{id}_U\}\)</span>.</div>
+</div>
+
+<!-- The restricted bundle U|_U over an open set U: the slide-12 drawing (control
+     bundle over M) with the set U and its bundle marked dotted, as in the source. -->
+<div style="position:absolute;left:48px;top:262px;width:282px;height:276px;color:var(--navy)">
+  <svg width="282" height="276" viewBox="0 0 470 460">
+    <defs>
+      <marker id="compat-black" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#000"/></marker>
+      <marker id="compat-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2196F3"/></marker>
+    </defs>
+    <image href="../assets/figures/control-bundle-surface.png" x="30" y="16" width="420" height="231"/>
+    <image href="../assets/figures/manifold-surface-patch.png" x="30" y="214" width="400" height="232"/>
+    <ellipse cx="240" cy="96" rx="96" ry="30" fill="none" stroke="#E040A0" stroke-width="5" stroke-dasharray="4 7" stroke-linecap="round"/>
+    <ellipse cx="236" cy="312" rx="96" ry="30" fill="none" stroke="#0D2C8C" stroke-width="5" stroke-dasharray="4 7" stroke-linecap="round"/>
+    <line x1="268" y1="112" x2="282" y2="282" stroke="#000" stroke-width="4" marker-end="url(#compat-black)"/>
+    <line x1="232" y1="300" x2="222" y2="118" stroke="#2196F3" stroke-width="4" stroke-dasharray="14 6 3 6" marker-end="url(#compat-blue)"/>
+  </svg>
+  <span style="position:absolute;left:0;top:-6px;font-size:26px"><span class="katex-inline" data-tex="\mathcal{U}|_U">\(\mathcal{U}|_U\)</span></span>
+  <span style="position:absolute;left:58px;top:104px;font-size:22px"><span class="katex-inline" data-tex="\kappa(x)">\(\kappa(x)\)</span></span>
+  <span style="position:absolute;left:176px;top:104px;font-size:24px"><span class="katex-inline" data-tex="\pi">\(\pi\)</span></span>
+  <span style="position:absolute;left:62px;top:168px;font-size:24px"><span class="katex-inline" data-tex="U">\(U\)</span></span>
+</div>
+
+<div style="position:absolute;left:350px;top:248px;width:600px;display:grid;grid-template-columns:120px 480px;align-items:center;row-gap:6px;white-space:nowrap;color:var(--navy)">
+  <div style="font-size:var(--text-md);font-weight:700">Presheaf:</div>
+  <div style="font-size:23px"><span class="katex-inline" data-tex="\mathcal{F}(U)\triangleq\{\kappa\in\Gamma(U,\mathcal{U})\mid\kappa\text{ is continuous}\}">\(\mathcal{F}(U)\triangleq\{\kappa\in\Gamma(U,\mathcal{U})\mid\kappa\text{ is continuous}\}\)</span></div>
+  <div></div>
+  <div style="font-size:23px"><span class="katex-inline" data-tex="\mathcal{F}:\mathcal{O}(\mathcal{M})^{\mathrm{op}}\to \mathbf{Set}, \qquad U \mapsto \mathcal{F}(U)">\(\mathcal{F}:\mathcal{O}(\mathcal{M})^{\mathrm{op}}\to \mathbf{Set}, \qquad U \mapsto \mathcal{F}(U)\)</span></div>
+</div>
+
+<div class="card grey rule-navy soft" style="position:absolute;left:350px;top:372px;width:600px;height:306px">
+  <div style="font-size:var(--text-md);color:var(--navy)"><u>To establish <span class="katex-inline" data-tex="\mathcal{F}">\(\mathcal{F}\)</span> is a sheaf:</u> for an open cover <span class="katex-inline" data-tex="U=\bigcup_\alpha U_\alpha">\(U=\bigcup_\alpha U_\alpha\)</span>,</div>
+  <div style="display:grid;grid-template-columns:232px 320px;column-gap:12px;margin-top:10px;color:var(--navy)">
+    <div>
+      <div class="ds-theorem-block block" style="font-size:var(--text-md)"><div class="theorem-head">Locality.</div><div class="theorem-body"><span class="katex-inline" data-tex="\kappa,\widetilde{\kappa}\in\mathcal F(U)">\(\kappa,\widetilde{\kappa}\in\mathcal F(U)\)</span></div></div>
+      <div class="ds-math-block ds-math-tight" data-tex="\begin{gathered}\kappa|_{U_\alpha}=\widetilde{\kappa}|_{U_\alpha} \quad\forall\alpha \\ \Longrightarrow\quad\kappa=\widetilde{\kappa}\end{gathered}" style="font-size:22px">\[ \begin{gathered}\kappa|_{U_\alpha}=\widetilde{\kappa}|_{U_\alpha} \quad\forall\alpha \\ \Longrightarrow\quad\kappa=\widetilde{\kappa}\end{gathered} \]</div>
+    </div>
+    <div>
+      <div class="ds-theorem-block block" style="font-size:var(--text-md)"><div class="theorem-head">Gluing.</div><div class="theorem-body"><span class="katex-inline" data-tex="\kappa_\alpha\in\mathcal F(U_\alpha)">\(\kappa_\alpha\in\mathcal F(U_\alpha)\)</span></div></div>
+      <div class="ds-math-block ds-math-tight" data-tex="\begin{gathered}\kappa_\alpha|_{U_\alpha\cap U_\beta} =\kappa_\beta|_{U_\alpha\cap U_\beta} \quad\forall\alpha,\beta \\ \Longrightarrow\quad\exists!\,\kappa\in\mathcal F(U) \\ \text{such that }\kappa|_{U_\alpha}=\kappa_\alpha \quad\forall\alpha\end{gathered}" style="font-size:22px">\[ \begin{gathered}\kappa_\alpha|_{U_\alpha\cap U_\beta} =\kappa_\beta|_{U_\alpha\cap U_\beta} \quad\forall\alpha,\beta \\ \Longrightarrow\quad\exists!\,\kappa\in\mathcal F(U) \\ \text{such that }\kappa|_{U_\alpha}=\kappa_\alpha \quad\forall\alpha\end{gathered} \]</div>
+    </div>
+  </div>
+</div>
+
+<img src="../assets/figures/section-compatibility-on-overlap.svg" alt="Two local sections kappa_alpha over U_alpha and kappa_beta over U_beta that agree on the overlap U_alpha ∩ U_beta, drawn in the restricted bundle" style="position:absolute;left:972px;top:250px;width:500px;height:434px;object-fit:contain">
+
+<div class="card green tight" style="position:absolute;left:48px;top:686px;width:960px">
+  <div style="font-size:26px"><span class="katex-inline" data-tex="\mathcal{K}_{\mathrm{CBF}}(U) \triangleq \{\kappa \in \mathcal{F}(U) \mid \colorbox{#F4CCC8}{$\kappa(x) \in K_{\mathrm{CBF}}(x)$}\;\; \forall\, x \in U\}">\(\mathcal{K}_{\mathrm{CBF}}(U) \triangleq \{\kappa \in \mathcal{F}(U) \mid \colorbox{#F4CCC8}{$\kappa(x) \in K_{\mathrm{CBF}}(x)$}\;\; \forall\, x \in U\}\)</span></div>
+</div>
+<div style="position:absolute;left:1030px;top:698px;font-size:40px;color:#E8A0A0">&#10132;</div>
+<div class="card green tight" style="position:absolute;left:1100px;top:686px;width:300px;text-align:center">
+  <div style="font-size:26px"><span class="katex-inline" data-tex="\kappa \in \mathcal{K}_{\mathrm{CBF}}(U)">\(\kappa \in \mathcal{K}_{\mathrm{CBF}}(U)\)</span></div>
+</div>
+
+<div class="card orange rule-rust tight" style="position:absolute;left:298px;top:774px;width:940px;text-align:center">
+  <div style="font-size:var(--text-md);font-weight:700">Can pointwise-optimal local controllers glue? &rarr; Fiberwise regularity</div>
+</div>
+
+    <div class="ds-slide-num">12</div>
+  </div>
+</section>
+
+<section data-label="13 · Local Sections and Local Trivializations" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1 long">Local Sections and Local Trivializations</h1>
+    <div class="card blue" style="position:absolute;left:48px;top:106px;width:1440px;text-align:center">
+  <div style="font-size:var(--text-sm);line-height:1.3">Local trivialization: <strong>not assuming a globally trivial bundle (<span class="katex-inline" data-tex="\mathcal{M} = U">\(\mathcal{M} = U\)</span>).</strong><br>
+  A <strong>chart</strong> on a manifold <span class="katex-inline" data-tex="\mathcal{M}">\(\mathcal{M}\)</span> is a pair <span class="katex-inline" data-tex="(U, \phi)">\((U, \phi)\)</span>, where <span class="katex-inline" data-tex="U">\(U\)</span> is the coordinate domain, an open subset of <span class="katex-inline" data-tex="\mathcal{M}">\(\mathcal{M}\)</span>, and <span class="katex-inline" data-tex="\phi">\(\phi\)</span> is a coordinate map. <strong style="color:#B3330F">Regularity must be verified chart by chart.</strong></div>
+</div>
+
+<!-- A local feedback law kappa_alpha over the chart domain U_alpha. -->
+<div style="position:absolute;left:48px;top:262px;width:340px;height:420px;color:var(--navy)">
+  <svg width="340" height="420" viewBox="0 0 340 420">
+    <defs>
+      <marker id="local-sections-black" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#000"/></marker>
+      <marker id="local-sections-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2196F3"/></marker>
+    </defs>
+    <image href="../assets/figures/control-bundle-surface.png" x="0" y="20" width="330" height="182"/>
+    <image href="../assets/figures/manifold-surface-patch.png" x="0" y="206" width="340" height="197"/>
+    <ellipse cx="150" cy="78" rx="62" ry="22" fill="none" stroke="#E040A0" stroke-width="4"/>
+    <ellipse cx="150" cy="78" rx="34" ry="11" fill="none" stroke="#E040A0" stroke-width="3" stroke-dasharray="3 4"/>
+    <ellipse cx="140" cy="282" rx="52" ry="18" fill="none" stroke="#1F5E7A" stroke-width="4"/>
+    <ellipse cx="140" cy="282" rx="30" ry="9" fill="none" stroke="#0D2C8C" stroke-width="3" stroke-dasharray="3 4"/>
+    <line x1="272" y1="70" x2="272" y2="276" stroke="#000" stroke-width="3" marker-end="url(#local-sections-black)"/>
+    <line x1="146" y1="274" x2="148" y2="94" stroke="#2196F3" stroke-width="5" stroke-dasharray="6 4" marker-end="url(#local-sections-blue)"/>
+  </svg>
+  <span style="position:absolute;left:0;top:0;font-size:28px"><span class="katex-inline" data-tex="\mathcal{U}">\(\mathcal{U}\)</span></span>
+  <span style="position:absolute;left:150px;top:6px;font-size:22px"><span class="katex-inline" data-tex="(C_u)_\alpha">\((C_u)_\alpha\)</span></span>
+  <span style="position:absolute;left:20px;top:168px;font-size:24px"><span class="katex-inline" data-tex="\kappa_\alpha(x)">\(\kappa_\alpha(x)\)</span></span>
+  <span style="position:absolute;left:282px;top:160px;font-size:24px"><span class="katex-inline" data-tex="\pi">\(\pi\)</span></span>
+  <span style="position:absolute;left:30px;top:236px;font-size:24px"><span class="katex-inline" data-tex="U_\alpha">\(U_\alpha\)</span></span>
+  <span style="position:absolute;left:190px;top:300px;font-size:20px"><span class="katex-inline" data-tex="\Pi(C_u)_\alpha">\(\Pi(C_u)_\alpha\)</span></span>
+  <span style="position:absolute;left:20px;top:340px;font-size:28px"><span class="katex-inline" data-tex="\mathcal{M}">\(\mathcal{M}\)</span></span>
+</div>
+
+<img src="../assets/figures/local-section-over-chart.png" alt="A local section kappa_alpha drawn in the bundle U restricted to U_alpha, with the fiber U_x over a point x and the value kappa_alpha(x)" style="position:absolute;left:410px;top:262px;width:320px;height:330px;object-fit:contain">
+<div style="position:absolute;left:732px;top:318px;width:76px;text-align:center;color:var(--navy)">
+  <div style="font-size:26px"><span class="katex-inline" data-tex="\phi_{\alpha}">\(\phi_{\alpha}\)</span></div>
+  <svg width="76" height="40" viewBox="0 0 76 40"><line x1="4" y1="10" x2="62" y2="10" stroke="#000" stroke-width="3"/><polygon points="74,10 60,3 60,17" fill="#000"/><line x1="72" y1="30" x2="14" y2="30" stroke="#000" stroke-width="3"/><polygon points="2,30 16,23 16,37" fill="#000"/></svg>
+  <div style="font-size:26px"><span class="katex-inline" data-tex="\phi_{\alpha}^{-1}">\(\phi_{\alpha}^{-1}\)</span></div>
+</div>
+<img src="../assets/figures/local-trivialization-section.svg" alt="The same section in the trivialization U_alpha × R, as the graph (x, kappa_alpha(x)) crossing the fiber {x} × R" style="position:absolute;left:812px;top:262px;width:330px;height:330px;object-fit:contain">
+<div style="position:absolute;left:1150px;top:378px;width:66px;text-align:center;color:var(--navy)">
+  <div style="font-size:24px"><span class="katex-inline" data-tex="\mathrm{pr}_2">\(\mathrm{pr}_2\)</span></div>
+  <svg width="66" height="20" viewBox="0 0 66 20"><line x1="2" y1="10" x2="52" y2="10" stroke="#000" stroke-width="3"/><polygon points="64,10 50,3 50,17" fill="#000"/></svg>
+</div>
+<img src="../assets/figures/trivialization-fiber-coordinate.png" alt="The fiber coordinate: kappa_alpha(x) as a point of R" style="position:absolute;left:1222px;top:254px;width:130px;height:340px;object-fit:contain">
+
+<div class="ds-math-block" data-tex="\Pi(C_u)_\alpha \;\begin{array}{c} \xleftarrow{\quad\pi\quad} \\[-4pt] \xrightarrow{\quad\kappa\quad} \\[-4pt] \underset{K_{\mathrm{CBF}}}{\rightrightarrows} \end{array}\; \mathcal{U}|_{U_\alpha} \;\xrightleftharpoons[\;\phi_\alpha^{-1}\;]{\;\phi_\alpha\;}\; U_\alpha \times \mathbb{R}^m \xrightarrow{\;\mathrm{pr}_2\;} \mathbb{R}^m" style="position:absolute;left:400px;top:620px;width:1088px;font-size:30px">\[ \Pi(C_u)_\alpha \;\begin{array}{c} \xleftarrow{\quad\pi\quad} \\[-4pt] \xrightarrow{\quad\kappa\quad} \\[-4pt] \underset{K_{\mathrm{CBF}}}{\rightrightarrows} \end{array}\; \mathcal{U}|_{U_\alpha} \;\xrightleftharpoons[\;\phi_\alpha^{-1}\;]{\;\phi_\alpha\;}\; U_\alpha \times \mathbb{R}^m \xrightarrow{\;\mathrm{pr}_2\;} \mathbb{R}^m \]</div>
+
+    <div class="ds-slide-num">13</div>
+  </div>
+</section>
+
+<section data-label="14 · Local-to-Global Sheaf Construction" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Local-to-Global Sheaf Construction</h1>
+    <div class="card blue tight" style="position:absolute;left:48px;top:106px;width:456px;text-align:center"><div style="font-size:var(--text-md)">Local regularity properties</div></div>
+<div class="card blue tight" style="position:absolute;left:540px;top:106px;width:456px;text-align:center"><div style="font-size:var(--text-md)">Fiberwise regularity</div></div>
+<div class="card blue tight" style="position:absolute;left:1032px;top:106px;width:456px;text-align:center"><div style="font-size:var(--text-md)">Sheaf compatibility</div></div>
+
+<img src="../assets/figures/local-trivialization-section.svg" alt="A local section in the trivialization U_alpha × R" style="position:absolute;left:88px;top:170px;width:320px;height:320px;object-fit:contain">
+<div style="position:absolute;left:428px;top:250px;width:100px;text-align:center;color:var(--navy)">
+  <div style="font-size:26px"><span class="katex-inline" data-tex="\phi_{\alpha}">\(\phi_{\alpha}\)</span></div>
+  <svg width="100" height="40" viewBox="0 0 100 40"><line x1="4" y1="10" x2="86" y2="10" stroke="#000" stroke-width="3"/><polygon points="98,10 84,3 84,17" fill="#000"/><line x1="96" y1="30" x2="14" y2="30" stroke="#000" stroke-width="3"/><polygon points="2,30 16,23 16,37" fill="#000"/></svg>
+  <div style="font-size:26px"><span class="katex-inline" data-tex="\phi_{\alpha}^{-1}">\(\phi_{\alpha}^{-1}\)</span></div>
+</div>
+<img src="../assets/figures/local-section-over-chart.png" alt="The same local section in the bundle restricted to U_alpha" style="position:absolute;left:600px;top:170px;width:320px;height:330px;object-fit:contain">
+<img src="../assets/figures/section-compatibility-on-overlap.svg" alt="Two local sections that agree on the overlap of their domains" style="position:absolute;left:1050px;top:164px;width:420px;height:365px;object-fit:contain">
+<span style="position:absolute;left:1190px;top:178px;font-size:22px;color:var(--navy)"><span class="katex-inline" data-tex="g_{\alpha\beta}(x)">\(g_{\alpha\beta}(x)\)</span></span>
+
+<div class="card grey soft" style="position:absolute;left:48px;top:530px;width:400px;height:160px;text-align:center">
+  <div style="font-size:var(--text-sm);font-weight:700;line-height:1.25">Convexity, continuity, local boundedness, closedness, etc.</div>
+  <div class="ds-math-block ds-math-tight" data-tex="\kappa_\alpha(x) \in K_{\mathrm{CBF},\alpha}(x)" style="font-size:24px">\[ \kappa_\alpha(x) \in K_{\mathrm{CBF},\alpha}(x) \]</div>
+</div>
+<div style="position:absolute;left:456px;top:578px;font-size:40px;color:#2E9D46">&#10132;</div>
+<div class="card grey soft" style="position:absolute;left:518px;top:530px;width:450px;height:160px;text-align:center">
+  <div style="font-size:var(--text-sm);font-weight:700;line-height:1.25">Fiberwise convexity, continuity, precompactness</div>
+  <div class="ds-math-block ds-math-tight" data-tex="\kappa(x) \in K_{\mathrm{CBF}}(x)" style="font-size:24px">\[ \kappa(x) \in K_{\mathrm{CBF}}(x) \]</div>
+</div>
+<div style="position:absolute;left:976px;top:578px;font-size:40px;color:#2E9D46">&#10132;</div>
+<div class="card grey soft tight" style="position:absolute;left:1038px;top:530px;width:450px;height:160px;text-align:center">
+  <div style="font-size:var(--text-sm);font-weight:700">Compatibility:</div>
+  <div style="font-size:21px;line-height:1.55"><span class="katex-inline" data-tex="\kappa_\alpha\big|_{U_{\alpha} \cap U_\beta} = \kappa_\beta\big|_{U_{\alpha} \cap U_\beta}">\(\kappa_\alpha\big|_{U_{\alpha} \cap U_\beta} = \kappa_\beta\big|_{U_{\alpha} \cap U_\beta}\)</span><br><span class="katex-inline" data-tex="\kappa_\alpha(x) = g_{\alpha\beta}(x)\kappa_\beta(x)">\(\kappa_\alpha(x) = g_{\alpha\beta}(x)\kappa_\beta(x)\)</span><br><span class="katex-inline" data-tex="g_{\alpha\beta}: U_\alpha\cap U_\beta\to \mathrm{GL}(n,\mathbb{R})">\(g_{\alpha\beta}: U_\alpha\cap U_\beta\to \mathrm{GL}(n,\mathbb{R})\)</span></div>
+</div>
+
+<div class="card green tight" style="position:absolute;left:48px;top:698px;width:960px">
+  <div style="font-size:26px"><span class="katex-inline" data-tex="\mathcal{K}_{\mathrm{CBF}}(U) \triangleq \{\kappa \in \mathcal{F}(U) \mid \colorbox{#F4CCC8}{$\kappa(x) \in K_{\mathrm{CBF}}(x)$}\;\; \forall\, x \in U\}">\(\mathcal{K}_{\mathrm{CBF}}(U) \triangleq \{\kappa \in \mathcal{F}(U) \mid \colorbox{#F4CCC8}{$\kappa(x) \in K_{\mathrm{CBF}}(x)$}\;\; \forall\, x \in U\}\)</span></div>
+</div>
+<div style="position:absolute;left:1030px;top:706px;font-size:40px;color:#E8A0A0">&#10132;</div>
+<div class="card green tight" style="position:absolute;left:1100px;top:698px;width:330px;text-align:center">
+  <div style="font-size:26px"><span class="katex-inline" data-tex="\kappa \in \mathcal{K}_{\mathrm{CBF}}(\Pi(C_u))">\(\kappa \in \mathcal{K}_{\mathrm{CBF}}(\Pi(C_u))\)</span> <span style="color:#2E9D46">&#10004;</span></div>
+</div>
+
+<div class="card green rule-green tight" style="position:absolute;left:298px;top:760px;width:940px;text-align:center">
+  <div style="font-size:var(--text-md);font-weight:700"><span class="katex-inline" data-tex="\kappa">\(\kappa\)</span> is the unique global section and <span class="katex-inline" data-tex="\mathcal{S}">\(\mathcal{S}\)</span> is forward invariant</div>
+</div>
+
+    <div class="ds-slide-num">14</div>
+  </div>
+</section>
+
+<section data-label="15 · Simulation: the Möbius Strip as a Nontrivial Bundle" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Simulation: Möbius Strip</h1>
+    <img src="../assets/figures/mobius-strip-from-trivial-charts.png" alt="The cylinder S^1 × R and the Möbius bundle E, each glued from two trivial charts U × R and V × R; the cylinder glues with transition g_UV = 1 on both overlaps, the Möbius strip with a twist, g_UV = -1 on one of them" style="position:absolute;left:48px;top:110px;width:980px;height:319px;object-fit:contain">
+
+<div style="position:absolute;left:1050px;top:110px;width:438px;height:448px;overflow:hidden;border-radius:4px"><video data-autoplay src="../assets/video/mobius-strip-bundle-animation.mp4" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover"></video></div>
+
+<div style="position:absolute;left:48px;top:460px;width:400px;height:330px;overflow:hidden;border-radius:4px"><video data-autoplay src="../assets/video/mobius-strip-gluing-construction.mp4" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover"></video></div>
+<div class="card blue side" style="position:absolute;left:480px;top:560px;width:520px">
+  <div style="font-size:var(--text-xl)">Standard nontrivial manifold.</div>
+</div>
+
+    <div class="ds-slide-num">15</div>
+  </div>
+</section>
+
+<section data-label="16 · Simulation: Möbius Strip Results" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Simulation: Möbius Strip</h1>
+    <div class="card grey soft" style="position:absolute;left:48px;top:106px;width:560px;height:690px"></div>
+<div style="position:absolute;left:58px;top:112px;width:540px;color:var(--navy)">
+  <div class="eyebrow">Charts and transition</div>
+  <div class="ds-math-block ds-math-tight" data-tex="\begin{gathered}U_\alpha\triangleq S^1\setminus \{ \theta=\pi \}, \qquad U_\beta\triangleq S^1\setminus \{ \theta = 0 \} \\ g_{\alpha\beta}\triangleq\mathtt{diag}\{1,-1\}\end{gathered}" style="font-size:24px">\[ \begin{gathered}U_\alpha\triangleq S^1\setminus \{ \theta=\pi \}, \qquad U_\beta\triangleq S^1\setminus \{ \theta = 0 \} \\ g_{\alpha\beta}\triangleq\mathtt{diag}\{1,-1\}\end{gathered} \]</div>
+  <div class="eyebrow" style="margin-top:14px">State and reference</div>
+  <div class="ds-math-block ds-math-tight" data-tex="\begin{gathered}\theta\in S^1, \quad \ell\in\mathbb{R} \\ \theta_d (t)\triangleq \mathtt{mod} (10t,2\pi) \\ \ell_d(t)\triangleq 0.95\cos (0.325t - 2\pi)\end{gathered}" style="font-size:24px">\[ \begin{gathered}\theta\in S^1, \quad \ell\in\mathbb{R} \\ \theta_d (t)\triangleq \mathtt{mod} (10t,2\pi) \\ \ell_d(t)\triangleq 0.95\cos (0.325t - 2\pi)\end{gathered} \]</div>
+  <div class="eyebrow" style="margin-top:14px">Tracking errors and nominal control</div>
+  <div class="ds-math-block ds-math-tight" data-tex="\begin{gathered}e_\theta\triangleq \mathtt{atan2}(\sin(\theta-\theta_d),\cos(\theta-\theta_d)) \\ e_{\ell}\triangleq \ell - \ell_d \\ u_{\mathrm{nom}}=[-10 e_\theta &#43; \dot{\theta}_d ,\, -10e_\ell &#43; \dot{\ell}_d ]^\top\end{gathered}" style="font-size:24px">\[ \begin{gathered}e_\theta\triangleq \mathtt{atan2}(\sin(\theta-\theta_d),\cos(\theta-\theta_d)) \\ e_{\ell}\triangleq \ell - \ell_d \\ u_{\mathrm{nom}}=[-10 e_\theta &#43; \dot{\theta}_d ,\, -10e_\ell &#43; \dot{\ell}_d ]^\top\end{gathered} \]</div>
+  <div class="eyebrow" style="margin-top:14px">Barrier functions in each chart</div>
+  <div class="ds-math-block ds-math-tight" data-tex="\begin{gathered}B^c(x)\triangleq \big[\cos(\tfrac{2\pi}{3})-\cos (\theta)-\ell, \\ \ell -0.65,\; -\ell-0.2\big]^\top, \quad c\in\{ \alpha,\beta\}\end{gathered}" style="font-size:24px">\[ \begin{gathered}B^c(x)\triangleq \big[\cos(\tfrac{2\pi}{3})-\cos (\theta)-\ell, \\ \ell -0.65,\; -\ell-0.2\big]^\top, \quad c\in\{ \alpha,\beta\}\end{gathered} \]</div>
+</div>
+
+<div style="position:absolute;left:630px;top:560px;width:226px;height:231px;overflow:hidden;border-radius:4px"><video data-autoplay src="../assets/video/mobius-strip-bundle-animation.mp4" autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover"></video></div>
+<img src="../assets/figures/mobius-strip-cbf-simulation-trajectories.png" alt="Trajectories (theta, ell) of the closed loop in the two charts, coloured by time, tracking the reference (dashed) while staying outside the unsafe regions B1, B2, B3 ≥ 0" style="position:absolute;left:870px;top:106px;width:618px;height:690px;object-fit:contain">
+
+    <div class="ds-slide-num">16</div>
+  </div>
+</section>
+
+<section data-label="17 · Future Work: Hybrid Systems on Bundles" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Future Work</h1>
+    <!-- A continuous-time solution: x(t) over its domain dom(x). -->
+<div style="position:absolute;left:48px;top:110px;width:360px;height:300px;color:var(--navy)">
+  <svg width="360" height="300" viewBox="0 0 360 300">
+    <defs><marker id="future-axis" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#000"/></marker></defs>
+    <rect x="96" y="50" width="220" height="230" fill="#FBEBDD" fill-opacity=".6" stroke="#777" stroke-width="2.5" stroke-dasharray="2 4"/>
+    <line x1="96" y1="280" x2="96" y2="28" stroke="#000" stroke-width="4" marker-end="url(#future-axis)"/>
+    <line x1="96" y1="280" x2="340" y2="280" stroke="#000" stroke-width="4" marker-end="url(#future-axis)"/>
+    <path d="M96,128 C112,116 122,116 136,128 C150,142 160,140 170,130 C182,120 196,124 216,124" fill="none" stroke="#8A9399" stroke-width="7" stroke-linecap="round"/>
+    <line x1="216" y1="128" x2="216" y2="276" stroke="#BFC5CA" stroke-width="4" stroke-dasharray="10 6"/>
+    <line x1="96" y1="280" x2="216" y2="280" stroke="#E53935" stroke-width="6"/>
+    <circle cx="96" cy="280" r="5" fill="#E53935"/><circle cx="216" cy="280" r="5" fill="#E53935"/>
+  </svg>
+  <span style="position:absolute;left:20px;top:10px;font-size:24px"><span class="katex-inline" data-tex="x(t)">\(x(t)\)</span></span>
+  <span style="position:absolute;left:30px;top:112px;font-size:24px"><span class="katex-inline" data-tex="x(0)">\(x(0)\)</span></span>
+  <span style="position:absolute;left:110px;top:288px;font-size:24px"><span class="katex-inline" data-tex="\mathrm{dom}(x)">\(\mathrm{dom}(x)\)</span></span>
+  <span style="position:absolute;left:344px;top:262px;font-size:24px"><span class="katex-inline" data-tex="t">\(t\)</span></span>
+</div>
+
+<img src="../assets/figures/hybrid-trajectory-flows-and-jumps.png" alt="A hybrid trajectory in the safe set S that flows and jumps" style="position:absolute;left:440px;top:140px;width:380px;height:284px;object-fit:contain">
+<span style="position:absolute;left:460px;top:118px;font-size:34px;color:var(--navy)"><span class="katex-inline" data-tex="\mathcal{S}">\(\mathcal{S}\)</span></span>
+
+<!-- A hybrid solution x(t, j) on a compact hybrid time domain: one pane per jump count j. -->
+<div style="position:absolute;left:860px;top:104px;width:628px;height:380px;color:var(--navy)">
+  <svg width="628" height="380" viewBox="0 0 628 380">
+    <defs><marker id="future-axis-2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#000"/></marker></defs>
+    <g fill="#FBF3E4" fill-opacity=".55" stroke="#777" stroke-width="2" stroke-dasharray="2 4">
+      <polygon points="250,250 510,287 510,97 250,60"/>
+      <polygon points="195,282 455,319 455,129 195,92"/>
+      <polygon points="140,314 400,351 400,161 140,124"/>
+    </g>
+    <line x1="250" y1="250" x2="250" y2="24" stroke="#000" stroke-width="4" marker-end="url(#future-axis-2)"/>
+    <line x1="250" y1="250" x2="616" y2="302" stroke="#000" stroke-width="4" marker-end="url(#future-axis-2)"/>
+    <line x1="250" y1="250" x2="66" y2="357" stroke="#000" stroke-width="4" marker-end="url(#future-axis-2)"/>
+    <g fill="none" stroke="#8A9399" stroke-width="6" stroke-linecap="round">
+      <path d="M252,172 C268,162 280,162 292,172 C304,182 318,178 341,176"/>
+      <path d="M286,216 C300,204 310,196 322,210 C334,222 348,214 364,206"/>
+      <path d="M309,262 C320,256 330,268 342,268 C354,268 364,262 374,262"/>
+    </g>
+    <g stroke="#BFC5CA" stroke-width="3.5" stroke-dasharray="8 5">
+      <line x1="341" y1="180" x2="341" y2="261"/><line x1="364" y1="210" x2="364" y2="304"/><line x1="374" y1="266" x2="374" y2="345"/>
+    </g>
+    <g stroke="#E53935" stroke-width="6">
+      <line x1="250" y1="250" x2="341" y2="263"/><line x1="286" y1="295" x2="364" y2="306"/><line x1="309" y1="338" x2="374" y2="347"/>
+    </g>
+  </svg>
+  <span style="position:absolute;left:0;top:6px;font-size:22px;line-height:1.2">&ldquo;compact hybrid<br>time domain&rdquo;</span>
+  <span style="position:absolute;left:264px;top:0;font-size:24px"><span class="katex-inline" data-tex="x(t,j)">\(x(t,j)\)</span></span>
+  <span style="position:absolute;left:606px;top:306px;font-size:24px"><span class="katex-inline" data-tex="t">\(t\)</span></span>
+  <span style="position:absolute;left:36px;top:330px;font-size:24px"><span class="katex-inline" data-tex="j">\(j\)</span></span>
+  <span style="position:absolute;left:174px;top:258px;font-size:20px">1</span>
+  <span style="position:absolute;left:119px;top:290px;font-size:20px">2</span>
+  <span style="position:absolute;left:64px;top:322px;font-size:20px">3</span>
+</div>
+
+<!-- Bottom left: one control bundle over one manifold. -->
+<img src="../assets/figures/control-bundle-surface.png" alt="A control bundle U_C" style="position:absolute;left:90px;top:440px;width:300px;height:165px;object-fit:contain">
+<span style="position:absolute;left:330px;top:452px;font-size:28px;color:var(--navy)"><span class="katex-inline" data-tex="\mathcal{U}_C">\(\mathcal{U}_C\)</span></span>
+<img src="../assets/figures/manifold-surface-patch.png" alt="The manifold M" style="position:absolute;left:60px;top:594px;width:320px;height:186px;object-fit:contain">
+<span style="position:absolute;left:66px;top:716px;font-size:28px;color:var(--navy)"><span class="katex-inline" data-tex="\mathcal{M}">\(\mathcal{M}\)</span></span>
+
+<!-- Bottom right: a stack of manifolds, one per mode, and the Whitney sum of the flow and jump control bundles. -->
+<div style="position:absolute;left:520px;top:450px;width:420px;height:320px;color:var(--navy)">
+  <svg width="420" height="320" viewBox="0 0 420 320">
+    <image href="../assets/figures/manifold-surface-patch.png" x="60" y="140" width="300" height="174"/>
+    <image href="../assets/figures/manifold-surface-patch.png" x="60" y="108" width="300" height="174"/>
+    <image href="../assets/figures/manifold-surface-patch.png" x="60" y="76" width="300" height="174"/>
+    <image href="../assets/figures/manifold-surface-patch.png" x="60" y="44" width="300" height="174"/>
+    <g fill="none" stroke="#E53935" stroke-width="3">
+      <path d="M170,104 C185,94 200,112 215,102 C230,94 238,108 252,100"/>
+      <path d="M120,166 C132,158 144,172 160,164"/>
+      <path d="M120,198 C132,190 144,204 160,196"/>
+      <path d="M120,230 C132,222 144,236 160,228"/>
+    </g>
+    <circle cx="200" cy="10" r="7" fill="#000"/><circle cx="200" cy="26" r="7" fill="#000"/><circle cx="200" cy="42" r="7" fill="#000"/>
+  </svg>
+  <span style="position:absolute;left:4px;top:96px;font-size:24px"><span class="katex-inline" data-tex="\mathcal{M}_3">\(\mathcal{M}_3\)</span></span>
+  <span style="position:absolute;left:4px;top:136px;font-size:24px"><span class="katex-inline" data-tex="\mathcal{M}_2">\(\mathcal{M}_2\)</span></span>
+  <span style="position:absolute;left:4px;top:172px;font-size:24px"><span class="katex-inline" data-tex="\mathcal{M}_1">\(\mathcal{M}_1\)</span></span>
+  <span style="position:absolute;left:4px;top:208px;font-size:24px"><span class="katex-inline" data-tex="\mathcal{M}_0">\(\mathcal{M}_0\)</span></span>
+</div>
+<img src="../assets/figures/control-bundle-surface.png" alt="The Whitney sum U_C ⊕ U_D of the flow and jump control bundles" style="position:absolute;left:990px;top:560px;width:320px;height:176px;object-fit:contain">
+<span style="position:absolute;left:1060px;top:510px;font-size:28px;color:var(--navy)"><span class="katex-inline" data-tex="\mathcal{U}_C \oplus \mathcal{U}_D">\(\mathcal{U}_C \oplus \mathcal{U}_D\)</span></span>
+
+<div class="card green tight" style="position:absolute;left:440px;top:774px;width:1048px;text-align:center">
+  <div style="font-size:var(--text-md);font-weight:700">Extend to hybrid systems using Whitney sums &amp; pullbacks over bundles</div>
+</div>
+
+    <div class="ds-slide-num">17</div>
+  </div>
+</section>
+
+<section data-label="18 · Conclusion: Sheaf-Theoretic CBFs" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">Conclusion</h1>
+    <div class="eyebrow" style="position:absolute;left:48px;top:112px">Core result</div>
+<div class="card green roomy" style="position:absolute;left:48px;top:144px;width:1440px">
+  <div style="font-size:var(--text-2xl);line-height:1.2">Compatible continuous local CBF controllers determine a unique global feedback law on an admissible domain.</div>
+</div>
+
+<div class="card blue roomy" style="position:absolute;left:48px;top:310px;width:700px;height:330px">
+  <div class="card-head">Broader opportunity</div>
+  <div class="card-body" style="font-size:var(--text-lg)">A common language for local models and their compatibility, within control and beyond.</div>
+  <div class="card-body" style="font-size:var(--text-lg);margin-top:14px">Compatibility matters on trivial and nontrivial bundles.</div>
+</div>
+<div class="card orange roomy" style="position:absolute;left:788px;top:310px;width:700px;height:330px">
+  <div class="card-head">Current work</div>
+  <ul style="margin:4px 0 0 26px;padding:0;font-size:var(--text-lg);line-height:1.3">
+    <li style="margin-bottom:8px">Develop computational synthesis and overlap consistency checks.</li>
+    <li style="margin-bottom:8px">Connect continuous and discrete CBF constructions.</li>
+    <li>Evaluate computational performance and robotic implementations.</li>
+  </ul>
+</div>
+
+<div style="position:absolute;left:48px;right:48px;bottom:96px;font-size:var(--text-2xl);line-height:1.18;color:var(--slate)">Next: take the local-to-global math framework to metriplectic dynamics and the HJB equation.</div>
+
+    <div class="ds-cite">[<span class="cite-ours">6</span>] K. A. Currier, W. Leal, B. C. Fallin, J. Fairbanks, and W. E. Dixon. <i>IEEE Conference on Decision and Control,</i> 2026, to appear</div>
+    <div class="ds-slide-num">18</div>
+  </div>
+  <aside class="notes"><p>For me, the broader opportunity is the language this gives us for local models. The bundle tells us what kind of data lives over each state. Sections describe local choices of those data. The sheaf records restriction and compatibility. That organization could be useful beyond this particular control construction.</p>
+<p>Compatibility matters even when the bundle is trivial. Local estimates or controllers can still disagree after they are expressed in a common frame. Dead reckoning and loop closure provide a useful analogy: when we revisit an area, overlapping local descriptions can reveal accumulated disagreement that we need to correct.</p>
+<p>Exact gluing applies once the local data agree. A computational extension can ask how to measure and reduce disagreement when they do not. A disagreement is not automatically a topological obstruction, and correcting one does not by itself establish safety.</p>
+<p>We are currently developing the computational extension and its connection to discrete CBF constructions. The goal is a common mathematical language that leads to useful synthesis tools, with computational performance and robotic implementation evaluated explicitly.</p>
+<p><strong>Technical qualifications.</strong> The glued law is unique relative to the specified compatible family, not unique among all safe laws. Continuity of pointwise optimizers is an analytical requirement, not an automatic consequence of convexity. Forward invariance needs the dynamical, viability, and continuation hypotheses. The computational and discrete connections are ongoing work, not a demonstrated equivalence or speedup. Valid bundle transition functions already satisfy their cocycle identities; it is local estimates/controllers, or noisy proposed transformations not yet forming a valid atlas, that can disagree.</p>
+<p><strong>Sources.</strong> Keith A. Currier, Wilmer Leal, Brandon C. Fallin, James Fairbanks, Warren E. Dixon. From Local to Global: Sheaf-Theoretic Control Barrier Functions on Manifolds. Supplied 2026 manuscript, Sections III–VI. Cesar Cadena, Luca Carlone, Henry Carrillo, Yasir Latif, Davide Scaramuzza, Jose Neira, Ian Reid, John J. Leonard. Past, Present, and Future of Simultaneous Localization And Mapping: Towards the Robust-Perception Age. IEEE Transactions on Robotics 32(6), 1309–1332, 2016. https://arxiv.org/abs/1606.05830. Used only for the loop-closure analogy.</p>
+</aside>
+</section>
+
+<section data-label="19 · Thank You" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <div class="at-full" style="top:120px;text-align:center;font-size:64px;font-weight:700;color:var(--navy)">Thank you!</div>
+<img src="../assets/figures/dixon-research-group-photo.jpg" alt="Group photo of Warren Dixon&#39;s research group" style="position:absolute;left:168px;top:240px;width:1200px;height:531px;object-fit:contain">
+
+    <div class="ds-slide-num">19</div>
+  </div>
+</section>
+
+<section data-label="20 · References" data-background-color="#ffffff" class="slide-light">
+  <div class="slide-canvas">
+    <h1 class="slide-h1">References</h1>
+    
+    
+<div style="position:absolute;left:48px;top:112px;right:48px;display:grid;grid-template-columns:1fr 1fr;gap:20px 32px;align-items:start">
+  <ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px">
+    <li style="display:flex;gap:12px;font-size:20px;line-height:1.29;color:var(--navy)"><span class="cite-ours" style="flex:none;font-weight:700;color:#FA4616">[1]</span><span style="flex:1;min-width:0;text-wrap:pretty">A. Isaly, M. Mamaghani, R. G. Sanfelice, and W. E. Dixon. On the feasibility and continuity of feedback controllers defined by multiple control barrier functions. <em>IEEE Transactions on Automatic Control,</em> 69(11):7326–7339, 2024.</span></li>
+    <li style="display:flex;gap:12px;font-size:20px;line-height:1.29;color:var(--navy)"><span class="cite-ours" style="flex:none;font-weight:700;color:#FA4616">[2]</span><span style="flex:1;min-width:0;text-wrap:pretty">C. Gonzalez, H. Sweatland, K. Currier, W. E. Dixon, and R. Sanfelice. Pointwise optimal feedback laws for hybrid inclusions using multiple control barrier functions. <em>IEEE Conference on Decision and Control,</em> pp. 5654–5659, 2025.</span></li>
+    <li style="display:flex;gap:12px;font-size:20px;line-height:1.29;color:var(--navy)"><span style="flex:none;font-weight:700;color:#2C4B6A">[3]</span><span style="flex:1;min-width:0;text-wrap:pretty">R. G. Sanfelice. <em>Hybrid Feedback Control.</em> Princeton University Press, 2021.</span></li>
+  </ol>
+  <ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px">
+    <li style="display:flex;gap:12px;font-size:20px;line-height:1.29;color:var(--navy)"><span style="flex:none;font-weight:700;color:#2C4B6A">[4]</span><span style="flex:1;min-width:0;text-wrap:pretty">M. de Sa, P. Ong, and A. D. Ames. From bundles to backstepping: geometric control barrier functions for safety-critical control on manifolds. arXiv:2510.20202, 2025.</span></li>
+    <li style="display:flex;gap:12px;font-size:20px;line-height:1.29;color:var(--navy)"><span style="flex:none;font-weight:700;color:#2C4B6A">[5]</span><span style="flex:1;min-width:0;text-wrap:pretty">P. Tabuada and G. J. Pappas. Quotients of fully nonlinear control systems. <em>SIAM Journal on Control and Optimization,</em> 43(5):1844–1866, 2005.</span></li>
+    <li style="display:flex;gap:12px;font-size:20px;line-height:1.29;color:var(--navy)"><span class="cite-ours" style="flex:none;font-weight:700;color:#FA4616">[6]</span><span style="flex:1;min-width:0;text-wrap:pretty">K. A. Currier, W. Leal, B. C. Fallin, J. Fairbanks, and W. E. Dixon. From local to global: sheaf-theoretic control barrier functions on manifolds. <em>IEEE Conference on Decision and Control,</em> 2026, to appear.</span></li>
+  </ol>
+</div>
+
+    <div class="ds-slide-num">20</div>
+  </div>
+</section>
+
+
+</div>
+      
+
+    </div><script src="../reveal-js/dist/reveal.js"></script>
+<script src="../reveal-js/plugin/notes/notes.js"></script>
+<script src="../reveal-js/plugin/highlight/highlight.js"></script>
+<script src="../vendored/katex-0.16.11/katex.min.js"></script>
+<script src="../gatas-talks/talk.js"></script>
+
+    
+    
+  </body>
+</html>
