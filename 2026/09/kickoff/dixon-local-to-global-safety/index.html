@@ -52,27 +52,39 @@
 <section data-label="2 · Why This Matters: Safety on Manifolds" data-background-color="#ffffff" class="slide-light">
   <div class="slide-canvas">
     <h1 class="slide-h1">Why This Matters</h1>
-    <div class="at-full" style="top:108px;font-size:var(--text-3xl);line-height:1.15;color:var(--navy);font-weight:700">
+    <div class="slide-body"><div class="text-3xl" style="color:var(--navy);font-weight:700">
   The safety problem changes when the state space is a manifold.</div>
 
-<ul style="position:absolute;left:48px;top:200px;width:820px;margin:0;padding:0 0 0 30px;list-style-type:disc;font-size:var(--text-lg);line-height:1.3;color:var(--navy)">
+<div class="ds-columns grow" style="grid-template-columns:820px minmax(0, 1fr);column-gap:52px;align-items:stretch;">
+<div class="ds-column">
+<ul class="text-lg" style="margin:12px 0 0;padding:0 0 0 30px;list-style-type:disc;line-height:1.3;color:var(--navy)">
   <li style="margin-bottom:18px">Control barrier functions (CBFs) certify forward invariance: <strong>once safe, always safe.</strong></li>
   <li style="margin-bottom:18px">Most CBF theory assumes Euclidean coordinates and globally consistent data.</li>
   <li style="margin-bottom:18px">Real systems may evolve on <span class="katex-inline" data-tex="\mathrm{SO}(3)">\(\mathrm{SO}(3)\)</span>, configuration manifolds, or spaces with nontrivial topology.</li>
   <li>Local models are easy to construct, but a single global controller may not exist in one coordinate chart.</li>
 </ul>
-
-<img src="../../../../assets/figures/torus-surface.png" alt="A torus, the state space of two angles" style="position:absolute;left:920px;top:210px;width:290px;height:210px;object-fit:contain">
-<span style="position:absolute;left:1180px;top:186px;font-size:34px;color:var(--navy)"><span class="katex-inline" data-tex="\mathbb{T}^2">\(\mathbb{T}^2\)</span></span>
-<img src="../../../../assets/figures/so3-sphere.png" alt="A sphere drawn with meridians, standing for the rotation group SO(3)" style="position:absolute;left:1240px;top:210px;width:248px;height:250px;object-fit:contain">
-<span style="position:absolute;left:1316px;top:166px;font-size:34px;color:var(--navy)"><span class="katex-inline" data-tex="\mathrm{SO}(3)">\(\mathrm{SO}(3)\)</span></span>
-<img src="../../../../assets/figures/manifold-surface-patch.png" alt="A curved surface patch, a manifold M" style="position:absolute;left:960px;top:470px;width:420px;height:244px;object-fit:contain">
-<span style="position:absolute;left:1100px;top:600px;font-size:38px;color:var(--navy)"><span class="katex-inline" data-tex="\mathcal{M}">\(\mathcal{M}\)</span></span>
-
-<div class="card orange side" style="position:absolute;left:48px;top:640px;width:820px">
-  <div style="font-size:var(--text-2xl);line-height:1.2"><strong>Need:</strong> an intrinsic local-to-global safety framework.</div>
+<div class="card orange side" style="margin-top:auto;margin-bottom:40px">
+  <div class="text-2xl"><strong>Need:</strong> an intrinsic local-to-global safety framework.</div>
 </div>
-
+</div>
+<div class="ds-column" style="gap:30px">
+<div class="ds-columns" style="grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);column-gap:20px;align-items:start;">
+<div class="ds-column" style="gap:0">
+<div style="text-align:right;font-size:34px;line-height:1;color:var(--navy)"><span class="katex-inline" data-tex="\mathbb{T}^2">\(\mathbb{T}^2\)</span></div>
+<figure class="ds-figure sized" style="height:210px;"><img src="../../../../assets/figures/torus-surface.png" alt="A torus, the state space of two angles"></figure>
+</div>
+<div class="ds-column" style="gap:0">
+<div style="text-align:center;font-size:34px;line-height:1;color:var(--navy)"><span class="katex-inline" data-tex="\mathrm{SO}(3)">\(\mathrm{SO}(3)\)</span></div>
+<figure class="ds-figure sized" style="height:250px;"><img src="../../../../assets/figures/so3-sphere.png" alt="A sphere drawn with meridians, standing for the rotation group SO(3)"></figure>
+</div>
+</div>
+<div style="display:grid;place-items:center;color:var(--navy)">
+  <img src="../../../../assets/figures/manifold-surface-patch.png" alt="A curved surface patch, a manifold M" style="grid-area:1/1;height:244px;width:auto">
+  <span style="grid-area:1/1;font-size:38px"><span class="katex-inline" data-tex="\mathcal{M}">\(\mathcal{M}\)</span></span>
+</div>
+</div>
+</div>
+</div>
     <div class="ds-slide-num">2</div>
   </div>
 </section>
@@ -80,17 +92,18 @@
 <section data-label="3 · The Core Idea: Feedback Laws Agree on Overlaps" data-background-color="#ffffff" class="slide-light">
   <div class="slide-canvas">
     <h1 class="slide-h1">The Core Idea</h1>
-    <div class="at-full" style="top:108px;font-size:var(--text-3xl);line-height:1.15;color:var(--navy);font-weight:700">
+    <div class="slide-body"><div class="text-3xl" style="color:var(--navy);font-weight:700">
   Treat feedback laws as local objects that must agree on overlaps.</div>
 
-<ul style="position:absolute;left:48px;top:210px;width:700px;margin:0;padding:0 0 0 30px;list-style-type:disc;font-size:var(--text-lg);line-height:1.3;color:var(--navy)">
+<div class="ds-columns" style="grid-template-columns:minmax(0, 1fr) 688px;column-gap:52px;align-items:start;margin-top:20px">
+<ul class="text-lg" style="margin:14px 0 0;padding:0 0 0 30px;list-style-type:disc;line-height:1.3;color:var(--navy)">
   <li style="margin-bottom:20px">Cover the manifold with local regions / charts.</li>
   <li style="margin-bottom:20px">Design a safe local feedback law in each region.</li>
   <li style="margin-bottom:20px">Require compatibility where regions overlap.</li>
   <li>Glue compatible local laws into a continuous global law.</li>
 </ul>
 
-<svg style="position:absolute;left:800px;top:196px;fill:var(--navy)" width="688" height="440" viewBox="0 0 688 440" font-family="var(--font-core)" font-size="22">
+<svg style="display:block;fill:var(--navy)" width="688" height="440" viewBox="0 0 688 440" font-family="var(--font-core)" font-size="22">
   <defs>
     <marker id="core-idea-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#C0504D"/>
@@ -121,11 +134,12 @@
   <path d="M530,360 C560,320 548,270 520,246" fill="none" stroke="#C0504D" stroke-width="4" marker-end="url(#core-idea-arrow)"/>
   <text x="584" y="282" font-size="20">should be</text><text x="584" y="304" font-size="20">consistent</text><text x="584" y="326" font-size="20">with…</text>
 </svg>
-
-<div class="card orange side" style="position:absolute;left:48px;top:660px;width:1440px">
-  <div style="font-size:var(--text-2xl);line-height:1.2">Local safety + overlap agreement = global safety.</div>
 </div>
 
+<div class="card orange side">
+  <div class="text-2xl">Local safety + overlap agreement = global safety.</div>
+</div>
+</div>
     <div class="ds-cite">[1] M. Agrios. 2022<span class="ds-cite-more"> &middot; diagram after Agrios</span></div>
     <div class="ds-slide-num">3</div>
   </div>
@@ -134,26 +148,28 @@
 <section data-label="4 · What the Work Contributes" data-background-color="#ffffff" class="slide-light">
   <div class="slide-canvas">
     <h1 class="slide-h1">What the Work Contributes</h1>
-    <div class="at-full" style="top:108px;font-size:var(--text-2xl);line-height:1.2;color:var(--navy);font-weight:700">
+    <div class="slide-body"><div class="text-2xl" style="color:var(--navy);font-weight:700">
   The framework handles topology and points toward broad system classes.</div>
-<div class="at-full" style="top:172px;font-size:var(--text-lg);line-height:1.2;color:var(--slate)">
+<div class="lede">
   A geometric foundation for composing safety-critical controllers:</div>
 
-<div class="card blue roomy" style="position:absolute;left:48px;top:250px;width:456px;height:270px">
+<div class="ds-columns" style="grid-template-columns:repeat(3, minmax(0, 1fr));column-gap:36px;align-items:stretch;margin-top:22px">
+<div class="card blue roomy" style="min-height:270px">
   <div class="card-head">Intrinsic formulation</div>
   <div class="card-body" style="font-size:var(--text-lg)">Defines CBF constraints on manifolds using vector bundles, not a privileged global coordinate system.</div>
 </div>
-<div class="card green roomy" style="position:absolute;left:540px;top:250px;width:456px;height:270px">
+<div class="card green roomy" style="min-height:270px">
   <div class="card-head">Sheaf structure</div>
   <div class="card-body" style="font-size:var(--text-lg)">Organizes local feedback laws and their restrictions; compatibility is stated precisely on overlaps.</div>
 </div>
-<div class="card orange roomy" style="position:absolute;left:1032px;top:250px;width:456px;height:270px">
+<div class="card orange roomy" style="min-height:270px">
   <div class="card-head">Global guarantee</div>
   <div class="card-body" style="font-size:var(--text-lg)">Under regularity and compatibility conditions, local safe controllers combine into a continuous global controller.</div>
 </div>
+</div>
 
-<div style="position:absolute;left:48px;right:48px;bottom:110px;font-size:var(--text-2xl);line-height:1.18;color:var(--slate)">The contribution is not just another controller: it is a <strong>composition principle</strong> for (safe) control on complex spaces.</div>
-
+<div class="takeaway-flow" style="font-size:var(--text-2xl)">The contribution is not just another controller: it is a <strong>composition principle</strong> for (safe) control on complex spaces.</div>
+</div>
     <div class="ds-slide-num">4</div>
   </div>
 </section>
@@ -161,49 +177,53 @@
 <section data-label="5 · Future Efforts: From Local Geometry to Decision Systems" data-background-color="#ffffff" class="slide-light">
   <div class="slide-canvas">
     <h1 class="slide-h1">Future Efforts</h1>
-    <div class="at-full" style="top:108px;font-size:var(--text-2xl);line-height:1.2;color:var(--navy);font-weight:700">
+    <div class="slide-body"><div class="text-2xl" style="color:var(--navy);font-weight:700">
   From local geometric structure to scalable, structure-preserving decision systems.</div>
 
-<div class="card blue tight" style="position:absolute;left:48px;top:180px;width:420px;height:112px;text-align:center">
+<div class="ds-columns" style="grid-template-columns:minmax(0, 1fr) 80px minmax(0, 1fr) 80px minmax(0, 1fr);column-gap:5px;align-items:stretch;">
+<div class="card blue tight" style="min-height:112px;text-align:center">
   <div class="card-head" style="margin-bottom:4px">Sheaf models</div>
-  <div style="font-size:var(--text-sm);line-height:1.15">Local-to-global state and data</div>
+  <div class="text-sm" style="line-height:1.15">Local-to-global state and data</div>
 </div>
-<div style="position:absolute;left:478px;top:206px;font-size:44px;color:var(--orange)">&#10132;</div>
-<div class="card orange tight" style="position:absolute;left:558px;top:180px;width:420px;height:112px;text-align:center">
+<div style="align-self:center;text-align:center;font-size:44px;color:var(--orange)">&#10132;</div>
+<div class="card orange tight" style="min-height:112px;text-align:center">
   <div class="card-head" style="margin-bottom:4px">Metriplectic dynamics</div>
-  <div style="font-size:var(--text-sm);line-height:1.15">Hamiltonian + dissipative flow</div>
+  <div class="text-sm" style="line-height:1.15">Hamiltonian + dissipative flow</div>
 </div>
-<div style="position:absolute;left:988px;top:206px;font-size:44px;color:var(--orange)">&#10132;</div>
-<div class="card grey tight" style="position:absolute;left:1068px;top:180px;width:420px;height:112px;text-align:center">
+<div style="align-self:center;text-align:center;font-size:44px;color:var(--orange)">&#10132;</div>
+<div class="card grey tight" style="min-height:112px;text-align:center">
   <div class="card-head" style="margin-bottom:4px">ADP / RL / AI</div>
-  <div style="font-size:var(--text-sm);line-height:1.15">Approximate value and policy iteration</div>
+  <div class="text-sm" style="line-height:1.15">Approximate value and policy iteration</div>
+</div>
 </div>
 
-<div class="card blue soft side roomy" style="position:absolute;left:48px;top:320px;width:456px;height:470px">
+<div class="ds-columns grow" style="grid-template-columns:repeat(3, minmax(0, 1fr));column-gap:36px;align-items:stretch;">
+<div class="card blue soft side roomy">
   <div class="card-head">Mathematical foundations</div>
-  <ul style="margin:8px 0 0 22px;padding:0;font-size:var(--text-sm);line-height:1.3">
+  <ul class="text-sm" style="margin:8px 0 0 22px;padding:0">
     <li style="margin-bottom:10px">Define sheaf-valued state spaces and morphisms for open, hybrid, and partially observed systems.</li>
     <li style="margin-bottom:10px">Characterize when local metriplectic laws glue to a globally consistent flow.</li>
     <li>Develop cohomological obstructions and invariants for conservation, dissipation, and feasibility.</li>
   </ul>
 </div>
-<div class="card orange soft side roomy" style="position:absolute;left:540px;top:320px;width:456px;height:470px">
+<div class="card orange soft side roomy">
   <div class="card-head">Structure-preserving numerics</div>
-  <ul style="margin:8px 0 0 22px;padding:0;font-size:var(--text-sm);line-height:1.3">
+  <ul class="text-sm" style="margin:8px 0 0 22px;padding:0">
     <li style="margin-bottom:10px">Construct discretizations that preserve Poisson structure, Casimirs, and entropy production.</li>
     <li style="margin-bottom:10px">Use sheaf consistency checks to detect incompatible measurements or learned local models.</li>
     <li>Quantify error propagation from local sections to global trajectories and value functions.</li>
   </ul>
 </div>
-<div class="card grey soft side roomy" style="position:absolute;left:1032px;top:320px;width:456px;height:470px">
+<div class="card grey soft side roomy">
   <div class="card-head">Learning and control</div>
-  <ul style="margin:8px 0 0 22px;padding:0;font-size:var(--text-sm);line-height:1.3">
+  <ul class="text-sm" style="margin:8px 0 0 22px;padding:0">
     <li style="margin-bottom:10px">Embed geometric constraints directly into value and policy approximation.</li>
     <li style="margin-bottom:10px">Scale ADP across decomposable networks using local critics and message passing.</li>
     <li>Establish stability, safety, and regret guarantees under approximation and model mismatch.</li>
   </ul>
 </div>
-
+</div>
+</div>
     <div class="ds-slide-num">5</div>
   </div>
 </section>
